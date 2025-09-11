@@ -1,0 +1,28 @@
+{
+  "name": "Embeddings Eval",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-18-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "ms-vscode.vscode-json",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-eslint"
+      ]
+    }
+  },
+  "forwardPorts": [],
+  "portsAttributes": {},
+  "remoteUser": "node",
+  "secrets": {
+    "OPENAI_API_KEY": {
+      "description": "OpenAI API key for generating embeddings"
+    }
+  }
+}
