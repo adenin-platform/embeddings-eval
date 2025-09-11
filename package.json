@@ -1,0 +1,19 @@
+{
+  "name": "embeddings-eval",
+  "version": "1.0.0",
+  "description": "A Node.js application for evaluating content embeddings using Vectra and OpenAI",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "eval": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["embeddings", "vectra", "openai", "search", "evaluation"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "openai": "^5.20.1",
+    "vectra": "^0.11.1"
+  }
+}
