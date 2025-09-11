@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Introduction to Machine Learning",
+    "description": "A comprehensive guide to understanding the fundamentals of machine learning, including supervised and unsupervised learning algorithms, neural networks, and practical applications in modern technology."
+  },
+  {
+    "title": "JavaScript for Beginners",
+    "description": "Learn the basics of JavaScript programming language including variables, functions, objects, arrays, and DOM manipulation for web development."
+  },
+  {
+    "title": "Cloud Computing with AWS",
+    "description": "Master Amazon Web Services with hands-on tutorials covering EC2, S3, Lambda, and other essential cloud services for scalable applications."
+  },
+  {
+    "title": "Database Design Principles",
+    "description": "Understanding relational database design, normalization, indexing, and query optimization for efficient data storage and retrieval."
+  },
+  {
+    "title": "React Native Mobile Development",
+    "description": "Build cross-platform mobile applications using React Native framework, covering navigation, state management, and native module integration."
+  },
+  {
+    "title": "Data Science with Python",
+    "description": "Explore data analysis, visualization, and statistical modeling using Python libraries like pandas, matplotlib, and scikit-learn."
+  },
+  {
+    "title": "Cybersecurity Fundamentals",
+    "description": "Essential cybersecurity concepts including threat analysis, encryption, network security, and best practices for protecting digital assets."
+  },
+  {
+    "title": "UI/UX Design Principles",
+    "description": "Learn user interface and user experience design fundamentals, including wireframing, prototyping, and usability testing methodologies."
+  },
+  {
+    "title": "DevOps and Continuous Integration",
+    "description": "Implement DevOps practices with CI/CD pipelines, containerization using Docker, and infrastructure as code with Terraform."
+  },
+  {
+    "title": "Blockchain Technology Overview",
+    "description": "Understanding distributed ledger technology, smart contracts, cryptocurrency fundamentals, and blockchain applications in various industries."
+  }
+]
