@@ -6,6 +6,11 @@ const OpenAI = require('openai');
 
 class EmbeddingsEvaluator {
   constructor() {
+    // Check if API key is provided before initializing OpenAI
+    if (!process.env.OPENAI_API_KEY) {
+      throw new Error('OPENAI_API_KEY environment variable is required. Please set it in a .env file.');
+    }
+    
     this.openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
     });
@@ -148,11 +153,6 @@ class EmbeddingsEvaluator {
     try {
       console.log('Starting Embeddings Evaluator...\n');
       
-      // Check if API key is provided
-      if (!process.env.OPENAI_API_KEY) {
-        throw new Error('OPENAI_API_KEY environment variable is required. Please set it in a .env file.');
-      }
-      
       await this.initialize();
       
       // Check if index is empty, if so build it
@@ -180,8 +180,16 @@ class EmbeddingsEvaluator {
 
 // Run the evaluator if this file is executed directly
 if (require.main === module) {
-  const evaluator = new EmbeddingsEvaluator();
-  evaluator.run();
+  try {
+    const evaluator = new EmbeddingsEvaluator();
+    evaluator.run();
+  } catch (error) {
+    console.error('\n❌ Error:', error.message);
+    console.error('\n💡 Please create a .env file with your OpenAI API key:');
+    console.error('   OPENAI_API_KEY=your_openai_api_key_here');
+    console.error('\n📖 See .env.example for the template.');
+    process.exit(1);
+  }
 }
 
 module.exports = EmbeddingsEvaluator;
