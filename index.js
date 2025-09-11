@@ -79,7 +79,7 @@ class EmbeddingsEvaluator {
         await this.index.insertItem({
           vector: embedding,
           metadata: {
-            id: i,
+            id: item.id, // Use the id from the content item
             title: item.title,
             description: item.description,
             text: text
@@ -97,6 +97,31 @@ class EmbeddingsEvaluator {
     console.log('Index built successfully!');
   }
 
+  validateResults(foundIds, expectedIds) {
+    // Check if found results start with expected results in order
+    if (expectedIds.length === 0) {
+      return { isValid: true, message: 'No expectations to validate' };
+    }
+    
+    if (foundIds.length < expectedIds.length) {
+      return { 
+        isValid: false, 
+        message: `Expected ${expectedIds.length} results but found only ${foundIds.length}` 
+      };
+    }
+    
+    for (let i = 0; i < expectedIds.length; i++) {
+      if (foundIds[i] !== expectedIds[i]) {
+        return { 
+          isValid: false, 
+          message: `Expected ID ${expectedIds[i]} at position ${i + 1}, but found ID ${foundIds[i]}` 
+        };
+      }
+    }
+    
+    return { isValid: true, message: `All ${expectedIds.length} expected results match` };
+  }
+
   async search(query, topK = 3) {
     try {
       console.log(`Searching for: "${query}"`);
@@ -108,6 +133,7 @@ class EmbeddingsEvaluator {
       const results = await this.index.queryItems(queryEmbedding, topK);
       
       return results.map(result => ({
+        id: result.item.metadata.id,
         score: result.score,
         title: result.item.metadata.title,
         description: result.item.metadata.description
@@ -126,12 +152,20 @@ class EmbeddingsEvaluator {
     
     for (const evalItem of evalData) {
       const searchResults = await this.search(evalItem.search, 3);
+      const foundIds = searchResults.map(result => result.id);
+      const expectedIds = evalItem.expected || [];
+      
+      // Validate results
+      const validation = this.validateResults(foundIds, expectedIds);
       
       console.log(`Search: "${evalItem.search}"`);
+      console.log(`Expected: [${expectedIds.join(', ')}]`);
+      console.log(`Found: [${foundIds.join(', ')}]`);
+      console.log(`Validation: ${validation.isValid ? '✅' : '❌'} ${validation.message}`);
       console.log('Top 3 results:');
       
       searchResults.forEach((result, index) => {
-        console.log(`  ${index + 1}. [Score: ${result.score.toFixed(4)}] ${result.title}`);
+        console.log(`  ${index + 1}. [ID: ${result.id}, Score: ${result.score.toFixed(4)}] ${result.title}`);
         console.log(`     ${result.description.substring(0, 100)}...`);
       });
       
@@ -139,6 +173,9 @@ class EmbeddingsEvaluator {
       
       results.push({
         search: evalItem.search,
+        expected: expectedIds,
+        found: foundIds,
+        validation: validation,
         results: searchResults
       });
       
