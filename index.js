@@ -149,6 +149,66 @@ class EmbeddingsEvaluator {
     return results;
   }
 
+  async generateEmbeddingsOnly() {
+    try {
+      console.log('🔄 Generating embeddings and storing vectors...\n');
+      
+      await this.initialize();
+      
+      // Always rebuild the index when explicitly generating
+      console.log('Building fresh vector index...');
+      
+      // Clear existing index if it exists
+      const stats = await this.index.getIndexStats();
+      if (stats.items > 0) {
+        console.log(`Clearing existing index with ${stats.items} items...`);
+        // Delete and recreate the index directory
+        await this.index.deleteIndex();
+        await this.index.createIndex();
+      }
+      
+      await this.buildIndex();
+      console.log('✅ Embeddings generated and stored successfully!\n');
+      
+      const finalStats = await this.index.getIndexStats();
+      console.log(`📊 Index contains ${finalStats.items} embedded items.`);
+      
+    } catch (error) {
+      console.error('❌ Error generating embeddings:', error.message);
+      process.exit(1);
+    }
+  }
+
+  async evaluateOnly() {
+    try {
+      console.log('🔍 Running evaluation for search terms...\n');
+      
+      await this.initialize();
+      
+      // Check if index exists and has items
+      const stats = await this.index.getIndexStats();
+      if (stats.items === 0) {
+        console.error('❌ No embeddings found! Please run "npm run generate" first to create embeddings.');
+        console.log('💡 Usage: npm run generate  # Then: npm run evaluate');
+        process.exit(1);
+      } else {
+        console.log(`📊 Using existing index with ${stats.items} items.\n`);
+      }
+      
+      // Run the evaluation only
+      const results = await this.runEvaluation();
+      
+      // Save results to file
+      await fs.writeFile('evaluation-results.json', JSON.stringify(results, null, 2));
+      console.log('✅ Evaluation results saved to evaluation-results.json');
+      
+      return results;
+    } catch (error) {
+      console.error('❌ Error running evaluation:', error.message);
+      process.exit(1);
+    }
+  }
+
   async run() {
     try {
       console.log('Starting Embeddings Evaluator...\n');
@@ -182,7 +242,26 @@ class EmbeddingsEvaluator {
 if (require.main === module) {
   try {
     const evaluator = new EmbeddingsEvaluator();
-    evaluator.run();
+    
+    // Parse command line arguments
+    const args = process.argv.slice(2);
+    const command = args[0];
+    
+    // Handle different commands
+    switch (command) {
+      case 'generate':
+        console.log('🚀 Command: Generate embeddings and store vectors\n');
+        evaluator.generateEmbeddingsOnly();
+        break;
+      case 'evaluate':
+        console.log('🚀 Command: Run evaluation for search terms\n'); 
+        evaluator.evaluateOnly();
+        break;
+      default:
+        console.log('🚀 Command: Full pipeline (generate + evaluate)\n');
+        evaluator.run();
+        break;
+    }
   } catch (error) {
     console.error('\n❌ Error:', error.message);
     console.error('\n💡 Please create a .env file with your OpenAI API key:');

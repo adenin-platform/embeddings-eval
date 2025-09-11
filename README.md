@@ -24,16 +24,44 @@ OPENAI_API_KEY=your_openai_api_key_here
 
 ## Usage
 
-Run the evaluation:
+### Two-Step Process (Recommended)
+
+1. **Generate embeddings and store vectors:**
+```bash
+npm run generate
+```
+
+2. **Run evaluation for search terms:**
+```bash
+npm run evaluate  
+```
+
+### Alternative Commands
+
+Run the complete pipeline (generate + evaluate):
+```bash
+npm run start
+```
+or
 ```bash
 npm run eval
 ```
 
-or
+### Command Details
 
-```bash
-npm start
-```
+- `npm run generate`: Creates embeddings for all content in `content.json` and stores them in the vector index. This needs to be run first before evaluation.
+- `npm run evaluate`: Runs search evaluation using queries from `eval.json` against the existing vector index. Requires running `generate` first.
+- `npm run start` / `npm run eval`: Runs the full pipeline (equivalent to running generate then evaluate)
+- `npm run validate`: Validates that the required JSON files exist and shows item counts
+
+### Development in GitHub Codespaces
+
+This repository is configured for GitHub Codespaces with automatic setup:
+
+1. Click "Code" → "Open with Codespaces" → "New codespace" 
+2. Dependencies will be installed automatically
+3. Add your OpenAI API key to the codespace secrets as `OPENAI_API_KEY`
+4. Run the commands above
 
 ## Data Files
 
@@ -60,11 +88,19 @@ Contains an array of search queries:
 
 ## Output
 
+### Generate Command (`npm run generate`)
 The application will:
-1. Build a vector index from the content (on first run)
-2. Search for each query in the eval file
-3. Display top 3 results with similarity scores
-4. Save results to `evaluation-results.json`
+1. Build a vector index from the content in `content.json`
+2. Generate embeddings using OpenAI's text-embedding-3-small model
+3. Store the vectors in the local index
+4. Display progress and completion status
+
+### Evaluate Command (`npm run evaluate`)
+The application will:
+1. Load the existing vector index (requires running generate first)
+2. Search for each query in the `eval.json` file  
+3. Display top 3 results with similarity scores for each query
+4. Save detailed results to `evaluation-results.json`
 
 ## Example Output
 
