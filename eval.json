@@ -38,5 +38,13 @@
   {
     "search": "cryptocurrency blockchain",
     "expected": [10]
+  },
+  {
+    "search": "braturst",
+    "expected": []
+  },
+  {
+    "search": "programming development",
+    "expected": [6, 2]
   }
 ]
