@@ -1,32 +1,50 @@
 [
   {
-    "search": "python programming"
+    "search": "python programming",
+    "expected": [6]
   },
   {
-    "search": "mobile app development"
+    "search": "mobile app development",
+    "expected": [5]
   },
   {
-    "search": "machine learning algorithms"
+    "search": "machine learning algorithms",
+    "expected": [1]
   },
   {
-    "search": "web development javascript"
+    "search": "web development javascript",
+    "expected": [2]
   },
   {
-    "search": "cloud services deployment"
+    "search": "cloud services deployment",
+    "expected": [3]
   },
   {
-    "search": "database optimization"
+    "search": "database optimization",
+    "expected": [4]
   },
   {
-    "search": "security encryption"
+    "search": "security encryption",
+    "expected": [7]
   },
   {
-    "search": "user interface design"
+    "search": "user interface design",
+    "expected": [8]
   },
   {
-    "search": "docker containers"
+    "search": "docker containers",
+    "expected": [9]
   },
   {
-    "search": "cryptocurrency blockchain"
+    "search": "cryptocurrency blockchain",
+    "expected": [10]
+  },
+  {
+    "search": "braturst",
+    "expected": []
+  },
+  {
+    "search": "programming development",
+    "expected": [6, 2]
   }
 ]
