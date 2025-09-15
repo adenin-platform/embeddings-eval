@@ -8,7 +8,8 @@
     "generate": "node index.js generate",
     "evaluate": "node index.js evaluate",
     "eval": "node index.js evaluate",
-    "validate": "node -e \"console.log('✓ Content items:', JSON.parse(require('fs').readFileSync('content.json')).length); console.log('✓ Eval queries:', JSON.parse(require('fs').readFileSync('eval.json')).length);\"",
+    "validate": "node validate.js",
+    "validate-project": "node validate-project.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": ["embeddings", "vectra", "openai", "search", "evaluation"],

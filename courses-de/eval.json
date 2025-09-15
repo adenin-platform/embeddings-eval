@@ -1,0 +1,50 @@
+[
+  {
+    "search": "python programmierung",
+    "expected": [6]
+  },
+  {
+    "search": "mobile app entwicklung",
+    "expected": [5]
+  },
+  {
+    "search": "machine learning algorithmen",
+    "expected": [1]
+  },
+  {
+    "search": "webentwicklung javascript",
+    "expected": [2]
+  },
+  {
+    "search": "cloud services deployment",
+    "expected": [3]
+  },
+  {
+    "search": "datenbank optimierung",
+    "expected": [4]
+  },
+  {
+    "search": "sicherheit verschlüsselung",
+    "expected": [7]
+  },
+  {
+    "search": "benutzeroberflächen design",
+    "expected": [8]
+  },
+  {
+    "search": "docker container",
+    "expected": [9]
+  },
+  {
+    "search": "kryptowährung blockchain",
+    "expected": [10]
+  },
+  {
+    "search": "bratwurst",
+    "expected": []
+  },
+  {
+    "search": "programmierung entwicklung",
+    "expected": [6, 2]
+  }
+]

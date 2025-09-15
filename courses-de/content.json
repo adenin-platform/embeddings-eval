@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "title": "Einführung in Machine Learning",
+    "description": "Ein umfassender Leitfaden zum Verständnis der Grundlagen des maschinellen Lernens, einschließlich überwachter und unüberwachter Lernalgorithmen, neuronaler Netzwerke und praktischer Anwendungen in der modernen Technologie."
+  },
+  {
+    "id": 2,
+    "title": "JavaScript für Anfänger",
+    "description": "Lernen Sie die Grundlagen der JavaScript-Programmiersprache, einschließlich Variablen, Funktionen, Objekte, Arrays und DOM-Manipulation für die Webentwicklung."
+  },
+  {
+    "id": 3,
+    "title": "Cloud Computing mit AWS",
+    "description": "Meistern Sie Amazon Web Services mit praktischen Tutorials zu EC2, S3, Lambda und anderen wichtigen Cloud-Services für skalierbare Anwendungen."
+  },
+  {
+    "id": 4,
+    "title": "Datenbankdesign-Prinzipien",
+    "description": "Verstehen Sie relationales Datenbankdesign, Normalisierung, Indexierung und Abfrageoptimierung für effiziente Datenspeicherung und -abfrage."
+  },
+  {
+    "id": 5,
+    "title": "React Native Mobile-Entwicklung",
+    "description": "Erstellen Sie plattformübergreifende mobile Anwendungen mit dem React Native Framework, einschließlich Navigation, State Management und nativer Modulintegration."
+  },
+  {
+    "id": 6,
+    "title": "Data Science mit Python",
+    "description": "Erkunden Sie Datenanalyse, Visualisierung und statistische Modellierung mit Python-Bibliotheken wie pandas, matplotlib und scikit-learn."
+  },
+  {
+    "id": 7,
+    "title": "Grundlagen der Cybersicherheit",
+    "description": "Wesentliche Cybersicherheitskonzepte einschließlich Bedrohungsanalyse, Verschlüsselung, Netzwerksicherheit und bewährte Praktiken zum Schutz digitaler Assets."
+  },
+  {
+    "id": 8,
+    "title": "UI/UX Design-Prinzipien",
+    "description": "Lernen Sie die Grundlagen des Benutzeroberflächendesigns und der Benutzererfahrung, einschließlich Wireframing, Prototyping und Usability-Testing-Methoden."
+  },
+  {
+    "id": 9,
+    "title": "DevOps und Continuous Integration",
+    "description": "Implementieren Sie DevOps-Praktiken mit CI/CD-Pipelines, Containerisierung mit Docker und Infrastructure as Code mit Terraform."
+  },
+  {
+    "id": 10,
+    "title": "Blockchain-Technologie-Überblick",
+    "description": "Verstehen Sie Distributed-Ledger-Technologie, Smart Contracts, Kryptowährungsgrundlagen und Blockchain-Anwendungen in verschiedenen Branchen."
+  }
+]
