@@ -2,57 +2,33 @@ const fs = require('fs').promises;
 const path = require('path');
 require('dotenv').config();
 const { LocalIndex } = require('vectra');
-const OpenAI = require('openai');
+const EmbeddingService = require('./lib/embedding');
+const Generator = require('./lib/generate');
+const Validator = require('./lib/validate');
 
 class EmbeddingsEvaluator {
-  constructor(project = 'courses-en') {
-    // Check if API key is provided before initializing OpenAI
+  constructor(project = 'default') {
+    // Check if API key is provided before initializing
     if (!process.env.OPENAI_API_KEY) {
       throw new Error('OPENAI_API_KEY environment variable is required. Please set it in a .env file.');
     }
     
-    this.openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-    });
+    this.apiKey = process.env.OPENAI_API_KEY;
     this.project = project;
     this.projectPath = path.join(__dirname, project);
-    this.indexPath = path.join(__dirname, `embeddings-index-${project}`);
+    this.indexPath = path.join(this.projectPath, 'embeddings-index');
+    this.embeddingService = new EmbeddingService(this.apiKey);
     this.index = null;
   }
 
   async initialize() {
-    // Create or load the vector index
+    // Create or load the vector index from project folder
     this.index = new LocalIndex(this.indexPath);
     
-    // Check if index exists, if not create it
+    // Check if index exists
     const indexExists = await this.index.isIndexCreated();
     if (!indexExists) {
-      await this.index.createIndex();
-    }
-  }
-
-  async generateEmbedding(text) {
-    try {
-      const response = await this.openai.embeddings.create({
-        model: 'text-embedding-3-small',
-        input: text,
-        encoding_format: 'float',
-      });
-      return response.data[0].embedding;
-    } catch (error) {
-      console.error('Error generating embedding:', error.message);
-      throw error;
-    }
-  }
-
-  async loadContent() {
-    try {
-      const contentPath = path.join(this.projectPath, 'content.json');
-      const contentData = await fs.readFile(contentPath, 'utf8');
-      return JSON.parse(contentData);
-    } catch (error) {
-      console.error(`Error loading content.json from project ${this.project}:`, error.message);
-      throw error;
+      throw new Error(`No embeddings index found for project '${this.project}'. Please run generate first.`);
     }
   }
 
@@ -67,71 +43,12 @@ class EmbeddingsEvaluator {
     }
   }
 
-  async buildIndex() {
-    console.log(`Loading content from project '${this.project}' and building index...`);
-    const content = await this.loadContent();
-    
-    for (let i = 0; i < content.length; i++) {
-      const item = content[i];
-      const text = `${item.title} ${item.description}`;
-      
-      console.log(`Processing item ${i + 1}/${content.length}: ${item.title}`);
-      
-      try {
-        const embedding = await this.generateEmbedding(text);
-        
-        await this.index.insertItem({
-          vector: embedding,
-          metadata: {
-            id: item.id, // Use the id from the content item
-            title: item.title,
-            description: item.description,
-            text: text
-          }
-        });
-        
-        // Small delay to respect rate limits
-        await new Promise(resolve => setTimeout(resolve, 100));
-      } catch (error) {
-        console.error(`Error processing item ${i + 1}:`, error.message);
-        throw error;
-      }
-    }
-    
-    console.log('Index built successfully!');
-  }
-
-  validateResults(foundIds, expectedIds) {
-    // Check if found results start with expected results in order
-    if (expectedIds.length === 0) {
-      return { isValid: true, message: 'No expectations to validate' };
-    }
-    
-    if (foundIds.length < expectedIds.length) {
-      return { 
-        isValid: false, 
-        message: `Expected ${expectedIds.length} results but found only ${foundIds.length}` 
-      };
-    }
-    
-    for (let i = 0; i < expectedIds.length; i++) {
-      if (foundIds[i] !== expectedIds[i]) {
-        return { 
-          isValid: false, 
-          message: `Expected ID ${expectedIds[i]} at position ${i + 1}, but found ID ${foundIds[i]}` 
-        };
-      }
-    }
-    
-    return { isValid: true, message: `All ${expectedIds.length} expected results match` };
-  }
-
   async search(query, topK = 3) {
     try {
       console.log(`Searching for: "${query}"`);
       
       // Generate embedding for the search query
-      const queryEmbedding = await this.generateEmbedding(query);
+      const queryEmbedding = await this.embeddingService.generateEmbedding(query);
       
       // Search the index
       const results = await this.index.queryItems(queryEmbedding, topK);
@@ -160,7 +77,7 @@ class EmbeddingsEvaluator {
       const expectedIds = evalItem.expected || [];
       
       // Validate results
-      const validation = this.validateResults(foundIds, expectedIds);
+      const validation = Validator.validateResults(foundIds, expectedIds);
       
       console.log(`Search: "${evalItem.search}"`);
       console.log(`Expected: [${expectedIds.join(', ')}]`);
@@ -194,25 +111,8 @@ class EmbeddingsEvaluator {
     try {
       console.log(`🔄 Generating embeddings for project '${this.project}' and storing vectors...\n`);
       
-      await this.initialize();
-      
-      // Always rebuild the index when explicitly generating
-      console.log('Building fresh vector index...');
-      
-      // Clear existing index if it exists
-      const stats = await this.index.getIndexStats();
-      if (stats.items > 0) {
-        console.log(`Clearing existing index with ${stats.items} items...`);
-        // Delete and recreate the index directory
-        await this.index.deleteIndex();
-        await this.index.createIndex();
-      }
-      
-      await this.buildIndex();
-      console.log('✅ Embeddings generated and stored successfully!\n');
-      
-      const finalStats = await this.index.getIndexStats();
-      console.log(`📊 Index contains ${finalStats.items} embedded items.`);
+      const generator = new Generator(this.projectPath, this.apiKey);
+      await generator.generate();
       
     } catch (error) {
       console.error('❌ Error generating embeddings:', error.message);
@@ -230,7 +130,7 @@ class EmbeddingsEvaluator {
       const stats = await this.index.getIndexStats();
       if (stats.items === 0) {
         console.error(`❌ No embeddings found for project '${this.project}'! Please run "npm run generate" first to create embeddings.`);
-        console.log('💡 Usage: npm run generate -- --project courses-de  # Then: npm run evaluate -- --project courses-de');
+        console.log(`💡 Usage: npm run generate -- --project ${this.project}  # Then: npm run evaluate -- --project ${this.project}`);
         process.exit(1);
       } else {
         console.log(`📊 Using existing index with ${stats.items} items.\n`);
@@ -260,7 +160,9 @@ class EmbeddingsEvaluator {
       // Check if index is empty, if so build it
       const stats = await this.index.getIndexStats();
       if (stats.items === 0) {
-        await this.buildIndex();
+        console.log('No embeddings found, generating first...');
+        await this.generateEmbeddingsOnly();
+        await this.initialize(); // Reinitialize after generating
       } else {
         console.log(`Using existing index with ${stats.items} items.\n`);
       }
@@ -287,7 +189,7 @@ if (require.main === module) {
     // Parse command line arguments
     const args = process.argv.slice(2);
     let command = 'run'; // default command
-    let project = 'courses-en'; // default project
+    let project = 'default'; // default project
     
     // Parse arguments
     for (let i = 0; i < args.length; i++) {
@@ -300,18 +202,18 @@ if (require.main === module) {
       }
     }
     
-    // Validate project
-    const validProjects = ['courses-en', 'courses-de'];
+    // Validate project - check if project folder exists
+    const validProjects = ['default', 'courses-de'];
     if (!validProjects.includes(project)) {
       console.error(`❌ Error: Invalid project '${project}'. Valid projects are: ${validProjects.join(', ')}`);
       console.log('💡 Usage examples:');
-      console.log('   npm start -- --project courses-en');
+      console.log('   npm start -- --project default');
       console.log('   npm start -- --project courses-de');
       console.log('   npm run generate -- --project courses-de');
-      console.log('   npm run evaluate -- --project courses-en');
+      console.log('   npm run evaluate -- --project default');
       console.log('');
       console.log('   Or run directly:');
-      console.log('   node index.js --project courses-en');
+      console.log('   node index.js --project default');
       console.log('   node index.js generate --project courses-de');
       process.exit(1);
     }
