@@ -40,34 +40,40 @@ All commands support the `--project` parameter to specify which project to work 
 
 1. **Generate embeddings and store vectors:**
 ```bash
-npm run generate --project courses-en
+npm run generate -- --project courses-en
 # or
-npm run generate --project courses-de
+npm run generate -- --project courses-de
 ```
 
 2. **Run evaluation for search terms:**
 ```bash
-npm run evaluate --project courses-en
+npm run evaluate -- --project courses-en
 # or  
-npm run evaluate --project courses-de
+npm run evaluate -- --project courses-de
 ```
 
 ### Alternative Commands
 
 Run the complete pipeline (generate + evaluate):
 ```bash
-npm start --project courses-en
+npm start -- --project courses-en
 # or
-npm start --project courses-de
+npm start -- --project courses-de
 ```
 
 ### Command Details
 
-- `npm run generate --project {name}`: Creates embeddings for all content in `{project}/content.json` and stores them in a project-specific vector index.
-- `npm run evaluate --project {name}`: Runs search evaluation using queries from `{project}/eval.json` against the existing vector index.
-- `npm start --project {name}`: Runs the full pipeline (equivalent to running generate then evaluate)
+- `npm run generate -- --project {name}`: Creates embeddings for all content in `{project}/content.json` and stores them in a project-specific vector index.
+- `npm run evaluate -- --project {name}`: Runs search evaluation using queries from `{project}/eval.json` against the existing vector index.
+- `npm start -- --project {name}`: Runs the full pipeline (equivalent to running generate then evaluate)
 - `npm run validate`: Validates that all project JSON files exist and shows item counts
 - `npm run validate-project {name}`: Validates a specific project
+
+**Note:** The `--` separator is required when passing `--project` through npm scripts. Alternatively, you can run the commands directly:
+```bash
+node index.js generate --project courses-de
+node index.js evaluate --project courses-en
+```
 
 ### Development in GitHub Codespaces
 
@@ -118,14 +124,14 @@ Contains an array of search queries with optional expected results:
 
 ## Output
 
-### Generate Command (`npm run generate --project {name}`)
+### Generate Command (`npm run generate -- --project {name}`)
 The application will:
 1. Build a project-specific vector index from the content in `{project}/content.json`
 2. Generate embeddings using OpenAI's text-embedding-3-small model
 3. Store the vectors in `embeddings-index-{project}/`
 4. Display progress and completion status
 
-### Evaluate Command (`npm run evaluate --project {name}`)
+### Evaluate Command (`npm run evaluate -- --project {name}`)
 The application will:
 1. Load the existing project-specific vector index
 2. Search for each query in the `{project}/eval.json` file  

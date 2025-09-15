@@ -230,7 +230,7 @@ class EmbeddingsEvaluator {
       const stats = await this.index.getIndexStats();
       if (stats.items === 0) {
         console.error(`❌ No embeddings found for project '${this.project}'! Please run "npm run generate" first to create embeddings.`);
-        console.log('💡 Usage: npm run generate  # Then: npm run evaluate');
+        console.log('💡 Usage: npm run generate -- --project courses-de  # Then: npm run evaluate -- --project courses-de');
         process.exit(1);
       } else {
         console.log(`📊 Using existing index with ${stats.items} items.\n`);
@@ -305,10 +305,14 @@ if (require.main === module) {
     if (!validProjects.includes(project)) {
       console.error(`❌ Error: Invalid project '${project}'. Valid projects are: ${validProjects.join(', ')}`);
       console.log('💡 Usage examples:');
-      console.log('   npm start --project courses-en');
-      console.log('   npm start --project courses-de');
-      console.log('   npm run generate --project courses-de');
-      console.log('   npm run evaluate --project courses-en');
+      console.log('   npm start -- --project courses-en');
+      console.log('   npm start -- --project courses-de');
+      console.log('   npm run generate -- --project courses-de');
+      console.log('   npm run evaluate -- --project courses-en');
+      console.log('');
+      console.log('   Or run directly:');
+      console.log('   node index.js --project courses-en');
+      console.log('   node index.js generate --project courses-de');
       process.exit(1);
     }
     
