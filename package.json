@@ -1,7 +1,7 @@
 {
   "name": "embeddings-eval",
   "version": "1.0.0",
-  "description": "A Node.js application for evaluating content embeddings using Vectra and OpenAI",
+  "description": "A Node.js application for evaluating content embeddings using Vectra Enhanced and OpenAI",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -15,6 +15,8 @@
   "keywords": [
     "embeddings",
     "vectra",
+    "vectra-enhanced", 
+    "hnsw",
     "openai",
     "search",
     "evaluation"
@@ -23,6 +25,6 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^17.2.2",
-    "vectra": "^0.11.1"
+    "vectra-enhanced": "^1.0.0"
   }
 }
