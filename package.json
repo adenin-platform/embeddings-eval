@@ -14,7 +14,7 @@
   },
   "keywords": ["embeddings", "vectra", "openai", "search", "evaluation"],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "dotenv": "^17.2.2",
     "openai": "^5.20.1",
