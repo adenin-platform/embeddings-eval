@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const project = process.argv[2] || 'courses-en';
+const project = process.argv[2] || 'default';
 
 try {
   const contentPath = `${project}/content.json`;
