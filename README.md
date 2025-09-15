@@ -1,17 +1,17 @@
 # embeddings-eval
 
-A Node.js application for evaluating content embeddings using Vectra and OpenAI's text-embedding-3-small model.
+A Node.js application for evaluating content embeddings using Vectra Enhanced and OpenAI's text-embedding-3-small model.
 
 ## Overview
 
 This application supports multiple projects with language-specific content:
 
-- **courses-en**: English course content
+- **default**: Default course content
 - **courses-de**: German course content
 
 The application:
 1. Reads content from `{project}/content.json` (array of objects with `title` and `description` properties)
-2. Uses [Vectra](https://github.com/Stevenic/vectra) with OpenAI's `text-embedding-3-small` model to compute embeddings for `title + " " + description`
+2. Uses [Vectra Enhanced](https://github.com/Stevenic/vectra) with OpenAI's `text-embedding-3-small` model to compute embeddings for `title + " " + description`
 3. Loads evaluation data from `{project}/eval.json` (array of objects with `search` property)
 4. Searches for each search term and returns the top 3 most relevant results
 
@@ -33,21 +33,21 @@ OPENAI_API_KEY=your_openai_api_key_here
 
 All commands support the `--project` parameter to specify which project to work with:
 
-- `--project courses-en` (default): Use English content
+- `--project default` (default): Use default content
 - `--project courses-de`: Use German content
 
 ### Two-Step Process (Recommended)
 
 1. **Generate embeddings and store vectors:**
 ```bash
-npm run generate -- --project courses-en
+npm run generate -- --project default
 # or
 npm run generate -- --project courses-de
 ```
 
 2. **Run evaluation for search terms:**
 ```bash
-npm run evaluate -- --project courses-en
+npm run evaluate -- --project default
 # or  
 npm run evaluate -- --project courses-de
 ```
@@ -56,7 +56,7 @@ npm run evaluate -- --project courses-de
 
 Run the complete pipeline (generate + evaluate):
 ```bash
-npm start -- --project courses-en
+npm start -- --project default
 # or
 npm start -- --project courses-de
 ```
@@ -72,7 +72,7 @@ npm start -- --project courses-de
 **Note:** The `--` separator is required when passing `--project` through npm scripts. Alternatively, you can run the commands directly:
 ```bash
 node index.js generate --project courses-de
-node index.js evaluate --project courses-en
+node index.js evaluate --project default
 ```
 
 ### Development in GitHub Codespaces
@@ -87,14 +87,14 @@ This repository is configured for GitHub Codespaces with automatic setup:
 ## Project Structure
 
 ```
-├── courses-en/          # English project
-│   ├── content.json     # English course content
-│   └── eval.json        # English search queries
-├── courses-de/          # German project  
-│   ├── content.json     # German course content (translated)
-│   └── eval.json        # German search queries (translated)
-├── index.js             # Main application
-└── validate.js          # Validation script
+├── default/              # Default project
+│   ├── content.json      # Default course content
+│   └── eval.json         # Default search queries
+├── courses-de/           # German project  
+│   ├── content.json      # German course content (translated)
+│   └── eval.json         # German search queries (translated)
+├── index.js              # Main application
+└── validate.js           # Validation script
 ```
 
 ## Data Files
