@@ -12,7 +12,13 @@
     "validate-project": "node validate-project.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["embeddings", "vectra", "openai", "search", "evaluation"],
+  "keywords": [
+    "embeddings",
+    "vectra",
+    "openai",
+    "search",
+    "evaluation"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
