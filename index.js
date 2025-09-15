@@ -1,10 +1,14 @@
-const fs = require('fs').promises;
-const path = require('path');
-require('dotenv').config();
-const { LocalIndex } = require('vectra');
-const EmbeddingService = require('./lib/embedding');
-const Generator = require('./lib/generate');
-const Validator = require('./lib/validate');
+import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath, pathToFileURL } from 'url';
+import 'dotenv/config';
+import VectorDB from '@themaximalist/vectordb.js';
+import EmbeddingService from './lib/embedding.js';
+import Generator from './lib/generate.js';
+import Validator from './lib/validate.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 class EmbeddingsEvaluator {
   constructor(project = 'default') {
@@ -18,18 +22,36 @@ class EmbeddingsEvaluator {
     this.projectPath = path.join(__dirname, project);
     this.indexPath = path.join(this.projectPath, 'embeddings-index');
     this.embeddingService = new EmbeddingService(this.apiKey);
-    this.index = null;
+    this.db = null;
+    this.content = [];
   }
 
   async initialize() {
-    // Create or load the vector index from project folder
-    this.index = new LocalIndex(this.indexPath);
+    // Create vector database with OpenAI embeddings
+    this.db = new VectorDB({
+      dimensions: 1536, // OpenAI text-embedding-3-small dimensions
+      embeddings: {
+        service: "openai"
+      }
+    });
     
-    // Check if index exists
-    const indexExists = await this.index.isIndexCreated();
-    if (!indexExists) {
-      throw new Error(`No embeddings index found for project '${this.project}'. Please run generate first.`);
+    // Load content and check if we have embeddings
+    const contentPath = path.join(this.projectPath, 'content.json');
+    const contentData = await fs.readFile(contentPath, 'utf8');
+    this.content = JSON.parse(contentData);
+    
+    // Since vectordb.js is in-memory, we need to rebuild the index each time
+    // or implement persistence ourselves
+    console.log('Loading content into vector database...');
+    for (const item of this.content) {
+      const text = `${item.title} ${item.description}`;
+      await this.db.add(text, {
+        id: item.id,
+        title: item.title,
+        description: item.description
+      });
     }
+    console.log(`Loaded ${this.content.length} items into vector database.`);
   }
 
   async loadEvalData() {
@@ -47,17 +69,14 @@ class EmbeddingsEvaluator {
     try {
       console.log(`Searching for: "${query}"`);
       
-      // Generate embedding for the search query
-      const queryEmbedding = await this.embeddingService.generateEmbedding(query);
-      
-      // Search the index
-      const results = await this.index.queryItems(queryEmbedding, topK);
+      // Search using vectordb.js
+      const results = await this.db.search(query, topK);
       
       return results.map(result => ({
-        id: result.item.metadata.id,
-        score: result.score,
-        title: result.item.metadata.title,
-        description: result.item.metadata.description
+        id: result.object.id,
+        score: 1 - result.distance, // Convert distance to similarity score
+        title: result.object.title,
+        description: result.object.description
       }));
     } catch (error) {
       console.error('Error during search:', error.message);
@@ -126,15 +145,7 @@ class EmbeddingsEvaluator {
       
       await this.initialize();
       
-      // Check if index exists and has items
-      const stats = await this.index.getIndexStats();
-      if (stats.items === 0) {
-        console.error(`❌ No embeddings found for project '${this.project}'! Please run "npm run generate" first to create embeddings.`);
-        console.log(`💡 Usage: npm run generate -- --project ${this.project}  # Then: npm run evaluate -- --project ${this.project}`);
-        process.exit(1);
-      } else {
-        console.log(`📊 Using existing index with ${stats.items} items.\n`);
-      }
+      console.log(`📊 Using vector database with ${this.content.length} items.\n`);
       
       // Run the evaluation only
       const results = await this.runEvaluation();
@@ -157,15 +168,7 @@ class EmbeddingsEvaluator {
       
       await this.initialize();
       
-      // Check if index is empty, if so build it
-      const stats = await this.index.getIndexStats();
-      if (stats.items === 0) {
-        console.log('No embeddings found, generating first...');
-        await this.generateEmbeddingsOnly();
-        await this.initialize(); // Reinitialize after generating
-      } else {
-        console.log(`Using existing index with ${stats.items} items.\n`);
-      }
+      console.log(`Using vector database with ${this.content.length} items.\n`);
       
       // Run the evaluation
       const results = await this.runEvaluation();
@@ -184,7 +187,7 @@ class EmbeddingsEvaluator {
 }
 
 // Run the evaluator if this file is executed directly
-if (require.main === module) {
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   try {
     // Parse command line arguments
     const args = process.argv.slice(2);
@@ -244,4 +247,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = EmbeddingsEvaluator;
+export default EmbeddingsEvaluator;
