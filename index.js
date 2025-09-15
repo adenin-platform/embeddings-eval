@@ -5,7 +5,7 @@ const { LocalIndex } = require('vectra');
 const OpenAI = require('openai');
 
 class EmbeddingsEvaluator {
-  constructor() {
+  constructor(project = 'courses-en') {
     // Check if API key is provided before initializing OpenAI
     if (!process.env.OPENAI_API_KEY) {
       throw new Error('OPENAI_API_KEY environment variable is required. Please set it in a .env file.');
@@ -14,7 +14,9 @@ class EmbeddingsEvaluator {
     this.openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
     });
-    this.indexPath = path.join(__dirname, 'embeddings-index');
+    this.project = project;
+    this.projectPath = path.join(__dirname, project);
+    this.indexPath = path.join(__dirname, `embeddings-index-${project}`);
     this.index = null;
   }
 
@@ -45,26 +47,28 @@ class EmbeddingsEvaluator {
 
   async loadContent() {
     try {
-      const contentData = await fs.readFile('content.json', 'utf8');
+      const contentPath = path.join(this.projectPath, 'content.json');
+      const contentData = await fs.readFile(contentPath, 'utf8');
       return JSON.parse(contentData);
     } catch (error) {
-      console.error('Error loading content.json:', error.message);
+      console.error(`Error loading content.json from project ${this.project}:`, error.message);
       throw error;
     }
   }
 
   async loadEvalData() {
     try {
-      const evalData = await fs.readFile('eval.json', 'utf8');
+      const evalPath = path.join(this.projectPath, 'eval.json');
+      const evalData = await fs.readFile(evalPath, 'utf8');
       return JSON.parse(evalData);
     } catch (error) {
-      console.error('Error loading eval.json:', error.message);
+      console.error(`Error loading eval.json from project ${this.project}:`, error.message);
       throw error;
     }
   }
 
   async buildIndex() {
-    console.log('Loading content and building index...');
+    console.log(`Loading content from project '${this.project}' and building index...`);
     const content = await this.loadContent();
     
     for (let i = 0; i < content.length; i++) {
@@ -188,7 +192,7 @@ class EmbeddingsEvaluator {
 
   async generateEmbeddingsOnly() {
     try {
-      console.log('🔄 Generating embeddings and storing vectors...\n');
+      console.log(`🔄 Generating embeddings for project '${this.project}' and storing vectors...\n`);
       
       await this.initialize();
       
@@ -218,14 +222,14 @@ class EmbeddingsEvaluator {
 
   async evaluateOnly() {
     try {
-      console.log('🔍 Running evaluation for search terms...\n');
+      console.log(`🔍 Running evaluation for project '${this.project}'...\n`);
       
       await this.initialize();
       
       // Check if index exists and has items
       const stats = await this.index.getIndexStats();
       if (stats.items === 0) {
-        console.error('❌ No embeddings found! Please run "npm run generate" first to create embeddings.');
+        console.error(`❌ No embeddings found for project '${this.project}'! Please run "npm run generate" first to create embeddings.`);
         console.log('💡 Usage: npm run generate  # Then: npm run evaluate');
         process.exit(1);
       } else {
@@ -235,9 +239,10 @@ class EmbeddingsEvaluator {
       // Run the evaluation only
       const results = await this.runEvaluation();
       
-      // Save results to file
-      await fs.writeFile('evaluation-results.json', JSON.stringify(results, null, 2));
-      console.log('✅ Evaluation results saved to evaluation-results.json');
+      // Save results to file with project name
+      const resultsFileName = `evaluation-results-${this.project}.json`;
+      await fs.writeFile(resultsFileName, JSON.stringify(results, null, 2));
+      console.log(`✅ Evaluation results saved to ${resultsFileName}`);
       
       return results;
     } catch (error) {
@@ -248,7 +253,7 @@ class EmbeddingsEvaluator {
 
   async run() {
     try {
-      console.log('Starting Embeddings Evaluator...\n');
+      console.log(`Starting Embeddings Evaluator for project '${this.project}'...\n`);
       
       await this.initialize();
       
@@ -263,9 +268,10 @@ class EmbeddingsEvaluator {
       // Run the evaluation
       const results = await this.runEvaluation();
       
-      // Save results to file
-      await fs.writeFile('evaluation-results.json', JSON.stringify(results, null, 2));
-      console.log('Evaluation results saved to evaluation-results.json');
+      // Save results to file with project name
+      const resultsFileName = `evaluation-results-${this.project}.json`;
+      await fs.writeFile(resultsFileName, JSON.stringify(results, null, 2));
+      console.log(`Evaluation results saved to ${resultsFileName}`);
       
       return results;
     } catch (error) {
@@ -278,24 +284,48 @@ class EmbeddingsEvaluator {
 // Run the evaluator if this file is executed directly
 if (require.main === module) {
   try {
-    const evaluator = new EmbeddingsEvaluator();
-    
     // Parse command line arguments
     const args = process.argv.slice(2);
-    const command = args[0];
+    let command = 'run'; // default command
+    let project = 'courses-en'; // default project
+    
+    // Parse arguments
+    for (let i = 0; i < args.length; i++) {
+      const arg = args[i];
+      if (arg === '--project' && i + 1 < args.length) {
+        project = args[i + 1];
+        i++; // skip next argument as it's the project name
+      } else if (arg === 'generate' || arg === 'evaluate') {
+        command = arg;
+      }
+    }
+    
+    // Validate project
+    const validProjects = ['courses-en', 'courses-de'];
+    if (!validProjects.includes(project)) {
+      console.error(`❌ Error: Invalid project '${project}'. Valid projects are: ${validProjects.join(', ')}`);
+      console.log('💡 Usage examples:');
+      console.log('   npm start --project courses-en');
+      console.log('   npm start --project courses-de');
+      console.log('   npm run generate --project courses-de');
+      console.log('   npm run evaluate --project courses-en');
+      process.exit(1);
+    }
+    
+    const evaluator = new EmbeddingsEvaluator(project);
     
     // Handle different commands
     switch (command) {
       case 'generate':
-        console.log('🚀 Command: Generate embeddings and store vectors\n');
+        console.log(`🚀 Command: Generate embeddings and store vectors for project '${project}'\n`);
         evaluator.generateEmbeddingsOnly();
         break;
       case 'evaluate':
-        console.log('🚀 Command: Run evaluation for search terms\n'); 
+        console.log(`🚀 Command: Run evaluation for search terms in project '${project}'\n`); 
         evaluator.evaluateOnly();
         break;
       default:
-        console.log('🚀 Command: Full pipeline (generate + evaluate)\n');
+        console.log(`🚀 Command: Full pipeline (generate + evaluate) for project '${project}'\n`);
         evaluator.run();
         break;
     }
