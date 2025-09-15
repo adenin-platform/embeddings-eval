@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 require('dotenv').config();
-const { LocalIndex } = require('vectra-enhanced');
+const { LocalIndex } = require('vectra');
 const EmbeddingService = require('./lib/embedding');
 const Generator = require('./lib/generate');
 const Validator = require('./lib/validate');
