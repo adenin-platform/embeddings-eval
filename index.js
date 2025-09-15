@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 require('dotenv').config();
-const { LocalIndex } = require('vectra-enhanced');
+const LocalIndexWrapper = require('./lib/local-index-wrapper');
 const EmbeddingService = require('./lib/embedding');
 const Generator = require('./lib/generate');
 const Validator = require('./lib/validate');
@@ -22,8 +22,8 @@ class EmbeddingsEvaluator {
   }
 
   async initialize() {
-    // Create or load the vector index from project folder
-    this.index = new LocalIndex(this.indexPath);
+    // Create or load the vector index from project folder using Windows-compatible wrapper
+    this.index = new LocalIndexWrapper(this.indexPath);
     
     // Check if index exists
     const indexExists = await this.index.isIndexCreated();
