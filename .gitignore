@@ -3,3 +3,4 @@ node_modules/
 embeddings-index*/
 */embeddings-index/
 evaluation-results*.json
+generation-metrics*.json
