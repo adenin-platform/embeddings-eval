@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "title": "Advanced Machine Learning",
+    "description": "Deep dive into advanced machine learning techniques including ensemble methods, deep learning architectures, and reinforcement learning."
+  },
+  {
+    "id": 2,
+    "title": "Node.js Backend Development",
+    "description": "Complete guide to building scalable backend applications with Node.js, Express, and MongoDB integration."
+  },
+  {
+    "id": 3,
+    "title": "React Frontend Development",
+    "description": "Modern React development with hooks, context API, and state management for building interactive user interfaces."
+  },
+  {
+    "id": 4,
+    "title": "DevOps with Kubernetes",
+    "description": "Container orchestration with Kubernetes, including deployment strategies, scaling, and monitoring applications."
+  },
+  {
+    "id": 5,
+    "title": "Python Data Analysis",
+    "description": "Data analysis and visualization using Python with pandas, numpy, and matplotlib libraries for insights."
+  }
+]

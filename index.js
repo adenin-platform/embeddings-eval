@@ -19,9 +19,33 @@ class EmbeddingsEvaluator {
     this.indexPath = path.join(this.projectPath, 'embeddings-index');
     this.embeddingService = new EmbeddingService(this.apiKey);
     this.index = null;
+    this.projectConfig = null;
+  }
+
+  async loadProjectConfig() {
+    try {
+      let configPath;
+      // For projects in their own directories, look for project-named config file
+      if (this.project !== 'default') {
+        configPath = path.join(__dirname, `${this.project}.json`);
+      } else {
+        // For default project, look inside the project directory
+        configPath = path.join(this.projectPath, 'default.json');
+      }
+      
+      const configData = await fs.readFile(configPath, 'utf8');
+      this.projectConfig = JSON.parse(configData);
+      console.log(`📄 Loaded project config: minSimilarity = ${this.projectConfig.minSimilarity}`);
+    } catch (error) {
+      console.warn(`⚠️  No project config found (${error.message}), using defaults`);
+      this.projectConfig = { minSimilarity: 0.0 }; // Default to no filtering
+    }
   }
 
   async initialize() {
+    // Load project configuration first
+    await this.loadProjectConfig();
+    
     // Create or load the vector index from project folder
     this.index = new LocalIndex(this.indexPath);
     
@@ -50,10 +74,22 @@ class EmbeddingsEvaluator {
       // Generate embedding for the search query
       const queryEmbedding = await this.embeddingService.generateEmbedding(query);
       
-      // Search the index
-      const results = await this.index.queryItems(queryEmbedding, topK);
+      // Search the index - get more results initially to account for filtering
+      const searchLimit = topK * 3; // Get 3x more results to have enough after filtering
+      const results = await this.index.queryItems(queryEmbedding, searchLimit);
       
-      return results.map(result => ({
+      // Filter results based on minSimilarity threshold
+      const minSimilarity = this.projectConfig?.minSimilarity || 0.0;
+      const filteredResults = results.filter(result => result.score >= minSimilarity);
+      
+      // Take only the top K results after filtering
+      const finalResults = filteredResults.slice(0, topK);
+      
+      if (minSimilarity > 0 && filteredResults.length < results.length) {
+        console.log(`🔍 Filtered ${results.length - filteredResults.length} results below minSimilarity threshold (${minSimilarity})`);
+      }
+      
+      return finalResults.map(result => ({
         id: result.item.metadata.id,
         score: result.score,
         title: result.item.metadata.title,
@@ -203,12 +239,13 @@ if (require.main === module) {
     }
     
     // Validate project - check if project folder exists
-    const validProjects = ['default', 'courses-de'];
+    const validProjects = ['default', 'courses-de', 'test'];
     if (!validProjects.includes(project)) {
       console.error(`❌ Error: Invalid project '${project}'. Valid projects are: ${validProjects.join(', ')}`);
       console.log('💡 Usage examples:');
       console.log('   npm start -- --project default');
       console.log('   npm start -- --project courses-de');
+      console.log('   npm start -- --project test');
       console.log('   npm run generate -- --project courses-de');
       console.log('   npm run evaluate -- --project default');
       console.log('');
