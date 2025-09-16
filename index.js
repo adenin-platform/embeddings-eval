@@ -5,6 +5,7 @@ const { LocalIndex } = require('vectra');
 const EmbeddingService = require('./lib/embedding');
 const Generator = require('./lib/generate');
 const Validator = require('./lib/validate');
+const Metrics = require('./lib/metrics');
 
 class EmbeddingsEvaluator {
   constructor(dataset = 'default', config = 'default') {
@@ -21,6 +22,7 @@ class EmbeddingsEvaluator {
     this.embeddingService = new EmbeddingService(this.apiKey);
     this.index = null;
     this.projectConfig = null;
+    this.metrics = new Metrics();
   }
 
   async loadProjectConfig() {
@@ -78,8 +80,15 @@ class EmbeddingsEvaluator {
     try {
       console.log(`Searching for: "${query}"`);
       
+      // Track metrics for the search query
+      const startTime = Date.now();
+      const tokens = Metrics.countTokens(query);
+      
       // Generate embedding for the search query
       const queryEmbedding = await this.embeddingService.generateEmbedding(query);
+      
+      const endTime = Date.now();
+      const runtime = endTime - startTime;
       
       // Search the index - get more results initially to account for filtering
       const searchLimit = topK * 3; // Get 3x more results to have enough after filtering
@@ -96,12 +105,21 @@ class EmbeddingsEvaluator {
         console.log(`🔍 Filtered ${results.length - filteredResults.length} results below minSimilarity threshold (${minSimilarity})`);
       }
       
-      return finalResults.map(result => ({
+      const searchResults = finalResults.map(result => ({
         id: result.item.metadata.id,
         score: result.score,
         title: result.item.metadata.title,
         description: result.item.metadata.description
       }));
+      
+      // Return results with timing information
+      return {
+        results: searchResults,
+        metrics: {
+          tokens: tokens,
+          runtime: runtime
+        }
+      };
     } catch (error) {
       console.error('Error during search:', error.message);
       throw error;
@@ -115,9 +133,31 @@ class EmbeddingsEvaluator {
     const results = [];
     
     for (const evalItem of evalData) {
-      const searchResults = await this.search(evalItem.search, 3);
+      const searchResponse = await this.search(evalItem.search, 3);
+      const searchResults = searchResponse.results;
+      const searchMetrics = searchResponse.metrics;
+      
       const foundIds = searchResults.map(result => result.id);
       const expectedIds = evalItem.expected || [];
+      
+      // Calculate recall and precision
+      const recall = Metrics.calculateRecall(foundIds, expectedIds);
+      const precision = Metrics.calculatePrecision(foundIds, expectedIds);
+      
+      // Track evaluation metrics
+      const foundSet = new Set(foundIds);
+      const expectedFound = expectedIds.filter(id => foundSet.has(id)).length;
+      
+      this.metrics.addEvaluateMetrics({
+        search: evalItem.search,
+        tokens: searchMetrics.tokens,
+        runtime: searchMetrics.runtime,
+        recall: recall,
+        precision: precision,
+        expectedCount: expectedIds.length,
+        foundCount: expectedFound,
+        returnedCount: foundIds.length
+      });
       
       // Validate results
       const validation = Validator.validateResults(foundIds, expectedIds);
@@ -126,6 +166,8 @@ class EmbeddingsEvaluator {
       console.log(`Expected: [${expectedIds.join(', ')}]`);
       console.log(`Found: [${foundIds.join(', ')}]`);
       console.log(`Validation: ${validation.isValid ? '✅' : '❌'} ${validation.message}`);
+      console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Runtime: ${searchMetrics.runtime}ms`);
+      console.log(`Recall: ${recall.toFixed(1)}%, Precision: ${precision.toFixed(1)}%`);
       console.log('Top 3 results:');
       
       searchResults.forEach((result, index) => {
@@ -140,12 +182,31 @@ class EmbeddingsEvaluator {
         expected: expectedIds,
         found: foundIds,
         validation: validation,
-        results: searchResults
+        results: searchResults,
+        metrics: {
+          tokens: searchMetrics.tokens,
+          runtime: searchMetrics.runtime,
+          cost: 0.1,
+          recall: recall,
+          precision: precision
+        }
       });
       
       // Small delay between searches
       await new Promise(resolve => setTimeout(resolve, 200));
     }
+    
+    // Display evaluation metrics totals
+    const totals = this.metrics.getEvaluateTotals();
+    console.log('\n📈 Evaluation Metrics Summary:');
+    console.log(`  Total Queries: ${totals.queryCount}`);
+    console.log(`  Total Tokens: ${totals.totalTokens}`);
+    console.log(`  Total Runtime: ${totals.totalRuntime}ms`);
+    console.log(`  Total Cost: $${totals.totalCost.toFixed(2)}`);
+    console.log('\n📊 Recall & Precision Averages:');
+    console.log(`  Micro-averaging: Recall ${totals.microAveraging.recall.toFixed(1)}%, Precision ${totals.microAveraging.precision.toFixed(1)}%`);
+    console.log(`  Macro-averaging: Recall ${totals.macroAveraging.recall.toFixed(1)}%, Precision ${totals.macroAveraging.precision.toFixed(1)}%`);
+    console.log(`  Weighted-averaging: Recall ${totals.weightedAveraging.recall.toFixed(1)}%, Precision ${totals.weightedAveraging.precision.toFixed(1)}%`);
     
     return results;
   }
@@ -155,7 +216,14 @@ class EmbeddingsEvaluator {
       console.log(`🔄 Generating embeddings for dataset '${this.dataset}' and storing vectors...\n`);
       
       const generator = new Generator(this.datasetPath, this.apiKey);
-      await generator.generate();
+      const generatorMetrics = await generator.generate();
+      
+      // Merge generator metrics into our metrics if needed
+      if (generatorMetrics && generatorMetrics.generateMetrics) {
+        generatorMetrics.generateMetrics.forEach(metric => {
+          this.metrics.addGenerateMetrics(metric);
+        });
+      }
       
     } catch (error) {
       console.error('❌ Error generating embeddings:', error.message);
@@ -182,10 +250,16 @@ class EmbeddingsEvaluator {
       // Run the evaluation only
       const results = await this.runEvaluation();
       
+      // Prepare complete results with metrics
+      const completeResults = {
+        results: results,
+        metrics: this.metrics.getAllMetrics().evaluate
+      };
+      
       // Save results to file in dataset folder with config name
       const resultsFileName = `evaluation-results-${this.config}.json`;
       const resultsPath = path.join(this.datasetPath, resultsFileName);
-      await fs.writeFile(resultsPath, JSON.stringify(results, null, 2));
+      await fs.writeFile(resultsPath, JSON.stringify(completeResults, null, 2));
       console.log(`✅ Evaluation results saved to ${resultsPath}`);
       
       return results;
@@ -214,10 +288,16 @@ class EmbeddingsEvaluator {
       // Run the evaluation
       const results = await this.runEvaluation();
       
+      // Prepare complete results with metrics
+      const completeResults = {
+        results: results,
+        metrics: this.metrics.getAllMetrics().evaluate
+      };
+      
       // Save results to file in dataset folder with config name
       const resultsFileName = `evaluation-results-${this.config}.json`;
       const resultsPath = path.join(this.datasetPath, resultsFileName);
-      await fs.writeFile(resultsPath, JSON.stringify(results, null, 2));
+      await fs.writeFile(resultsPath, JSON.stringify(completeResults, null, 2));
       console.log(`Evaluation results saved to ${resultsPath}`);
       
       return results;
