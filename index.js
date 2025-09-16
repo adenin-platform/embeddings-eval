@@ -7,16 +7,17 @@ const Generator = require('./lib/generate');
 const Validator = require('./lib/validate');
 
 class EmbeddingsEvaluator {
-  constructor(project = 'default') {
+  constructor(dataset = 'default', config = 'default') {
     // Check if API key is provided before initializing
     if (!process.env.OPENAI_API_KEY) {
       throw new Error('OPENAI_API_KEY environment variable is required. Please set it in a .env file.');
     }
     
     this.apiKey = process.env.OPENAI_API_KEY;
-    this.project = project;
-    this.projectPath = path.join(__dirname, project);
-    this.indexPath = path.join(this.projectPath, 'embeddings-index');
+    this.dataset = dataset;
+    this.config = config;
+    this.datasetPath = path.join(__dirname, dataset);
+    this.indexPath = path.join(this.datasetPath, 'embeddings-index');
     this.embeddingService = new EmbeddingService(this.apiKey);
     this.index = null;
     this.projectConfig = null;
@@ -25,19 +26,25 @@ class EmbeddingsEvaluator {
   async loadProjectConfig() {
     try {
       let configPath;
-      // For projects in their own directories, look for project-named config file
-      if (this.project !== 'default') {
-        configPath = path.join(__dirname, `${this.project}.json`);
-      } else {
-        // For default project, look inside the project directory
-        configPath = path.join(this.projectPath, 'default.json');
+      // First try to find config file in root directory with config name
+      configPath = path.join(__dirname, `${this.config}.json`);
+      
+      // If not found and we're using default config, try inside dataset directory
+      try {
+        await fs.access(configPath);
+      } catch {
+        if (this.config === 'default') {
+          configPath = path.join(this.datasetPath, 'default.json');
+        } else {
+          throw new Error(`Config file ${this.config}.json not found`);
+        }
       }
       
       const configData = await fs.readFile(configPath, 'utf8');
       this.projectConfig = JSON.parse(configData);
-      console.log(`📄 Loaded project config: minSimilarity = ${this.projectConfig.minSimilarity}`);
+      console.log(`📄 Loaded config '${this.config}': minSimilarity = ${this.projectConfig.minSimilarity}`);
     } catch (error) {
-      console.warn(`⚠️  No project config found (${error.message}), using defaults`);
+      console.warn(`⚠️  No config found for '${this.config}' (${error.message}), using defaults`);
       this.projectConfig = { minSimilarity: 0.0 }; // Default to no filtering
     }
   }
@@ -46,23 +53,23 @@ class EmbeddingsEvaluator {
     // Load project configuration first
     await this.loadProjectConfig();
     
-    // Create or load the vector index from project folder
+    // Create or load the vector index from dataset folder
     this.index = new LocalIndex(this.indexPath);
     
     // Check if index exists
     const indexExists = await this.index.isIndexCreated();
     if (!indexExists) {
-      throw new Error(`No embeddings index found for project '${this.project}'. Please run generate first.`);
+      throw new Error(`No embeddings index found for dataset '${this.dataset}'. Please run generate first.`);
     }
   }
 
   async loadEvalData() {
     try {
-      const evalPath = path.join(this.projectPath, 'eval.json');
+      const evalPath = path.join(this.datasetPath, 'eval.json');
       const evalData = await fs.readFile(evalPath, 'utf8');
       return JSON.parse(evalData);
     } catch (error) {
-      console.error(`Error loading eval.json from project ${this.project}:`, error.message);
+      console.error(`Error loading eval.json from dataset ${this.dataset}:`, error.message);
       throw error;
     }
   }
@@ -145,9 +152,9 @@ class EmbeddingsEvaluator {
 
   async generateEmbeddingsOnly() {
     try {
-      console.log(`🔄 Generating embeddings for project '${this.project}' and storing vectors...\n`);
+      console.log(`🔄 Generating embeddings for dataset '${this.dataset}' and storing vectors...\n`);
       
-      const generator = new Generator(this.projectPath, this.apiKey);
+      const generator = new Generator(this.datasetPath, this.apiKey);
       await generator.generate();
       
     } catch (error) {
@@ -158,15 +165,15 @@ class EmbeddingsEvaluator {
 
   async evaluateOnly() {
     try {
-      console.log(`🔍 Running evaluation for project '${this.project}'...\n`);
+      console.log(`🔍 Running evaluation for dataset '${this.dataset}' with config '${this.config}'...\n`);
       
       await this.initialize();
       
       // Check if index exists and has items
       const stats = await this.index.getIndexStats();
       if (stats.items === 0) {
-        console.error(`❌ No embeddings found for project '${this.project}'! Please run "npm run generate" first to create embeddings.`);
-        console.log(`💡 Usage: npm run generate -- --project ${this.project}  # Then: npm run evaluate -- --project ${this.project}`);
+        console.error(`❌ No embeddings found for dataset '${this.dataset}'! Please run "npm run generate" first to create embeddings.`);
+        console.log(`💡 Usage: npm run generate -- --dataset ${this.dataset}  # Then: npm run evaluate -- --dataset ${this.dataset} --config ${this.config}`);
         process.exit(1);
       } else {
         console.log(`📊 Using existing index with ${stats.items} items.\n`);
@@ -175,10 +182,11 @@ class EmbeddingsEvaluator {
       // Run the evaluation only
       const results = await this.runEvaluation();
       
-      // Save results to file with project name
-      const resultsFileName = `evaluation-results-${this.project}.json`;
-      await fs.writeFile(resultsFileName, JSON.stringify(results, null, 2));
-      console.log(`✅ Evaluation results saved to ${resultsFileName}`);
+      // Save results to file in dataset folder with config name
+      const resultsFileName = `evaluation-results-${this.config}.json`;
+      const resultsPath = path.join(this.datasetPath, resultsFileName);
+      await fs.writeFile(resultsPath, JSON.stringify(results, null, 2));
+      console.log(`✅ Evaluation results saved to ${resultsPath}`);
       
       return results;
     } catch (error) {
@@ -189,7 +197,7 @@ class EmbeddingsEvaluator {
 
   async run() {
     try {
-      console.log(`Starting Embeddings Evaluator for project '${this.project}'...\n`);
+      console.log(`Starting Embeddings Evaluator for dataset '${this.dataset}' with config '${this.config}'...\n`);
       
       await this.initialize();
       
@@ -206,10 +214,11 @@ class EmbeddingsEvaluator {
       // Run the evaluation
       const results = await this.runEvaluation();
       
-      // Save results to file with project name
-      const resultsFileName = `evaluation-results-${this.project}.json`;
-      await fs.writeFile(resultsFileName, JSON.stringify(results, null, 2));
-      console.log(`Evaluation results saved to ${resultsFileName}`);
+      // Save results to file in dataset folder with config name
+      const resultsFileName = `evaluation-results-${this.config}.json`;
+      const resultsPath = path.join(this.datasetPath, resultsFileName);
+      await fs.writeFile(resultsPath, JSON.stringify(results, null, 2));
+      console.log(`Evaluation results saved to ${resultsPath}`);
       
       return results;
     } catch (error) {
@@ -225,49 +234,53 @@ if (require.main === module) {
     // Parse command line arguments
     const args = process.argv.slice(2);
     let command = 'run'; // default command
-    let project = 'default'; // default project
+    let dataset = 'default'; // default dataset
+    let config = 'default'; // default config
     
     // Parse arguments
     for (let i = 0; i < args.length; i++) {
       const arg = args[i];
-      if (arg === '--project' && i + 1 < args.length) {
-        project = args[i + 1];
-        i++; // skip next argument as it's the project name
+      if (arg === '--dataset' && i + 1 < args.length) {
+        dataset = args[i + 1];
+        i++; // skip next argument as it's the dataset name
+      } else if (arg === '--config' && i + 1 < args.length) {
+        config = args[i + 1];
+        i++; // skip next argument as it's the config name
       } else if (arg === 'generate' || arg === 'evaluate') {
         command = arg;
       }
     }
     
-    // Validate project - check if project folder exists
-    const validProjects = ['default', 'courses-de'];
-    if (!validProjects.includes(project)) {
-      console.error(`❌ Error: Invalid project '${project}'. Valid projects are: ${validProjects.join(', ')}`);
+    // Validate dataset - check if dataset folder exists
+    const validDatasets = ['default', 'courses-de'];
+    if (!validDatasets.includes(dataset)) {
+      console.error(`❌ Error: Invalid dataset '${dataset}'. Valid datasets are: ${validDatasets.join(', ')}`);
       console.log('💡 Usage examples:');
-      console.log('   npm start -- --project default');
-      console.log('   npm start -- --project courses-de');      
-      console.log('   npm run generate -- --project courses-de');
-      console.log('   npm run evaluate -- --project default');
+      console.log('   npm start -- --dataset default --config default');
+      console.log('   npm start -- --dataset courses-de --config test');      
+      console.log('   npm run generate -- --dataset courses-de');
+      console.log('   npm run evaluate -- --dataset default --config test');
       console.log('');
       console.log('   Or run directly:');
-      console.log('   node index.js --project default');
-      console.log('   node index.js generate --project courses-de');
+      console.log('   node index.js --dataset default --config default');
+      console.log('   node index.js generate --dataset courses-de');
       process.exit(1);
     }
     
-    const evaluator = new EmbeddingsEvaluator(project);
+    const evaluator = new EmbeddingsEvaluator(dataset, config);
     
     // Handle different commands
     switch (command) {
       case 'generate':
-        console.log(`🚀 Command: Generate embeddings and store vectors for project '${project}'\n`);
+        console.log(`🚀 Command: Generate embeddings and store vectors for dataset '${dataset}'\n`);
         evaluator.generateEmbeddingsOnly();
         break;
       case 'evaluate':
-        console.log(`🚀 Command: Run evaluation for search terms in project '${project}'\n`); 
+        console.log(`🚀 Command: Run evaluation for search terms in dataset '${dataset}' with config '${config}'\n`); 
         evaluator.evaluateOnly();
         break;
       default:
-        console.log(`🚀 Command: Full pipeline (generate + evaluate) for project '${project}'\n`);
+        console.log(`🚀 Command: Full pipeline (generate + evaluate) for dataset '${dataset}' with config '${config}'\n`);
         evaluator.run();
         break;
     }
