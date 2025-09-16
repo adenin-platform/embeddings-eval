@@ -4,16 +4,29 @@ A Node.js application for evaluating content embeddings using Vectra and OpenAI'
 
 ## Overview
 
-This application supports multiple projects with language-specific content:
+This application supports multiple projects with different configurations:
 
-- **courses-en**: English course content
-- **courses-de**: German course content
+- **default**: Default project with standard similarity threshold (0.1)
+- **courses-de**: German course content  
+- **test**: Test project with high similarity threshold (0.5)
 
 The application:
 1. Reads content from `{project}/content.json` (array of objects with `title` and `description` properties)
 2. Uses [Vectra](https://github.com/Stevenic/vectra) with OpenAI's `text-embedding-3-small` model to compute embeddings for `title + " " + description`
 3. Loads evaluation data from `{project}/eval.json` (array of objects with `search` property)
-4. Searches for each search term and returns the top 3 most relevant results
+4. **NEW:** Loads project configuration with similarity thresholds from config files
+5. Searches for each search term and returns the top 3 most relevant results
+6. **NEW:** Filters results based on `minSimilarity` threshold from project configuration
+
+## Project Configuration
+
+Each project can have a configuration file that controls search behavior:
+
+- **default/default.json**: Configuration for the default project (`minSimilarity: 0.1`)
+- **test.json**: Configuration for the test project (`minSimilarity: 0.5`)
+- **No config**: Projects without configuration files use no filtering (`minSimilarity: 0.0`)
+
+The `minSimilarity` threshold filters search results to only return matches with similarity scores >= the threshold value.
 
 ## Setup
 
@@ -33,32 +46,39 @@ OPENAI_API_KEY=your_openai_api_key_here
 
 All commands support the `--project` parameter to specify which project to work with:
 
-- `--project courses-en` (default): Use English content
-- `--project courses-de`: Use German content
+- `--project default` (default): Use default content with similarity threshold 0.1
+- `--project courses-de`: Use German content with no similarity filtering  
+- `--project test`: Use test content with high similarity threshold 0.5
 
 ### Two-Step Process (Recommended)
 
 1. **Generate embeddings and store vectors:**
 ```bash
-npm run generate -- --project courses-en
+npm run generate -- --project default
 # or
 npm run generate -- --project courses-de
+# or
+npm run generate -- --project test
 ```
 
 2. **Run evaluation for search terms:**
 ```bash
-npm run evaluate -- --project courses-en
+npm run evaluate -- --project default
 # or  
 npm run evaluate -- --project courses-de
+# or
+npm run evaluate -- --project test
 ```
 
 ### Alternative Commands
 
 Run the complete pipeline (generate + evaluate):
 ```bash
-npm start -- --project courses-en
+npm start -- --project default
 # or
 npm start -- --project courses-de
+# or
+npm start -- --project test
 ```
 
 ### Command Details
@@ -72,7 +92,7 @@ npm start -- --project courses-de
 **Note:** The `--` separator is required when passing `--project` through npm scripts. Alternatively, you can run the commands directly:
 ```bash
 node index.js generate --project courses-de
-node index.js evaluate --project courses-en
+node index.js evaluate --project default
 ```
 
 ### Development in GitHub Codespaces
