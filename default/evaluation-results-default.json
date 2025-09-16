@@ -1,0 +1,474 @@
+{
+  "results": [
+    {
+      "search": "python programming",
+      "expected": [
+        6
+      ],
+      "found": [],
+      "validation": {
+        "isValid": false,
+        "message": "Expected 1 results but found only 0"
+      },
+      "results": [],
+      "metrics": {
+        "tokens": 2,
+        "runtime": 437,
+        "cost": 0.1,
+        "recall": 0,
+        "precision": 0
+      }
+    },
+    {
+      "search": "mobile app development",
+      "expected": [
+        5
+      ],
+      "found": [
+        5
+      ],
+      "validation": {
+        "isValid": true,
+        "message": "All 1 expected results match"
+      },
+      "results": [
+        {
+          "id": 5,
+          "score": 0.5129047342080935,
+          "title": "React Native Mobile Development",
+          "description": "Build cross-platform mobile applications using React Native framework, covering navigation, state management, and native module integration."
+        }
+      ],
+      "metrics": {
+        "tokens": 3,
+        "runtime": 723,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 100
+      }
+    },
+    {
+      "search": "machine learning algorithms",
+      "expected": [
+        1
+      ],
+      "found": [
+        1
+      ],
+      "validation": {
+        "isValid": true,
+        "message": "All 1 expected results match"
+      },
+      "results": [
+        {
+          "id": 1,
+          "score": 0.455274049695042,
+          "title": "Introduction to Machine Learning",
+          "description": "A comprehensive guide to understanding the fundamentals of machine learning, including supervised and unsupervised learning algorithms, neural networks, and practical applications in modern technology."
+        }
+      ],
+      "metrics": {
+        "tokens": 3,
+        "runtime": 376,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 100
+      }
+    },
+    {
+      "search": "web development javascript",
+      "expected": [
+        2
+      ],
+      "found": [
+        2
+      ],
+      "validation": {
+        "isValid": true,
+        "message": "All 1 expected results match"
+      },
+      "results": [
+        {
+          "id": 2,
+          "score": 0.5864745357437867,
+          "title": "JavaScript for Beginners",
+          "description": "Learn the basics of JavaScript programming language including variables, functions, objects, arrays, and DOM manipulation for web development."
+        }
+      ],
+      "metrics": {
+        "tokens": 3,
+        "runtime": 603,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 100
+      }
+    },
+    {
+      "search": "cloud services deployment",
+      "expected": [
+        3
+      ],
+      "found": [
+        3,
+        9
+      ],
+      "validation": {
+        "isValid": true,
+        "message": "All 1 expected results match"
+      },
+      "results": [
+        {
+          "id": 3,
+          "score": 0.5520683989330144,
+          "title": "Cloud Computing with AWS",
+          "description": "Master Amazon Web Services with hands-on tutorials covering EC2, S3, Lambda, and other essential cloud services for scalable applications."
+        },
+        {
+          "id": 9,
+          "score": 0.4021044177263787,
+          "title": "DevOps and Continuous Integration",
+          "description": "Implement DevOps practices with CI/CD pipelines, containerization using Docker, and infrastructure as code with Terraform."
+        }
+      ],
+      "metrics": {
+        "tokens": 3,
+        "runtime": 432,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 50
+      }
+    },
+    {
+      "search": "database optimization",
+      "expected": [
+        4
+      ],
+      "found": [
+        4
+      ],
+      "validation": {
+        "isValid": true,
+        "message": "All 1 expected results match"
+      },
+      "results": [
+        {
+          "id": 4,
+          "score": 0.5517098329802018,
+          "title": "Database Design Principles",
+          "description": "Understanding relational database design, normalization, indexing, and query optimization for efficient data storage and retrieval."
+        }
+      ],
+      "metrics": {
+        "tokens": 2,
+        "runtime": 648,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 100
+      }
+    },
+    {
+      "search": "security encryption",
+      "expected": [
+        7
+      ],
+      "found": [
+        7
+      ],
+      "validation": {
+        "isValid": true,
+        "message": "All 1 expected results match"
+      },
+      "results": [
+        {
+          "id": 7,
+          "score": 0.4426421393995053,
+          "title": "Cybersecurity Fundamentals",
+          "description": "Essential cybersecurity concepts including threat analysis, encryption, network security, and best practices for protecting digital assets."
+        }
+      ],
+      "metrics": {
+        "tokens": 2,
+        "runtime": 368,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 100
+      }
+    },
+    {
+      "search": "user interface design",
+      "expected": [
+        8
+      ],
+      "found": [
+        8
+      ],
+      "validation": {
+        "isValid": true,
+        "message": "All 1 expected results match"
+      },
+      "results": [
+        {
+          "id": 8,
+          "score": 0.644554042732572,
+          "title": "UI/UX Design Principles",
+          "description": "Learn user interface and user experience design fundamentals, including wireframing, prototyping, and usability testing methodologies."
+        }
+      ],
+      "metrics": {
+        "tokens": 3,
+        "runtime": 312,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 100
+      }
+    },
+    {
+      "search": "docker containers",
+      "expected": [
+        9
+      ],
+      "found": [
+        9
+      ],
+      "validation": {
+        "isValid": true,
+        "message": "All 1 expected results match"
+      },
+      "results": [
+        {
+          "id": 9,
+          "score": 0.4017862026394732,
+          "title": "DevOps and Continuous Integration",
+          "description": "Implement DevOps practices with CI/CD pipelines, containerization using Docker, and infrastructure as code with Terraform."
+        }
+      ],
+      "metrics": {
+        "tokens": 2,
+        "runtime": 381,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 100
+      }
+    },
+    {
+      "search": "cryptocurrency blockchain",
+      "expected": [
+        10
+      ],
+      "found": [
+        10
+      ],
+      "validation": {
+        "isValid": true,
+        "message": "All 1 expected results match"
+      },
+      "results": [
+        {
+          "id": 10,
+          "score": 0.5382273789697065,
+          "title": "Blockchain Technology Overview",
+          "description": "Understanding distributed ledger technology, smart contracts, cryptocurrency fundamentals, and blockchain applications in various industries."
+        }
+      ],
+      "metrics": {
+        "tokens": 2,
+        "runtime": 315,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 100
+      }
+    },
+    {
+      "search": "bratwurst",
+      "expected": [],
+      "found": [],
+      "validation": {
+        "isValid": true,
+        "message": "No expectations to validate"
+      },
+      "results": [],
+      "metrics": {
+        "tokens": 1,
+        "runtime": 324,
+        "cost": 0.1,
+        "recall": 0,
+        "precision": 0
+      }
+    },
+    {
+      "search": "programming development",
+      "expected": [
+        2,
+        5,
+        6
+      ],
+      "found": [],
+      "validation": {
+        "isValid": false,
+        "message": "Expected 3 results but found only 0"
+      },
+      "results": [],
+      "metrics": {
+        "tokens": 2,
+        "runtime": 352,
+        "cost": 0.1,
+        "recall": 0,
+        "precision": 0
+      }
+    }
+  ],
+  "metrics": {
+    "items": [
+      {
+        "search": "python programming",
+        "tokens": 2,
+        "runtime": 437,
+        "cost": 0.1,
+        "recall": 0,
+        "precision": 0,
+        "expectedCount": 1,
+        "foundCount": 0,
+        "returnedCount": 0
+      },
+      {
+        "search": "mobile app development",
+        "tokens": 3,
+        "runtime": 723,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 100,
+        "expectedCount": 1,
+        "foundCount": 1,
+        "returnedCount": 1
+      },
+      {
+        "search": "machine learning algorithms",
+        "tokens": 3,
+        "runtime": 376,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 100,
+        "expectedCount": 1,
+        "foundCount": 1,
+        "returnedCount": 1
+      },
+      {
+        "search": "web development javascript",
+        "tokens": 3,
+        "runtime": 603,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 100,
+        "expectedCount": 1,
+        "foundCount": 1,
+        "returnedCount": 1
+      },
+      {
+        "search": "cloud services deployment",
+        "tokens": 3,
+        "runtime": 432,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 50,
+        "expectedCount": 1,
+        "foundCount": 1,
+        "returnedCount": 2
+      },
+      {
+        "search": "database optimization",
+        "tokens": 2,
+        "runtime": 648,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 100,
+        "expectedCount": 1,
+        "foundCount": 1,
+        "returnedCount": 1
+      },
+      {
+        "search": "security encryption",
+        "tokens": 2,
+        "runtime": 368,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 100,
+        "expectedCount": 1,
+        "foundCount": 1,
+        "returnedCount": 1
+      },
+      {
+        "search": "user interface design",
+        "tokens": 3,
+        "runtime": 312,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 100,
+        "expectedCount": 1,
+        "foundCount": 1,
+        "returnedCount": 1
+      },
+      {
+        "search": "docker containers",
+        "tokens": 2,
+        "runtime": 381,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 100,
+        "expectedCount": 1,
+        "foundCount": 1,
+        "returnedCount": 1
+      },
+      {
+        "search": "cryptocurrency blockchain",
+        "tokens": 2,
+        "runtime": 315,
+        "cost": 0.1,
+        "recall": 100,
+        "precision": 100,
+        "expectedCount": 1,
+        "foundCount": 1,
+        "returnedCount": 1
+      },
+      {
+        "search": "bratwurst",
+        "tokens": 1,
+        "runtime": 324,
+        "cost": 0.1,
+        "recall": 0,
+        "precision": 0,
+        "expectedCount": 0,
+        "foundCount": 0,
+        "returnedCount": 0
+      },
+      {
+        "search": "programming development",
+        "tokens": 2,
+        "runtime": 352,
+        "cost": 0.1,
+        "recall": 0,
+        "precision": 0,
+        "expectedCount": 3,
+        "foundCount": 0,
+        "returnedCount": 0
+      }
+    ],
+    "totals": {
+      "totalTokens": 28,
+      "totalRuntime": 5271,
+      "totalCost": 1.2,
+      "queryCount": 12,
+      "microAveraging": {
+        "recall": 69.23076923076923,
+        "precision": 90
+      },
+      "macroAveraging": {
+        "recall": 75,
+        "precision": 70.83333333333333
+      },
+      "weightedAveraging": {
+        "recall": 69.23076923076923,
+        "precision": 65.38461538461539
+      }
+    }
+  }
+}

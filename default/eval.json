@@ -45,6 +45,6 @@
   },
   {
     "search": "programming development",
-    "expected": [6, 2]
+    "expected": [2, 5, 6]
   }
 ]

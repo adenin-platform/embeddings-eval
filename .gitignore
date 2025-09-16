@@ -1,6 +1,2 @@
 node_modules/
 .env
-embeddings-index*/
-*/embeddings-index/
-evaluation-results*.json
-generation-metrics*.json

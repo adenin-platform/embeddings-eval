@@ -97,9 +97,11 @@ class EmbeddingsEvaluator {
       // Filter results based on minSimilarity threshold
       const minSimilarity = this.projectConfig?.minSimilarity || 0.0;
       const filteredResults = results.filter(result => result.score >= minSimilarity);
+      const belowThresholdResults = results.filter(result => result.score < minSimilarity);
       
-      // Take only the top K results after filtering
-      const finalResults = filteredResults.slice(0, topK);
+      // When filtering by minSimilarity, show all results above threshold
+      // Otherwise, limit to topK results
+      const finalResults = minSimilarity > 0 ? filteredResults : filteredResults.slice(0, topK);
       
       if (minSimilarity > 0 && filteredResults.length < results.length) {
         console.log(`🔍 Filtered ${results.length - filteredResults.length} results below minSimilarity threshold (${minSimilarity})`);
@@ -112,9 +114,18 @@ class EmbeddingsEvaluator {
         description: result.item.metadata.description
       }));
       
+      // Get top 3 results below threshold for display
+      const belowThresholdTop3 = belowThresholdResults.slice(0, 3).map(result => ({
+        id: result.item.metadata.id,
+        score: result.score,
+        title: result.item.metadata.title,
+        description: result.item.metadata.description
+      }));
+      
       // Return results with timing information
       return {
         results: searchResults,
+        belowThresholdResults: belowThresholdTop3,
         metrics: {
           tokens: tokens,
           runtime: runtime
@@ -135,6 +146,7 @@ class EmbeddingsEvaluator {
     for (const evalItem of evalData) {
       const searchResponse = await this.search(evalItem.search, 3);
       const searchResults = searchResponse.results;
+      const belowThresholdResults = searchResponse.belowThresholdResults;
       const searchMetrics = searchResponse.metrics;
       
       const foundIds = searchResults.map(result => result.id);
@@ -168,12 +180,21 @@ class EmbeddingsEvaluator {
       console.log(`Validation: ${validation.isValid ? '✅' : '❌'} ${validation.message}`);
       console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Runtime: ${searchMetrics.runtime}ms`);
       console.log(`Recall: ${recall.toFixed(1)}%, Precision: ${precision.toFixed(1)}%`);
-      console.log('Top 3 results:');
+      console.log(`Results above threshold (${searchResults.length}):`);
       
       searchResults.forEach((result, index) => {
         console.log(`  ${index + 1}. [ID: ${result.id}, Score: ${result.score.toFixed(4)}] ${result.title}`);
         console.log(`     ${result.description.substring(0, 100)}...`);
       });
+      
+      // Display top 3 results below threshold if they exist
+      if (belowThresholdResults && belowThresholdResults.length > 0) {
+        console.log(`Next results below threshold:`);
+        belowThresholdResults.forEach((result, index) => {
+          console.log(`  ${searchResults.length + index + 1}. [ID: ${result.id}, Score: ${result.score.toFixed(4)}] ${result.title}`);
+          console.log(`     ${result.description.substring(0, 100)}...`);
+        });
+      }
       
       console.log('\n' + '-'.repeat(80) + '\n');
       
