@@ -239,13 +239,12 @@ if (require.main === module) {
     }
     
     // Validate project - check if project folder exists
-    const validProjects = ['default', 'courses-de', 'test'];
+    const validProjects = ['default', 'courses-de'];
     if (!validProjects.includes(project)) {
       console.error(`❌ Error: Invalid project '${project}'. Valid projects are: ${validProjects.join(', ')}`);
       console.log('💡 Usage examples:');
       console.log('   npm start -- --project default');
-      console.log('   npm start -- --project courses-de');
-      console.log('   npm start -- --project test');
+      console.log('   npm start -- --project courses-de');      
       console.log('   npm run generate -- --project courses-de');
       console.log('   npm run evaluate -- --project default');
       console.log('');
