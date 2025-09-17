@@ -8,21 +8,42 @@ const Validator = require('./lib/validate');
 const Metrics = require('./lib/metrics');
 
 class EmbeddingsEvaluator {
-  constructor(dataset = 'default', config = 'default') {
-    // Check if API key is provided before initializing
-    if (!process.env.OPENAI_API_KEY) {
-      throw new Error('OPENAI_API_KEY environment variable is required. Please set it in a .env file.');
-    }
-    
-    this.apiKey = process.env.OPENAI_API_KEY;
+  constructor(dataset = 'default', config = 'default', model = 'default') {
     this.dataset = dataset;
     this.config = config;
+    this.model = model;
     this.datasetPath = path.join(__dirname, dataset);
     this.indexPath = path.join(this.datasetPath, 'embeddings-index');
-    this.embeddingService = new EmbeddingService(this.apiKey);
     this.index = null;
     this.projectConfig = null;
-    this.metrics = new Metrics();
+    this.modelConfig = null;
+    
+    // Load model config first to determine API key requirements
+    this.loadModelConfig();
+    
+    // Initialize metrics with model config for cost calculation
+    this.metrics = new Metrics(this.modelConfig);
+    
+    // Check if API key is provided based on model vendor
+    const apiKeyName = `${this.modelConfig.vendor.toUpperCase()}_API_KEY`;
+    if (!process.env[apiKeyName]) {
+      throw new Error(`${apiKeyName} environment variable is required. Please set it in a .env file.`);
+    }
+    
+    this.apiKey = process.env[apiKeyName];
+    this.embeddingService = new EmbeddingService(this.apiKey, this.modelConfig.vendor, this.modelConfig.model);
+  }
+
+  loadModelConfig() {
+    try {
+      const modelConfigPath = path.join(__dirname, `${this.model}-model.json`);
+      const modelConfigData = require('fs').readFileSync(modelConfigPath, 'utf8');
+      this.modelConfig = JSON.parse(modelConfigData);
+      console.log(`🔧 Loaded model '${this.model}': ${this.modelConfig.vendor}/${this.modelConfig.model} (cost: $${this.modelConfig.cost}/1M tokens)`);
+    } catch (error) {
+      console.error(`❌ Error: Model config file '${this.model}-model.json' not found. Available models: default, oa3large`);
+      throw error;
+    }
   }
 
   async loadProjectConfig() {
@@ -207,7 +228,7 @@ class EmbeddingsEvaluator {
         metrics: {
           tokens: searchMetrics.tokens,
           runtime: searchMetrics.runtime,
-          cost: 0.1,
+          cost: this.metrics.calculateCost(searchMetrics.tokens),
           recall: recall,
           precision: precision
         }
@@ -236,7 +257,7 @@ class EmbeddingsEvaluator {
     try {
       console.log(`🔄 Generating embeddings for dataset '${this.dataset}' and storing vectors...\n`);
       
-      const generator = new Generator(this.datasetPath, this.apiKey);
+      const generator = new Generator(this.datasetPath, this.apiKey, this.modelConfig);
       const generatorMetrics = await generator.generate();
       
       // Merge generator metrics into our metrics if needed
@@ -337,6 +358,7 @@ if (require.main === module) {
     let command = 'run'; // default command
     let dataset = 'default'; // default dataset
     let config = 'default'; // default config
+    let model = 'default'; // default model
     
     // Parse arguments
     for (let i = 0; i < args.length; i++) {
@@ -347,6 +369,9 @@ if (require.main === module) {
       } else if (arg === '--config' && i + 1 < args.length) {
         config = args[i + 1];
         i++; // skip next argument as it's the config name
+      } else if (arg === '--model' && i + 1 < args.length) {
+        model = args[i + 1];
+        i++; // skip next argument as it's the model name
       } else if (arg === 'generate' || arg === 'evaluate') {
         command = arg;
       }
@@ -357,37 +382,37 @@ if (require.main === module) {
     if (!validDatasets.includes(dataset)) {
       console.error(`❌ Error: Invalid dataset '${dataset}'. Valid datasets are: ${validDatasets.join(', ')}`);
       console.log('💡 Usage examples:');
-      console.log('   npm start -- --dataset default --config default');
-      console.log('   npm start -- --dataset courses-de --config test');      
-      console.log('   npm run generate -- --dataset courses-de');
-      console.log('   npm run evaluate -- --dataset default --config test');
+      console.log('   npm start -- --dataset default --config default --model default');
+      console.log('   npm start -- --dataset courses-de --config test --model oa3large');      
+      console.log('   npm run generate -- --dataset courses-de --model default');
+      console.log('   npm run evaluate -- --dataset default --config test --model oa3large');
       console.log('');
       console.log('   Or run directly:');
-      console.log('   node index.js --dataset default --config default');
-      console.log('   node index.js generate --dataset courses-de');
+      console.log('   node index.js --dataset default --config default --model default');
+      console.log('   node index.js generate --dataset courses-de --model oa3large');
       process.exit(1);
     }
     
-    const evaluator = new EmbeddingsEvaluator(dataset, config);
+    const evaluator = new EmbeddingsEvaluator(dataset, config, model);
     
     // Handle different commands
     switch (command) {
       case 'generate':
-        console.log(`🚀 Command: Generate embeddings and store vectors for dataset '${dataset}'\n`);
+        console.log(`🚀 Command: Generate embeddings and store vectors for dataset '${dataset}' using model '${model}'\n`);
         evaluator.generateEmbeddingsOnly();
         break;
       case 'evaluate':
-        console.log(`🚀 Command: Run evaluation for search terms in dataset '${dataset}' with config '${config}'\n`); 
+        console.log(`🚀 Command: Run evaluation for search terms in dataset '${dataset}' with config '${config}' using model '${model}'\n`); 
         evaluator.evaluateOnly();
         break;
       default:
-        console.log(`🚀 Command: Full pipeline (generate + evaluate) for dataset '${dataset}' with config '${config}'\n`);
+        console.log(`🚀 Command: Full pipeline (generate + evaluate) for dataset '${dataset}' with config '${config}' using model '${model}'\n`);
         evaluator.run();
         break;
     }
   } catch (error) {
     console.error('\n❌ Error:', error.message);
-    console.error('\n💡 Please create a .env file with your OpenAI API key:');
+    console.error('\n💡 Please create a .env file with your API key. For OpenAI models:');
     console.error('   OPENAI_API_KEY=your_openai_api_key_here');
     console.error('\n📖 See .env.example for the template.');
     process.exit(1);
