@@ -2,11 +2,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Generate Embeddings - Default Project",
+      "name": "Generate Embeddings - Default Dataset",
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/index.js",
-      "args": ["generate", "--project", "default"],
+      "args": ["generate", "--dataset", "default", "--model", "default"],
       "console": "integratedTerminal",
       "envFile": "${workspaceFolder}/.env",
       "skipFiles": ["<node_internals>/**"]
@@ -25,7 +25,17 @@
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/index.js",
-      "args": ["generate", "--project", "courses-de"],
+      "args": ["generate", "--dataset", "courses-de", "--model", "default"],
+      "console": "integratedTerminal",
+      "envFile": "${workspaceFolder}/.env",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Generate Embeddings - Intranet",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/index.js",
+      "args": ["generate", "--dataset", "intranet", "--model", "default"],
       "console": "integratedTerminal",
       "envFile": "${workspaceFolder}/.env",
       "skipFiles": ["<node_internals>/**"]
@@ -40,21 +50,31 @@
       "skipFiles": ["<node_internals>/**"]
     },
     {
-      "name": "Evaluate - Default Project",
+      "name": "Evaluate - Default Dataset",
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/index.js",
-      "args": ["evaluate", "--project", "default"],
+      "args": ["evaluate", "--dataset", "default", "--model", "default"],
       "console": "integratedTerminal",
       "envFile": "${workspaceFolder}/.env",
       "skipFiles": ["<node_internals>/**"]
     },
     {
-      "name": "Full Pipeline - Default Project",
+      "name": "Full Pipeline - Default Dataset",
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/index.js",
-      "args": ["--project", "default"],
+      "args": ["--dataset", "default", "--model", "default"],
+      "console": "integratedTerminal",
+      "envFile": "${workspaceFolder}/.env",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Full Pipeline - Intranet Dataset",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/index.js",
+      "args": ["--dataset", "intranet", "--model", "default"],
       "console": "integratedTerminal",
       "envFile": "${workspaceFolder}/.env",
       "skipFiles": ["<node_internals>/**"]

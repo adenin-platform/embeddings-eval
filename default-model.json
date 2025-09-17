@@ -1,5 +1,6 @@
 {
   "cost": 0.02,
   "vendor": "openai",
-  "model": "text-embedding-3-small"
+  "model": "text-embedding-3-small",
+  "minSimilarity": 0.4
 }

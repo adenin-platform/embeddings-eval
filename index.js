@@ -8,14 +8,12 @@ const Validator = require('./lib/validate');
 const Metrics = require('./lib/metrics');
 
 class EmbeddingsEvaluator {
-  constructor(dataset = 'default', config = 'default', modelName = 'default') {
+  constructor(dataset = 'default', modelName = 'default') {
     this.dataset = dataset;
-    this.config = config;
     this.modelName = modelName;
     this.datasetPath = path.join(__dirname, dataset);
-    this.indexPath = path.join(this.datasetPath, `embeddings-index-${modelName}`);
+    this.indexPath = path.join(this.datasetPath, 'embeddings');
     this.index = null;
-    this.projectConfig = null;
     this.modelConfig = null;
     this.metrics = new Metrics();
     this.apiKey = null;
@@ -27,7 +25,7 @@ class EmbeddingsEvaluator {
       const modelConfigPath = path.join(__dirname, `${this.modelName}-model.json`);
       const modelConfigData = await fs.readFile(modelConfigPath, 'utf8');
       this.modelConfig = JSON.parse(modelConfigData);
-      console.log(`📄 Loaded model '${this.modelName}': ${this.modelConfig.vendor}/${this.modelConfig.model} (cost: $${this.modelConfig.cost}/1M tokens)`);
+      console.log(`📄 Loaded model '${this.modelName}': ${this.modelConfig.vendor}/${this.modelConfig.model} (cost: $${this.modelConfig.cost}/1M tokens, minSimilarity: ${this.modelConfig.minSimilarity || 0.0})`);
       
       // Check if API key is provided for the vendor
       const apiKeyName = `${this.modelConfig.vendor.toUpperCase()}_API_KEY`;
@@ -43,41 +41,12 @@ class EmbeddingsEvaluator {
     }
   }
 
-  async loadProjectConfig() {
-    try {
-      let configPath;
-      // First try to find config file in root directory with config name
-      configPath = path.join(__dirname, `${this.config}.json`);
-      
-      // If not found and we're using default config, try inside dataset directory
-      try {
-        await fs.access(configPath);
-      } catch {
-        if (this.config === 'default') {
-          configPath = path.join(this.datasetPath, 'default.json');
-        } else {
-          throw new Error(`Config file ${this.config}.json not found`);
-        }
-      }
-      
-      const configData = await fs.readFile(configPath, 'utf8');
-      this.projectConfig = JSON.parse(configData);
-      console.log(`📄 Loaded config '${this.config}': minSimilarity = ${this.projectConfig.minSimilarity}`);
-    } catch (error) {
-      console.warn(`⚠️  No config found for '${this.config}' (${error.message}), using defaults`);
-      this.projectConfig = { minSimilarity: 0.0 }; // Default to no filtering
-    }
-  }
-
   async initialize() {
     // Load model configuration first
     await this.loadModelConfig();
     
-    // Load project configuration
-    await this.loadProjectConfig();
-    
-    // Create or load the vector index from dataset folder with model-specific filename
-    const indexFileName = `${this.modelName}.json`;
+    // Create or load the vector index from dataset folder with standard filename
+    const indexFileName = 'index.json';
     this.index = new LocalIndex(this.indexPath, indexFileName);
     
     // Check if index exists
@@ -118,7 +87,7 @@ class EmbeddingsEvaluator {
       const results = await this.index.queryItems(queryEmbedding, searchLimit);
       
       // Filter results based on minSimilarity threshold
-      const minSimilarity = this.projectConfig?.minSimilarity || 0.0;
+      const minSimilarity = this.modelConfig?.minSimilarity || 0.0;
       const filteredResults = results.filter(result => result.score >= minSimilarity);
       const belowThresholdResults = results.filter(result => result.score < minSimilarity);
       
@@ -282,7 +251,7 @@ class EmbeddingsEvaluator {
 
   async evaluateOnly() {
     try {
-      console.log(`🔍 Running evaluation for dataset '${this.dataset}' with config '${this.config}' using model '${this.modelName}'...\n`);
+      console.log(`🔍 Running evaluation for dataset '${this.dataset}' using model '${this.modelName}'...\n`);
       
       await this.initialize();
       
@@ -290,7 +259,7 @@ class EmbeddingsEvaluator {
       const stats = await this.index.getIndexStats();
       if (stats.items === 0) {
         console.error(`❌ No embeddings found for dataset '${this.dataset}'! Please run "npm run generate" first to create embeddings.`);
-        console.log(`💡 Usage: npm run generate -- --dataset ${this.dataset}  # Then: npm run evaluate -- --dataset ${this.dataset} --config ${this.config}`);
+        console.log(`💡 Usage: npm run generate -- --dataset ${this.dataset} --model ${this.modelName}  # Then: npm run evaluate -- --dataset ${this.dataset} --model ${this.modelName}`);
         process.exit(1);
       } else {
         console.log(`📊 Using existing index with ${stats.items} items.\n`);
@@ -305,8 +274,8 @@ class EmbeddingsEvaluator {
         metrics: this.metrics.getAllMetrics().evaluate
       };
       
-      // Save results to file in dataset folder with config name
-      const resultsFileName = `evaluation-results-${this.config}.json`;
+      // Save results to file in dataset folder with model name
+      const resultsFileName = `evaluation-results-${this.modelName}.json`;
       const resultsPath = path.join(this.datasetPath, resultsFileName);
       await fs.writeFile(resultsPath, JSON.stringify(completeResults, null, 2));
       console.log(`✅ Evaluation results saved to ${resultsPath}`);
@@ -320,7 +289,7 @@ class EmbeddingsEvaluator {
 
   async run() {
     try {
-      console.log(`Starting Embeddings Evaluator for dataset '${this.dataset}' with config '${this.config}' using model '${this.modelName}'...\n`);
+      console.log(`Starting Embeddings Evaluator for dataset '${this.dataset}' using model '${this.modelName}'...\n`);
       
       await this.initialize();
       
@@ -343,8 +312,8 @@ class EmbeddingsEvaluator {
         metrics: this.metrics.getAllMetrics().evaluate
       };
       
-      // Save results to file in dataset folder with config name
-      const resultsFileName = `evaluation-results-${this.config}.json`;
+      // Save results to file in dataset folder with model name
+      const resultsFileName = `evaluation-results-${this.modelName}.json`;
       const resultsPath = path.join(this.datasetPath, resultsFileName);
       await fs.writeFile(resultsPath, JSON.stringify(completeResults, null, 2));
       console.log(`Evaluation results saved to ${resultsPath}`);
@@ -359,12 +328,12 @@ class EmbeddingsEvaluator {
 
 // Run the evaluator if this file is executed directly
 if (require.main === module) {
+  (async () => {
   try {
     // Parse command line arguments
     const args = process.argv.slice(2);
     let command = 'run'; // default command
     let dataset = 'default'; // default dataset
-    let config = 'default'; // default config
     let modelName = 'default'; // default model
     
     // Parse arguments
@@ -373,9 +342,6 @@ if (require.main === module) {
       if (arg === '--dataset' && i + 1 < args.length) {
         dataset = args[i + 1];
         i++; // skip next argument as it's the dataset name
-      } else if (arg === '--config' && i + 1 < args.length) {
-        config = args[i + 1];
-        i++; // skip next argument as it's the config name
       } else if (arg === '--model' && i + 1 < args.length) {
         modelName = args[i + 1];
         i++; // skip next argument as it's the model name
@@ -385,22 +351,28 @@ if (require.main === module) {
     }
     
     // Validate dataset - check if dataset folder exists
-    const validDatasets = ['default', 'courses-de'];
-    if (!validDatasets.includes(dataset)) {
-      console.error(`❌ Error: Invalid dataset '${dataset}'. Valid datasets are: ${validDatasets.join(', ')}`);
+    const datasetPath = path.join(__dirname, dataset);
+    try {
+      await fs.access(datasetPath);
+      const stats = await fs.stat(datasetPath);
+      if (!stats.isDirectory()) {
+        throw new Error(`'${dataset}' is not a directory`);
+      }
+    } catch (error) {
+      console.error(`❌ Error: Dataset folder '${dataset}' does not exist.`);
       console.log('💡 Usage examples:');
-      console.log('   npm start -- --dataset default --config default --model default');
-      console.log('   npm start -- --dataset courses-de --config test --model oa3large');      
+      console.log('   npm start -- --dataset default --model default');
+      console.log('   npm start -- --dataset courses-de --model oa3large');      
       console.log('   npm run generate -- --dataset courses-de --model default');
-      console.log('   npm run evaluate -- --dataset default --config test --model oa3large');
+      console.log('   npm run evaluate -- --dataset default --model oa3large');
       console.log('');
       console.log('   Or run directly:');
-      console.log('   node index.js --dataset default --config default --model default');
+      console.log('   node index.js --dataset default --model default');
       console.log('   node index.js generate --dataset courses-de --model oa3large');
       process.exit(1);
     }
     
-    const evaluator = new EmbeddingsEvaluator(dataset, config, modelName);
+    const evaluator = new EmbeddingsEvaluator(dataset, modelName);
     
     // Handle different commands
     switch (command) {
@@ -409,11 +381,11 @@ if (require.main === module) {
         evaluator.generateEmbeddingsOnly();
         break;
       case 'evaluate':
-        console.log(`🚀 Command: Run evaluation for search terms in dataset '${dataset}' with config '${config}' using model '${modelName}'\n`); 
+        console.log(`🚀 Command: Run evaluation for search terms in dataset '${dataset}' using model '${modelName}'\n`); 
         evaluator.evaluateOnly();
         break;
       default:
-        console.log(`🚀 Command: Full pipeline (generate + evaluate) for dataset '${dataset}' with config '${config}' using model '${modelName}'\n`);
+        console.log(`🚀 Command: Full pipeline (generate + evaluate) for dataset '${dataset}' using model '${modelName}'\n`);
         evaluator.run();
         break;
     }
@@ -424,6 +396,7 @@ if (require.main === module) {
     console.error('\n📖 See .env.example for the template.');
     process.exit(1);
   }
+  })();
 }
 
 module.exports = EmbeddingsEvaluator;
