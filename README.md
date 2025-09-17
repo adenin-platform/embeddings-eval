@@ -4,29 +4,29 @@ A Node.js application for evaluating content embeddings using Vectra and OpenAI'
 
 ## Overview
 
-This application supports multiple projects with different configurations:
+This application supports multiple datasets with different embedding models:
 
-- **default**: Default project with standard similarity threshold (0.1)
-- **courses-de**: German course content  
-- **test**: Test project with high similarity threshold (0.5)
+- **default**: Default project with 10 sample items
+- **courses-de**: German course content (10 items)  
+- **intranet**: Intranet content (200 items)
+- Any dataset with valid `content.json` and `eval.json` files
 
 The application:
-1. Reads content from `{project}/content.json` (array of objects with `title` and `description` properties)
-2. Uses [Vectra](https://github.com/Stevenic/vectra) with OpenAI's `text-embedding-3-small` model to compute embeddings for `title + " " + description`
-3. Loads evaluation data from `{project}/eval.json` (array of objects with `search` property)
-4. **NEW:** Loads project configuration with similarity thresholds from config files
+1. Reads content from `{dataset}/content.json` (array of objects with `title` and `description` properties)
+2. Uses [Vectra](https://github.com/Stevenic/vectra) with configurable OpenAI embedding models to compute embeddings for `title + " " + description`
+3. Loads evaluation data from `{dataset}/eval.json` (array of objects with `search` property)
+4. Stores embeddings in `{dataset}/embeddings/` folder with standard index structure
 5. Searches for each search term and returns the top 3 most relevant results
-6. **NEW:** Filters results based on `minSimilarity` threshold from project configuration
+6. Filters results based on `minSimilarity` threshold from model configuration
 
-## Project Configuration
+## Model Configuration
 
-Each project can have a configuration file that controls search behavior:
+Each model file contains embedding model settings and search behavior configuration:
 
-- **default/default.json**: Configuration for the default project (`minSimilarity: 0.1`)
-- **test.json**: Configuration for the test project (`minSimilarity: 0.5`)
-- **No config**: Projects without configuration files use no filtering (`minSimilarity: 0.0`)
+- **default-model.json**: OpenAI text-embedding-3-small model (`minSimilarity: 0.4`)
+- **oa3large-model.json**: OpenAI text-embedding-3-large model (`minSimilarity: 0.5`)
 
-The `minSimilarity` threshold filters search results to only return matches with similarity scores >= the threshold value.
+The `minSimilarity` threshold filters search results to only return matches with similarity scores >= the threshold value. Configuration is now embedded directly in the model files.
 
 ## Setup
 
@@ -47,12 +47,14 @@ OPENAI_API_KEY=your_openai_api_key_here
 All commands support the `--dataset` parameter to specify which dataset to work with and the `--model` parameter to specify which embedding model to use:
 
 **Datasets:**
-- `--dataset default` (default): Use default content with similarity threshold 0.4
+- `--dataset default` (default): Use default content
 - `--dataset courses-de`: Use German content  
+- `--dataset intranet`: Use intranet content
+- Any folder with valid `content.json` and `eval.json` files
 
 **Models:**
-- `--model default` (default): OpenAI text-embedding-3-small model  
-- `--model oa3large`: OpenAI text-embedding-3-large model
+- `--model default` (default): OpenAI text-embedding-3-small model (minSimilarity: 0.4)
+- `--model oa3large`: OpenAI text-embedding-3-large model (minSimilarity: 0.5)
 
 ### Two-Step Process (Recommended)
 
@@ -61,37 +63,43 @@ All commands support the `--dataset` parameter to specify which dataset to work 
 npm run generate -- --dataset default --model default
 # or
 npm run generate -- --dataset courses-de --model oa3large
+# or
+npm run generate -- --dataset intranet --model default
 ```
 
 2. **Run evaluation for search terms:**
 ```bash
-npm run evaluate -- --dataset default --config test --model default
+npm run evaluate -- --dataset default --model default
 # or  
-npm run evaluate -- --dataset courses-de --config default --model oa3large
+npm run evaluate -- --dataset courses-de --model oa3large
+# or
+npm run evaluate -- --dataset intranet --model default
 ```
 
 ### Alternative Commands
 
 Run the complete pipeline (generate + evaluate):
 ```bash
-npm start -- --dataset default --config default --model default
+npm start -- --dataset default --model default
 # or
-npm start -- --dataset courses-de --config test --model oa3large
+npm start -- --dataset courses-de --model oa3large
+# or
+npm start -- --dataset intranet --model default
 ```
 
 ### Command Details
 
-- `npm run generate -- --dataset {name} --model {model}`: Creates embeddings for all content in `{dataset}/content.json` and stores them in a dataset-specific vector index using the specified model.
-- `npm run evaluate -- --dataset {name} --config {config} --model {model}`: Runs search evaluation using queries from `{dataset}/eval.json` against the existing vector index for the specified model.
-- `npm start -- --dataset {name} --config {config} --model {model}`: Runs the full pipeline (equivalent to running generate then evaluate)
+- `npm run generate -- --dataset {name} --model {model}`: Creates embeddings for all content in `{dataset}/content.json` and stores them in `{dataset}/embeddings/` folder using the specified model.
+- `npm run evaluate -- --dataset {name} --model {model}`: Runs search evaluation using queries from `{dataset}/eval.json` against the existing vector index for the specified model.
+- `npm start -- --dataset {name} --model {model}`: Runs the full pipeline (equivalent to running generate then evaluate)
 - `npm run validate`: Validates that all project JSON files exist and shows item counts
 - `npm run validate-project {name}`: Validates a specific project
 
 **Note:** The `--` separator is required when passing parameters through npm scripts. Alternatively, you can run the commands directly:
 ```bash
 node index.js generate --dataset courses-de --model oa3large
-node index.js evaluate --dataset default --config test --model default
-node index.js --dataset default --config default --model default  # full pipeline
+node index.js evaluate --dataset default --model default
+node index.js --dataset default --model default  # full pipeline
 ```
 
 ### Development in GitHub Codespaces
@@ -150,12 +158,12 @@ The application will:
 3. Store the vectors in `{dataset}/embeddings-index-{model}/` with model-specific catalog files (`{model}.json`)
 4. Display progress and completion status
 
-### Evaluate Command (`npm run evaluate -- --dataset {name} --config {config} --model {model}`)
+### Evaluate Command (`npm run evaluate -- --dataset {name} --model {model}`)
 The application will:
-1. Load the existing dataset and model-specific vector index
+1. Load the existing dataset and model-specific vector index from `{dataset}/embeddings/`
 2. Search for each query in the `{dataset}/eval.json` file  
-3. Display top 3 results with similarity scores for each query
-4. Save detailed results to `evaluation-results-{config}.json`
+3. Display top 3 results with similarity scores for each query, filtered by model's minSimilarity threshold
+4. Save detailed results to `evaluation-results-{model}.json`
 
 ## Example Output
 
