@@ -42,57 +42,56 @@ OPENAI_API_KEY=your_openai_api_key_here
 
 ## Usage
 
-### Project Selection
+### Dataset and Model Selection
 
-All commands support the `--project` parameter to specify which project to work with:
+All commands support the `--dataset` parameter to specify which dataset to work with and the `--model` parameter to specify which embedding model to use:
 
-- `--project default` (default): Use default content with similarity threshold 0.1
-- `--project courses-de`: Use German content with no similarity filtering  
-- `--project test`: Use test content with high similarity threshold 0.5
+**Datasets:**
+- `--dataset default` (default): Use default content with similarity threshold 0.4
+- `--dataset courses-de`: Use German content  
+
+**Models:**
+- `--model default` (default): OpenAI text-embedding-3-small model  
+- `--model oa3large`: OpenAI text-embedding-3-large model
 
 ### Two-Step Process (Recommended)
 
 1. **Generate embeddings and store vectors:**
 ```bash
-npm run generate -- --project default
+npm run generate -- --dataset default --model default
 # or
-npm run generate -- --project courses-de
-# or
-npm run generate -- --project test
+npm run generate -- --dataset courses-de --model oa3large
 ```
 
 2. **Run evaluation for search terms:**
 ```bash
-npm run evaluate -- --project default
+npm run evaluate -- --dataset default --config test --model default
 # or  
-npm run evaluate -- --project courses-de
-# or
-npm run evaluate -- --project test
+npm run evaluate -- --dataset courses-de --config default --model oa3large
 ```
 
 ### Alternative Commands
 
 Run the complete pipeline (generate + evaluate):
 ```bash
-npm start -- --project default
+npm start -- --dataset default --config default --model default
 # or
-npm start -- --project courses-de
-# or
-npm start -- --project test
+npm start -- --dataset courses-de --config test --model oa3large
 ```
 
 ### Command Details
 
-- `npm run generate -- --project {name}`: Creates embeddings for all content in `{project}/content.json` and stores them in a project-specific vector index.
-- `npm run evaluate -- --project {name}`: Runs search evaluation using queries from `{project}/eval.json` against the existing vector index.
-- `npm start -- --project {name}`: Runs the full pipeline (equivalent to running generate then evaluate)
+- `npm run generate -- --dataset {name} --model {model}`: Creates embeddings for all content in `{dataset}/content.json` and stores them in a dataset-specific vector index using the specified model.
+- `npm run evaluate -- --dataset {name} --config {config} --model {model}`: Runs search evaluation using queries from `{dataset}/eval.json` against the existing vector index for the specified model.
+- `npm start -- --dataset {name} --config {config} --model {model}`: Runs the full pipeline (equivalent to running generate then evaluate)
 - `npm run validate`: Validates that all project JSON files exist and shows item counts
 - `npm run validate-project {name}`: Validates a specific project
 
-**Note:** The `--` separator is required when passing `--project` through npm scripts. Alternatively, you can run the commands directly:
+**Note:** The `--` separator is required when passing parameters through npm scripts. Alternatively, you can run the commands directly:
 ```bash
-node index.js generate --project courses-de
-node index.js evaluate --project default
+node index.js generate --dataset courses-de --model oa3large
+node index.js evaluate --dataset default --config test --model default
+node index.js --dataset default --config default --model default  # full pipeline
 ```
 
 ### Development in GitHub Codespaces
@@ -144,26 +143,26 @@ Contains an array of search queries with optional expected results:
 
 ## Output
 
-### Generate Command (`npm run generate -- --project {name}`)
+### Generate Command (`npm run generate -- --dataset {name} --model {model}`)
 The application will:
-1. Build a project-specific vector index from the content in `{project}/content.json`
-2. Generate embeddings using OpenAI's text-embedding-3-small model
-3. Store the vectors in `embeddings-index-{project}/`
+1. Build a dataset-specific vector index from the content in `{dataset}/content.json`
+2. Generate embeddings using the specified model (e.g., OpenAI's text-embedding-3-small)
+3. Store the vectors in `{dataset}/embeddings-index-{model}/` with model-specific catalog files (`{model}.json`)
 4. Display progress and completion status
 
-### Evaluate Command (`npm run evaluate -- --project {name}`)
+### Evaluate Command (`npm run evaluate -- --dataset {name} --config {config} --model {model}`)
 The application will:
-1. Load the existing project-specific vector index
-2. Search for each query in the `{project}/eval.json` file  
+1. Load the existing dataset and model-specific vector index
+2. Search for each query in the `{dataset}/eval.json` file  
 3. Display top 3 results with similarity scores for each query
-4. Save detailed results to `evaluation-results-{project}.json`
+4. Save detailed results to `evaluation-results-{config}.json`
 
 ## Example Output
 
 ```
-🚀 Command: Generate embeddings and store vectors for project 'courses-de'
+🚀 Command: Generate embeddings and store vectors for dataset 'courses-de' using model 'oa3large'
 
-Loading content from project 'courses-de' and building index...
+Loading content from dataset 'courses-de' and building index...
 Processing item 1/10: Einführung in Machine Learning
 Processing item 2/10: JavaScript für Anfänger
 ...
