@@ -13,7 +13,7 @@ class EmbeddingsEvaluator {
     this.config = config;
     this.modelName = modelName;
     this.datasetPath = path.join(__dirname, dataset);
-    this.indexPath = path.join(this.datasetPath, 'embeddings-index');
+    this.indexPath = path.join(this.datasetPath, `embeddings-index-${modelName}`);
     this.index = null;
     this.projectConfig = null;
     this.modelConfig = null;
@@ -103,10 +103,11 @@ class EmbeddingsEvaluator {
       
       // Track metrics for the search query
       const startTime = Date.now();
-      const tokens = Metrics.countTokens(query);
       
       // Generate embedding for the search query
-      const queryEmbedding = await this.embeddingService.generateEmbedding(query);
+      const result = await this.embeddingService.generateEmbedding(query);
+      const queryEmbedding = result.embedding;
+      const tokens = result.tokens; // Use API-provided token count
       
       const endTime = Date.now();
       const runtime = endTime - startTime;
@@ -246,7 +247,7 @@ class EmbeddingsEvaluator {
     console.log(`  Total Queries: ${totals.queryCount}`);
     console.log(`  Total Tokens: ${totals.totalTokens}`);
     console.log(`  Total Runtime: ${totals.totalRuntime}ms`);
-    console.log(`  Total Cost: $${totals.totalCost.toFixed(2)}`);
+    console.log(`  Total Cost: $${totals.totalCost}`);
     console.log('\n📊 Recall & Precision Averages:');
     console.log(`  Micro-averaging: Recall ${totals.microAveraging.recall.toFixed(1)}%, Precision ${totals.microAveraging.precision.toFixed(1)}%`);
     console.log(`  Macro-averaging: Recall ${totals.macroAveraging.recall.toFixed(1)}%, Precision ${totals.macroAveraging.precision.toFixed(1)}%`);
@@ -257,7 +258,7 @@ class EmbeddingsEvaluator {
 
   async generateEmbeddingsOnly() {
     try {
-      console.log(`🔄 Generating embeddings for dataset '${this.dataset}' and storing vectors...\n`);
+      console.log(`🔄 Generating embeddings for dataset '${this.dataset}' using model '${this.modelName}' and storing vectors...\n`);
       
       // Load model configuration first
       await this.loadModelConfig();
@@ -280,7 +281,7 @@ class EmbeddingsEvaluator {
 
   async evaluateOnly() {
     try {
-      console.log(`🔍 Running evaluation for dataset '${this.dataset}' with config '${this.config}'...\n`);
+      console.log(`🔍 Running evaluation for dataset '${this.dataset}' with config '${this.config}' using model '${this.modelName}'...\n`);
       
       await this.initialize();
       
@@ -318,7 +319,7 @@ class EmbeddingsEvaluator {
 
   async run() {
     try {
-      console.log(`Starting Embeddings Evaluator for dataset '${this.dataset}' with config '${this.config}'...\n`);
+      console.log(`Starting Embeddings Evaluator for dataset '${this.dataset}' with config '${this.config}' using model '${this.modelName}'...\n`);
       
       await this.initialize();
       
