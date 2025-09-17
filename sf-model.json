@@ -1,0 +1,6 @@
+{
+  "cost": 0.01,
+  "vendor": "sf",
+  "model": "BAAI/bge-large-en-v1.5",
+  "minSimilarity": 0.4
+}
