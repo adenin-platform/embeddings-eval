@@ -12,7 +12,7 @@ class EmbeddingsEvaluator {
     this.dataset = dataset;
     this.modelName = modelName;
     this.datasetPath = path.join(__dirname, dataset);
-    this.indexPath = path.join(this.datasetPath, 'embeddings');
+    this.indexPath = path.join(this.datasetPath, modelName); // Use model name as directory
     this.index = null;
     this.modelConfig = null;
     this.metrics = new Metrics();
@@ -201,7 +201,7 @@ class EmbeddingsEvaluator {
         metrics: {
           tokens: searchMetrics.tokens,
           runtime: searchMetrics.runtime,
-          cost: 0.1,
+          cost: cost, // Use calculated cost instead of hardcoded 0.1
           recall: recall,
           precision: precision
         }
@@ -217,7 +217,7 @@ class EmbeddingsEvaluator {
     console.log(`  Total Queries: ${totals.queryCount}`);
     console.log(`  Total Tokens: ${totals.totalTokens}`);
     console.log(`  Total Runtime: ${totals.totalRuntime}ms`);
-    console.log(`  Total Cost: $${totals.totalCost}`);
+    console.log(`  Total Cost: $${totals.totalCost.toFixed(8)}`);
     console.log('\n📊 Recall & Precision Averages:');
     console.log(`  Micro-averaging: Recall ${totals.microAveraging.recall.toFixed(1)}%, Precision ${totals.microAveraging.precision.toFixed(1)}%`);
     console.log(`  Macro-averaging: Recall ${totals.macroAveraging.recall.toFixed(1)}%, Precision ${totals.macroAveraging.precision.toFixed(1)}%`);
@@ -277,7 +277,14 @@ class EmbeddingsEvaluator {
       // Save results to file in dataset folder with model name
       const resultsFileName = `evaluation-results-${this.modelName}.json`;
       const resultsPath = path.join(this.datasetPath, resultsFileName);
-      await fs.writeFile(resultsPath, JSON.stringify(completeResults, null, 2));
+      // Custom JSON replacer to prevent scientific notation for cost values
+      const jsonReplacer = (key, value) => {
+        if (key === 'cost' || key === 'totalCost') {
+          return typeof value === 'number' ? value.toFixed(8) : value;
+        }
+        return value;
+      };
+      await fs.writeFile(resultsPath, JSON.stringify(completeResults, jsonReplacer, 2));
       console.log(`✅ Evaluation results saved to ${resultsPath}`);
       
       return results;
@@ -315,7 +322,14 @@ class EmbeddingsEvaluator {
       // Save results to file in dataset folder with model name
       const resultsFileName = `evaluation-results-${this.modelName}.json`;
       const resultsPath = path.join(this.datasetPath, resultsFileName);
-      await fs.writeFile(resultsPath, JSON.stringify(completeResults, null, 2));
+      // Custom JSON replacer to prevent scientific notation for cost values
+      const jsonReplacer = (key, value) => {
+        if (key === 'cost' || key === 'totalCost') {
+          return typeof value === 'number' ? value.toFixed(8) : value;
+        }
+        return value;
+      };
+      await fs.writeFile(resultsPath, JSON.stringify(completeResults, jsonReplacer, 2));
       console.log(`Evaluation results saved to ${resultsPath}`);
       
       return results;
