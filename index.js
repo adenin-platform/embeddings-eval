@@ -76,13 +76,14 @@ class EmbeddingsEvaluator {
     // Load project configuration
     await this.loadProjectConfig();
     
-    // Create or load the vector index from dataset folder
-    this.index = new LocalIndex(this.indexPath);
+    // Create or load the vector index from dataset folder with model-specific filename
+    const indexFileName = `${this.modelName}.json`;
+    this.index = new LocalIndex(this.indexPath, indexFileName);
     
     // Check if index exists
     const indexExists = await this.index.isIndexCreated();
     if (!indexExists) {
-      throw new Error(`No embeddings index found for dataset '${this.dataset}'. Please run generate first.`);
+      throw new Error(`No embeddings index found for dataset '${this.dataset}' with model '${this.modelName}'. Please run generate first.`);
     }
   }
 
@@ -263,7 +264,7 @@ class EmbeddingsEvaluator {
       // Load model configuration first
       await this.loadModelConfig();
       
-      const generator = new Generator(this.datasetPath, this.embeddingService);
+      const generator = new Generator(this.datasetPath, this.embeddingService, this.indexPath, this.modelName);
       const generatorMetrics = await generator.generate();
       
       // Merge generator metrics into our metrics if needed
