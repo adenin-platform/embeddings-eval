@@ -13,7 +13,7 @@ Always reference these instructions first and fallback to search or bash command
 ### Initial Setup
 Run these commands in order for a fresh repository clone:
 
-1. **Install dependencies** (takes ~4 seconds):
+1. **Install dependencies** (takes ~4-7 seconds):
    ```bash
    npm install
    ```
@@ -218,7 +218,7 @@ After making changes, always test:
 - **No build step required** - This is a pure Node.js application
 - **No test suite** - `npm test` returns "Error: no test specified"
 - **No linting configuration** - No ESLint, Prettier, or similar tools configured
-- **Dependencies install quickly** - `npm install` completes in ~4 seconds
+- **Dependencies install quickly** - `npm install` completes in ~4-7 seconds
 - **Index persistence** - Vector index is stored locally and reused across runs
 - **API rate limiting** - Application includes small delays (100-200ms) between API calls
 - **Project structure** - Each dataset is a separate folder with its own content, evaluation, and output files
@@ -242,7 +242,7 @@ Always run these commands to validate changes:
 
 ```bash
 # Basic setup and validation
-npm install                              # ~4 seconds
+npm install                              # ~4-7 seconds
 npm run validate                         # ~0.18 seconds
 
 # Test error handling
