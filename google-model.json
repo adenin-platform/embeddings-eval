@@ -1,0 +1,8 @@
+{
+  "cost": 0.10,
+  "vendor": "google",
+  "model": "text-embedding-004",
+  "minSimilarity": 0.4,
+  "generate_task_type": "RETRIEVAL_DOCUMENT",
+  "query_task_type": "RETRIEVAL_QUERY"
+}
