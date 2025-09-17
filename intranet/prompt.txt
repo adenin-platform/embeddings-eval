@@ -1,0 +1,44 @@
+I need a list of the content which should be in the intranet of a mid sized consumer packaged goods company as a json file. The list should contain the 200 most important tools, and documents. For each entry I need an unique id as int, a title, an url, a type like document, manual, app, link, tool, audience (like managers, new hires, sales agents), owner email, It should then also contain a 2-3 sentences description of the entry which should help new employees to find the url without knowing the exact title. when it's an external tool (like jira) there should also be a link to the vendor. the result should be a json file. be sure that the file is correctly escaped, especially description. audience should always be an array, also when audience is just one value. be sure to include all 200 not just a subset! be sure to not return any duplicates!
+
+the response MUST be in the exact same format 
+
+[
+  {
+    "id": 1,
+    "title": "Employee Handbook",
+    "url": "https://intranet.company.com/hr/employee-handbook",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Comprehensive guide covering company policies, procedures, code of conduct, and employee benefits. Essential reading for all new hires and a reference guide for existing employees on workplace rules and expectations.",
+    "vendor_url": null
+  },
+  {
+    "id": 2,
+    "title": "Salesforce CRM",
+    "url": "https://company.salesforce.com",
+    "type": "tool",
+    "audience": [
+      "sales agents",
+      "managers"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Customer relationship management system for tracking leads, opportunities, and customer interactions. Primary tool for sales team to manage pipeline, forecast revenue, and maintain customer contact information.",
+    "vendor_url": "https://www.salesforce.com"
+  },
+  {
+    "id": 3,
+    "title": "Product Catalog 2024",
+    "url": "https://intranet.company.com/products/catalog-2024",
+    "type": "document",
+    "audience": [
+      "sales agents",
+      "marketing"
+    ],
+    "owner_email": "productteam@company.com",
+    "description": "Complete listing of all current products with specifications, pricing tiers, and SKU numbers. Includes product images, nutritional information, and packaging details for the entire portfolio.",
+    "vendor_url": null
+  }
+]

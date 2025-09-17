@@ -1,0 +1,1002 @@
+[
+  {
+    "id": 1,
+    "title": "Employee Handbook",
+    "description": "Comprehensive guide covering company policies, procedures, code of conduct, and employee benefits. Essential reading for all new hires and a reference guide for existing employees on workplace rules and expectations."
+  },
+  {
+    "id": 2,
+    "title": "Salesforce CRM",
+    "description": "Customer relationship management system for tracking leads, opportunities, and customer interactions. Primary tool for sales team to manage pipeline, forecast revenue, and maintain customer contact information."
+  },
+  {
+    "id": 3,
+    "title": "Product Catalog 2024",
+    "description": "Complete listing of all current products with specifications, pricing tiers, and SKU numbers. Includes product images, nutritional information, and packaging details for the entire portfolio."
+  },
+  {
+    "id": 4,
+    "title": "IT Help Desk Portal",
+    "description": "Submit tickets for technical issues, request new hardware/software, and find solutions to common IT problems. This is your first stop for any computer, software, or network related difficulties."
+  },
+  {
+    "id": 5,
+    "title": "Concur Expense Reporting",
+    "description": "System for submitting and managing business travel and entertainment expenses. Use this platform to upload receipts, categorize spending, and request reimbursement for company-related costs."
+  },
+  {
+    "id": 6,
+    "title": "Company Org Chart",
+    "description": "Visual representation of the company's internal structure, showing reporting lines and departmental hierarchies. Helps new employees understand who reports to whom and where different teams fit into the organization."
+  },
+  {
+    "id": 7,
+    "title": "Marketing Asset Library",
+    "description": "Central repository for approved logos, brand imagery, product photos, videos, and campaign materials. Essential for ensuring consistent brand representation across all external communications."
+  },
+  {
+    "id": 8,
+    "title": "Production Schedule Dashboard",
+    "description": "Real-time overview of current and upcoming production runs across all facilities. Provides critical information on product quantities, manufacturing timelines, and resource allocation for production teams."
+  },
+  {
+    "id": 9,
+    "title": "Jira Project Management",
+    "description": "Agile project management and issue tracking software used for software development, IT operations, and certain marketing initiatives. Create, track, and manage tasks, sprints, and project backlogs collaboratively."
+  },
+  {
+    "id": 10,
+    "title": "Employee Benefits Guide",
+    "description": "Detailed information about health insurance, retirement plans, paid time off, and other employee perks. Consult this guide for understanding and utilizing your company-provided benefits."
+  },
+  {
+    "id": 11,
+    "title": "SharePoint Document Management",
+    "description": "Platform for storing, sharing, and collaborating on documents and files across teams. Use it to access departmental folders, co-author documents, and manage versions of important company records."
+  },
+  {
+    "id": 12,
+    "title": "New Employee Onboarding Checklist",
+    "description": "Step-by-step guide for new employees to complete essential tasks during their first weeks. Helps managers ensure a smooth integration for their new team members by covering all administrative and training requirements."
+  },
+  {
+    "id": 13,
+    "title": "Brand Guidelines",
+    "description": "Official rules and standards for using company logos, colors, typography, and messaging. Ensures consistency in all internal and external communications to maintain a strong and unified brand identity."
+  },
+  {
+    "id": 14,
+    "title": "SAP ERP System",
+    "description": "Enterprise Resource Planning system for managing core business processes like finance, procurement, and logistics. It's used for tracking orders, managing inventory, and processing financial transactions."
+  },
+  {
+    "id": 15,
+    "title": "Travel Policy",
+    "description": "Guidelines and rules for booking business travel, including approved vendors, expense limits, and reimbursement procedures. Refer to this document before planning any company-related trips to ensure compliance."
+  },
+  {
+    "id": 16,
+    "title": "Sales Playbook",
+    "description": "Strategic guide for sales professionals detailing best practices, pitch decks, competitive analysis, and objection handling. Provides a comprehensive toolkit to maximize sales effectiveness and achieve targets."
+  },
+  {
+    "id": 17,
+    "title": "Quality Management System (QMS)",
+    "description": "System for managing quality standards, non-conformances, audits, and corrective actions. Essential for maintaining product quality, ensuring compliance with regulations, and driving continuous improvement."
+  },
+  {
+    "id": 18,
+    "title": "Meeting Room Booking System",
+    "description": "Online platform to reserve company meeting rooms, conference spaces, and collaboration zones. Check availability and book resources and catering for your internal meetings efficiently."
+  },
+  {
+    "id": 19,
+    "title": "Employee Directory",
+    "description": "Searchable database of all employees, including their contact information, department, and job title. Useful for finding colleagues and connecting with team members across the organization."
+  },
+  {
+    "id": 20,
+    "title": "Power BI Dashboards",
+    "description": "Collection of interactive data dashboards providing insights into sales performance, marketing campaigns, operational metrics, and financial results. Use these dashboards to monitor key performance indicators and make data-driven decisions."
+  },
+  {
+    "id": 21,
+    "title": "IT Security Policy",
+    "description": "Guidelines for protecting company data, systems, and information assets. This policy outlines best practices for password management, data handling, and cybersecurity awareness to ensure a secure work environment."
+  },
+  {
+    "id": 22,
+    "title": "Product Development Process Manual",
+    "description": "Step-by-step guide detailing the entire lifecycle of new product creation, from concept generation to launch. Essential for understanding and adhering to the company's innovation and product realization framework."
+  },
+  {
+    "id": 23,
+    "title": "Supplier Portal",
+    "description": "Online platform for managing interactions with external suppliers, including purchase orders, invoices, and performance tracking. Used by procurement teams to streamline supplier relationships and ensure efficient sourcing."
+  },
+  {
+    "id": 24,
+    "title": "GDPR Compliance Guide",
+    "description": "Detailed explanation of the General Data Protection Regulation and how it applies to our company's operations. Provides guidance on handling personal data to ensure legal compliance and protect customer privacy."
+  },
+  {
+    "id": 25,
+    "title": "Workday HCM",
+    "description": "Human Capital Management system for managing personal information, requesting time off, viewing pay stubs, and performance reviews. It's your central hub for all HR-related self-service tasks."
+  },
+  {
+    "id": 26,
+    "title": "Marketing Campaign Request Form",
+    "description": "Online form for submitting requests to the marketing team for new campaigns, promotional materials, or creative support. Fill this out with detailed information to initiate a new marketing project."
+  },
+  {
+    "id": 27,
+    "title": "Warehouse Management System (WMS)",
+    "description": "Software for managing inventory, tracking stock movements, and optimizing warehouse operations. Used for receiving, picking, packing, and shipping products efficiently."
+  },
+  {
+    "id": 28,
+    "title": "Financial Report Templates",
+    "description": "Standardized templates for creating various financial reports, including budget summaries, profit & loss statements, and balance sheets. Ensures consistency and accuracy in financial reporting across departments."
+  },
+  {
+    "id": 29,
+    "title": "Code of Conduct and Ethics",
+    "description": "Outlines the ethical principles and professional standards expected of all employees. This document is crucial for understanding our company values and making responsible decisions in the workplace."
+  },
+  {
+    "id": 30,
+    "title": "Microsoft Teams",
+    "description": "Collaboration platform for chat, video conferencing, file sharing, and project workspaces. Use Teams to communicate with colleagues, hold virtual meetings, and collaborate on documents in real-time."
+  },
+  {
+    "id": 31,
+    "title": "Product Specification Database",
+    "description": "Centralized database containing detailed specifications for all products, including ingredients, formulations, packaging, and regulatory information. Essential for product development, quality control, and compliance teams."
+  },
+  {
+    "id": 32,
+    "title": "Supply Chain Visibility Dashboard",
+    "description": "Provides real-time tracking of raw materials, goods in transit, and finished product inventory across the entire supply chain. Helps manage logistics, identify bottlenecks, and ensure timely delivery."
+  },
+  {
+    "id": 33,
+    "title": "Annual Budget Templates",
+    "description": "Standardized templates for department heads to submit their annual budget proposals. Use these forms to plan and justify your team's financial needs for the upcoming fiscal year."
+  },
+  {
+    "id": 34,
+    "title": "Vendor Contract Management System",
+    "description": "Centralized system for storing, tracking, and managing all vendor contracts and agreements. Facilitates contract lifecycle management from negotiation to renewal, ensuring compliance and efficiency."
+  },
+  {
+    "id": 35,
+    "title": "Social Media Guidelines",
+    "description": "Rules and best practices for employees engaging with social media, both professionally and personally, when representing the company. Ensures appropriate conduct and protects the company's brand reputation online."
+  },
+  {
+    "id": 36,
+    "title": "Leave Request System",
+    "description": "Online portal for employees to submit requests for vacation, sick leave, or other time off. Managers use this system to approve or deny requests and track team absences."
+  },
+  {
+    "id": 37,
+    "title": "Product Innovation Pipeline Tracker",
+    "description": "Tool for visualizing and managing the status of all ongoing and planned product innovation projects. Helps track progress from concept to commercialization, ensuring alignment with strategic goals."
+  },
+  {
+    "id": 38,
+    "title": "Food Safety Manual",
+    "description": "Comprehensive guide on maintaining food safety standards and complying with regulatory requirements throughout the product lifecycle. Essential for all personnel involved in handling, processing, and packaging food products."
+  },
+  {
+    "id": 39,
+    "title": "Marketing Budget Tracker",
+    "description": "Application to monitor and manage marketing expenditures against allocated budgets. Helps marketing teams stay within financial limits and track spending across various campaigns and initiatives."
+  },
+  {
+    "id": 40,
+    "title": "Conflict of Interest Policy",
+    "description": "Policy outlining situations where personal interests might conflict with company interests and how to manage them. Crucial for maintaining integrity and ethical conduct in all business dealings."
+  },
+  {
+    "id": 41,
+    "title": "Performance Review System",
+    "description": "Platform for conducting and documenting employee performance reviews and setting goals. Used by both employees and managers to track progress, provide feedback, and support career development."
+  },
+  {
+    "id": 42,
+    "title": "Sales Territory Map",
+    "description": "Visual representation of assigned sales regions and their corresponding sales representatives. Helps sales teams understand their coverage areas and avoid territory conflicts."
+  },
+  {
+    "id": 43,
+    "title": "Ingredient Sourcing Guidelines",
+    "description": "Standards and procedures for selecting and approving raw material suppliers, ensuring quality, sustainability, and ethical sourcing. Essential for maintaining product integrity and supply chain reliability."
+  },
+  {
+    "id": 44,
+    "title": "Customer Feedback Management System",
+    "description": "Platform for collecting, analyzing, and acting upon customer feedback from various channels. Helps identify areas for product improvement and enhance customer satisfaction."
+  },
+  {
+    "id": 45,
+    "title": "Fixed Asset Register",
+    "description": "Comprehensive list of all company-owned physical assets, including their acquisition date, value, and depreciation schedule. Critical for financial reporting and asset management."
+  },
+  {
+    "id": 46,
+    "title": "Data Privacy Policy",
+    "description": "Explains how the company collects, uses, stores, and protects personal data in compliance with relevant regulations. All employees must understand this policy to handle customer and employee data responsibly."
+  },
+  {
+    "id": 47,
+    "title": "Internal Job Postings",
+    "description": "Portal to view and apply for internal job openings within the company. Explore opportunities for career growth and professional development here before looking externally."
+  },
+  {
+    "id": 48,
+    "title": "Market Research Database",
+    "description": "Repository of market trends, consumer insights, competitive analysis, and industry reports. Provides valuable data for strategic planning, product development, and sales strategy formulation."
+  },
+  {
+    "id": 49,
+    "title": "Logistics & Distribution Manual",
+    "description": "Detailed procedures for managing the transportation, warehousing, and distribution of finished goods. Ensures efficient and cost-effective delivery of products to customers and retailers."
+  },
+  {
+    "id": 50,
+    "title": "Expense Policy",
+    "description": "Guidelines on what types of expenses are reimbursable, spending limits, and the process for submitting expense reports. Refer to this document before incurring any company-related costs."
+  },
+  {
+    "id": 51,
+    "title": "Anti-Harassment Policy",
+    "description": "Outlines the company's commitment to a workplace free from harassment and provides procedures for reporting and investigating such incidents. Ensures a respectful and safe environment for everyone."
+  },
+  {
+    "id": 52,
+    "title": "Sales Training Modules",
+    "description": "Interactive training materials covering product knowledge, sales techniques, CRM usage, and closing strategies. Essential for new sales hires and ongoing professional development for the sales team."
+  },
+  {
+    "id": 53,
+    "title": "Packaging Standards & Guidelines",
+    "description": "Specifications and guidelines for all product packaging, including materials, dimensions, labeling requirements, and sustainability considerations. Ensures consistent brand presentation and compliance with regulatory standards."
+  },
+  {
+    "id": 54,
+    "title": "Crisis Communication Plan",
+    "description": "Step-by-step guide for managing public relations during a crisis, including communication protocols and designated spokespersons. Critical for protecting the company's reputation during unforeseen events."
+  },
+  {
+    "id": 55,
+    "title": "Payroll Information Portal",
+    "description": "Secure portal to access pay stubs, update tax information, and view year-end statements. This is where you can find all your personal payroll details."
+  },
+  {
+    "id": 56,
+    "title": "Legal Request Form",
+    "description": "Online form for submitting requests for legal review of contracts, marketing materials, or compliance questions. Provides a structured way to engage with the legal department for official guidance."
+  },
+  {
+    "id": 57,
+    "title": "Company Holiday Schedule",
+    "description": "Official list of company-observed holidays for the current calendar year. Use this document to plan your time off and be aware of company closures."
+  },
+  {
+    "id": 58,
+    "title": "Sales Meeting Minutes Archive",
+    "description": "Repository of notes and action items from past sales meetings, including team updates, strategy discussions, and performance reviews. Useful for catching up on past discussions and decisions."
+  },
+  {
+    "id": 59,
+    "title": "R&D Lab Protocols",
+    "description": "Standardized procedures and safety guidelines for all experiments and testing conducted in the R&D labs. Ensures consistency, reproducibility, and safety in all research activities."
+  },
+  {
+    "id": 60,
+    "title": "Campaign Performance Reporting Tool",
+    "description": "Application to track the effectiveness and ROI of various marketing campaigns. Provides metrics on reach, engagement, conversion rates, and overall campaign success."
+  },
+  {
+    "id": 61,
+    "title": "Health & Safety Policy",
+    "description": "Outlines the company's commitment to providing a safe and healthy workplace, including emergency procedures and accident reporting. Essential for understanding your responsibilities regarding workplace safety."
+  },
+  {
+    "id": 62,
+    "title": "Procurement Policy",
+    "description": "Rules and guidelines for purchasing goods and services on behalf of the company. Ensures fair practices, cost-effectiveness, and compliance in all procurement activities."
+  },
+  {
+    "id": 63,
+    "title": "Microsoft 365 Portal",
+    "description": "Access point for all Microsoft 365 applications like Outlook, Word, Excel, PowerPoint, and OneDrive. Your central hub for productivity tools and cloud storage."
+  },
+  {
+    "id": 64,
+    "title": "Customer Service Knowledge Base",
+    "description": "Searchable database of frequently asked questions, product troubleshooting guides, and common customer issues. Essential for providing quick and accurate support to customers."
+  },
+  {
+    "id": 65,
+    "title": "Ingredient Approval Process",
+    "description": "Steps and requirements for approving new ingredients for use in company products, including safety assessments and regulatory checks. Ensures all components meet quality and compliance standards."
+  },
+  {
+    "id": 66,
+    "title": "Trade Show & Event Calendar",
+    "description": "Upcoming schedule of industry trade shows, promotional events, and conferences where the company will have a presence. Helps sales and marketing teams plan attendance and outreach."
+  },
+  {
+    "id": 67,
+    "title": "Fleet Management System",
+    "description": "System for managing company vehicles, including maintenance schedules, fuel tracking, and route optimization. Used by logistics and sales teams to manage transportation assets effectively."
+  },
+  {
+    "id": 68,
+    "title": "Accounts Payable Portal",
+    "description": "Platform for processing vendor invoices and managing payments. Procurement teams use this to submit invoices, and finance ensures timely and accurate disbursement."
+  },
+  {
+    "id": 69,
+    "title": "Whistleblower Policy",
+    "description": "Policy ensuring protection for employees who report unethical or illegal activities within the company. Provides a confidential channel for raising concerns without fear of retaliation."
+  },
+  {
+    "id": 70,
+    "title": "IT Asset Inventory",
+    "description": "Database of all company IT assets, including hardware, software licenses, and network devices. Essential for IT teams to manage equipment, track deployments, and ensure compliance."
+  },
+  {
+    "id": 71,
+    "title": "Training & Development Catalog",
+    "description": "Listing of all available internal and external training courses, workshops, and development programs. Browse here to find opportunities to enhance your skills and advance your career."
+  },
+  {
+    "id": 72,
+    "title": "Sales Performance Reports",
+    "description": "Monthly and quarterly reports detailing sales figures, individual and team performance against targets, and market share analysis. Provides insights into sales trends and areas for improvement."
+  },
+  {
+    "id": 73,
+    "title": "New Product Launch Checklist",
+    "description": "Comprehensive checklist outlining all tasks and responsibilities required before launching a new product. Ensures all departments are aligned and prepared for a successful market introduction."
+  },
+  {
+    "id": 74,
+    "title": "Digital Asset Management (DAM)",
+    "description": "System for storing, organizing, and distributing all digital media assets, including high-resolution images, videos, and audio files. Ensures easy access and consistent usage of brand assets."
+  },
+  {
+    "id": 75,
+    "title": "Safety Data Sheets (SDS) Library",
+    "description": "Collection of Safety Data Sheets for all chemicals and hazardous materials used in production and R&D. Provides critical information on safe handling, storage, and emergency procedures."
+  },
+  {
+    "id": 76,
+    "title": "Quarterly Financial Statements",
+    "description": "Official financial reports issued quarterly, providing an overview of the company's financial performance. Includes profit & loss, balance sheet, and cash flow statements."
+  },
+  {
+    "id": 77,
+    "title": "Employee Referral Program",
+    "description": "Information and submission portal for referring qualified candidates for open positions. Learn about the program benefits and help recruit top talent for the company."
+  },
+  {
+    "id": 78,
+    "title": "Sales Forecasting Tool",
+    "description": "Application to predict future sales revenue based on historical data, market trends, and pipeline opportunities. Essential for strategic planning and resource allocation for the sales department."
+  },
+  {
+    "id": 79,
+    "title": "Customer Relationship Management (CRM) Manual",
+    "description": "Detailed user guide for effectively utilizing the company's CRM system (e.g., Salesforce). Covers data entry, reporting, lead management, and customer interaction best practices."
+  },
+  {
+    "id": 80,
+    "title": "Product Lifecycle Management (PLM) System",
+    "description": "System for managing a product's entire lifecycle from conception, through design and manufacturing, to service and disposal. Centralizes product data and processes for greater efficiency."
+  },
+  {
+    "id": 81,
+    "title": "Digital Marketing Strategy",
+    "description": "Overview of the company's digital marketing objectives, channels, and tactics, including SEO, SEM, social media, and email marketing. Guides the team's online presence and engagement efforts."
+  },
+  {
+    "id": 82,
+    "title": "Supplier Auditing Process",
+    "description": "Procedures for conducting audits of current and potential suppliers to ensure compliance with quality, ethical, and sustainability standards. Critical for maintaining a reliable and responsible supply chain."
+  },
+  {
+    "id": 83,
+    "title": "Annual Report Archive",
+    "description": "Collection of past annual reports summarizing the company's financial performance, strategic achievements, and future outlook. Provides a historical perspective on company growth and direction."
+  },
+  {
+    "id": 84,
+    "title": "Emergency Response Plan",
+    "description": "Protocols and procedures to follow in various emergency situations, such as fire, medical emergencies, or natural disasters. Essential reading for ensuring personal safety and coordinated action during crises."
+  },
+  {
+    "id": 85,
+    "title": "New Hire Training Schedule",
+    "description": "Detailed schedule for all mandatory onboarding training sessions for new employees. Helps new hires navigate their initial learning period and ensures they receive essential company information."
+  },
+  {
+    "id": 86,
+    "title": "Competitive Analysis Reports",
+    "description": "Reports detailing the strengths, weaknesses, and strategies of key competitors in the market. Provides valuable insights for positioning products and developing effective sales tactics."
+  },
+  {
+    "id": 87,
+    "title": "Product Development Idea Submission",
+    "description": "Portal for all employees to submit new product ideas, improvements, or innovative concepts. Contribute your creativity to shape the future of our product portfolio."
+  },
+  {
+    "id": 88,
+    "title": "E-Learning Platform",
+    "description": "Learning Management System (LMS) hosting various online courses for professional development and mandatory compliance training. Access self-paced modules to enhance your skills and knowledge."
+  },
+  {
+    "id": 89,
+    "title": "Food Packaging Regulations Guide",
+    "description": "Comprehensive guide to national and international regulations governing food packaging and labeling. Ensures compliance for all products sold in various markets."
+  },
+  {
+    "id": 90,
+    "title": "Audit Report Archive (Internal & External)",
+    "description": "Repository of all internal and external audit reports, including findings, corrective actions, and follow-ups. Provides a record of compliance and continuous improvement efforts."
+  },
+  {
+    "id": 91,
+    "title": "Shareholder Communications",
+    "description": "Archive of official communications and presentations intended for shareholders and investors. Provides transparency on company performance and strategic direction."
+  },
+  {
+    "id": 92,
+    "title": "Company News & Announcements",
+    "description": "Latest updates, important announcements, and success stories from across the company. Stay informed about company-wide developments, achievements, and upcoming events."
+  },
+  {
+    "id": 93,
+    "title": "IT Equipment Request Form",
+    "description": "Form for requesting new IT hardware such as laptops, monitors, or accessories, or specific software licenses. Please fill this out carefully to ensure you receive the correct equipment."
+  },
+  {
+    "id": 94,
+    "title": "Sales Incentive Programs",
+    "description": "Details of current sales commission structures, bonus programs, and performance-based incentives. Learn how your sales efforts can lead to additional rewards and recognition."
+  },
+  {
+    "id": 95,
+    "title": "Product Recipe Management System",
+    "description": "Database and management tool for all product formulations and recipes. Ensures consistent production and allows for version control of critical product data."
+  },
+  {
+    "id": 96,
+    "title": "Public Relations Media Kit",
+    "description": "Collection of approved press releases, company backgrounders, executive bios, and high-resolution images for media inquiries. Ensures consistent and professional communication with external media."
+  },
+  {
+    "id": 97,
+    "title": "Safety Incident Reporting",
+    "description": "Form for reporting workplace accidents, near misses, or safety hazards. Your prompt reporting helps ensure a safe environment for everyone and supports continuous safety improvements."
+  },
+  {
+    "id": 98,
+    "title": "Purchase Order (PO) System",
+    "description": "System for creating, approving, and tracking purchase orders for goods and services. Ensures proper authorization and budget allocation before commitments are made to suppliers."
+  },
+  {
+    "id": 99,
+    "title": "Legal Document Templates",
+    "description": "Collection of standardized legal document templates, such as non-disclosure agreements (NDAs), basic service agreements, and terms and conditions. Use these for common legal needs, but consult legal for complex matters."
+  },
+  {
+    "id": 100,
+    "title": "VPN Access Request",
+    "description": "Form to request Virtual Private Network (VPN) access for secure remote connection to company resources. Essential for employees working off-site who need to access internal systems securely."
+  },
+  {
+    "id": 101,
+    "title": "Expense Approval Workflow",
+    "description": "Illustrates the step-by-step process for submitting and approving expense reports within the company. Helps employees understand the journey of their expense claim from submission to reimbursement."
+  },
+  {
+    "id": 102,
+    "title": "Sales Lead Generation Guidelines",
+    "description": "Best practices and approved methods for identifying and qualifying potential customer leads. Provides a framework for effective prospecting and expanding the sales pipeline."
+  },
+  {
+    "id": 103,
+    "title": "Product Quality Standards",
+    "description": "Defines the quality benchmarks and criteria that all finished products must meet before release. Essential for ensuring product excellence and consumer satisfaction."
+  },
+  {
+    "id": 104,
+    "title": "Investor Relations Page",
+    "description": "Central hub for financial reports, stock information, and presentations for shareholders and the investment community. Provides transparency on the company's financial health and performance."
+  },
+  {
+    "id": 105,
+    "title": "Talent Acquisition Strategy",
+    "description": "Outlines the company's approach to attracting, recruiting, and retaining top talent. Provides insight into long-term hiring goals and strategies to build a strong workforce."
+  },
+  {
+    "id": 106,
+    "title": "Social Media Management Tool (e.g., Hootsuite)",
+    "description": "Platform for scheduling social media posts, monitoring engagement, and analyzing performance across various platforms. Centralizes social media operations for efficiency and effectiveness."
+  },
+  {
+    "id": 107,
+    "title": "Disciplinary Policy",
+    "description": "Outlines the procedures for addressing employee misconduct or performance issues, including warnings and termination guidelines. Ensures fair and consistent application of company rules."
+  },
+  {
+    "id": 108,
+    "title": "Sales Performance Incentive Fund (SPIF) Requests",
+    "description": "Form for sales representatives to submit claims for Sales Performance Incentive Fund (SPIF) payouts based on specific promotional achievements. Ensure all criteria are met before submission."
+  },
+  {
+    "id": 109,
+    "title": "Sensory Evaluation Protocols",
+    "description": "Standardized methods for conducting sensory evaluations of food and beverage products, including taste tests and texture analysis. Ensures objective assessment of product attributes and consumer acceptance."
+  },
+  {
+    "id": 110,
+    "title": "Vendor Onboarding Process",
+    "description": "Step-by-step guide for bringing new suppliers into the company's approved vendor network. Ensures all necessary documentation, background checks, and contractual agreements are in place."
+  },
+  {
+    "id": 111,
+    "title": "Budget Request Form",
+    "description": "Form for submitting requests for additional budget allocation or special project funding outside of the annual budgeting cycle. Provide clear justification and financial impact analysis."
+  },
+  {
+    "id": 112,
+    "title": "Brand Asset Request Form",
+    "description": "Form for requesting specific brand assets, such as high-resolution logos, product images, or marketing collateral not found in the Digital Asset Management system. Ensures controlled distribution of brand materials."
+  },
+  {
+    "id": 113,
+    "title": "Travel Booking Tool (e.g., Egencia)",
+    "description": "Online platform for booking flights, hotels, and rental cars for business travel in accordance with company policy. Streamlines the travel planning process and ensures cost efficiency."
+  },
+  {
+    "id": 114,
+    "title": "Supply Chain Risk Management Framework",
+    "description": "Framework outlining the identification, assessment, and mitigation strategies for potential risks within the supply chain. Critical for ensuring business continuity and resilience against disruptions."
+  },
+  {
+    "id": 115,
+    "title": "IT Policy on Software Installation",
+    "description": "Guidelines regarding the installation of software on company-owned devices. Ensures compliance with licensing agreements and maintains system security and performance."
+  },
+  {
+    "id": 116,
+    "title": "Remote Work Policy",
+    "description": "Guidelines and expectations for employees working remotely, including eligibility, technology requirements, and communication protocols. Ensures productive and compliant remote work arrangements."
+  },
+  {
+    "id": 117,
+    "title": "Sales Pitch Deck Templates",
+    "description": "Approved and customizable presentation templates for various sales scenarios, product lines, and customer segments. Helps sales teams deliver consistent and compelling presentations to clients."
+  },
+  {
+    "id": 118,
+    "title": "New Ingredient Request Form",
+    "description": "Form for R&D teams to propose and request evaluation of new ingredients for future product development. Initiates the process for sourcing and testing novel components."
+  },
+  {
+    "id": 119,
+    "title": "Market Segmentation Analysis",
+    "description": "Reports detailing the various customer segments for the company's products, including demographics, psychographics, and purchasing behaviors. Essential for targeted marketing and product strategy."
+  },
+  {
+    "id": 120,
+    "title": "Accounts Receivable Dashboard",
+    "description": "Dashboard providing an overview of outstanding invoices, payment statuses, and customer credit limits. Helps finance teams manage cash flow and reduce overdue payments."
+  },
+  {
+    "id": 121,
+    "title": "Sexual Harassment Training",
+    "description": "Mandatory e-learning module on recognizing, preventing, and reporting sexual harassment in the workplace. Ensures all employees understand their rights and responsibilities in maintaining a respectful environment."
+  },
+  {
+    "id": 122,
+    "title": "Sales CRM Training Guide",
+    "description": "A step-by-step guide and resources for mastering the company's CRM system, focusing on key functionalities for sales professionals. Critical for effective lead and customer management."
+  },
+  {
+    "id": 123,
+    "title": "Manufacturing Best Practices",
+    "description": "Compilation of established procedures and guidelines for efficient and high-quality production processes. Ensures consistent adherence to operational standards and continuous improvement on the factory floor."
+  },
+  {
+    "id": 124,
+    "title": "Employee Engagement Survey Results",
+    "description": "Reports summarizing the findings from recent employee engagement surveys, including areas of strength and opportunities for improvement. Provides transparency on workplace sentiment and company culture."
+  },
+  {
+    "id": 125,
+    "title": "Customer Onboarding Process",
+    "description": "Step-by-step guide outlining the procedures for bringing new customers onto our platforms and ensuring their successful initial experience. Helps streamline the post-sale process and foster strong client relationships."
+  },
+  {
+    "id": 126,
+    "title": "Budget Management Guidelines",
+    "description": "Rules and best practices for managing departmental budgets throughout the fiscal year. Provides guidance on expenditure control, forecasting, and reporting budget variances."
+  },
+  {
+    "id": 127,
+    "title": "New Product Idea Evaluation Form",
+    "description": "Standardized form used by the R&D and product development teams to evaluate potential new product concepts. Helps assess feasibility, market potential, and alignment with company strategy."
+  },
+  {
+    "id": 128,
+    "title": "Internal Communications Policy",
+    "description": "Guidelines for effective internal communication, including preferred channels, tone, and appropriate content for company-wide announcements. Ensures clarity and consistency in messages to employees."
+  },
+  {
+    "id": 129,
+    "title": "Office 365 Training Resources",
+    "description": "Collection of tutorials, guides, and tips for maximizing productivity with Microsoft 365 applications like Word, Excel, PowerPoint, and Outlook. Improve your proficiency with essential workplace tools."
+  },
+  {
+    "id": 130,
+    "title": "Employee Self-Service Portal",
+    "description": "Your central hub for updating personal information, checking benefits, requesting leave, and accessing payroll details. Empower yourself by managing your HR needs efficiently."
+  },
+  {
+    "id": 131,
+    "title": "Sales Discount Approval Policy",
+    "description": "Guidelines and approval levels for offering discounts to customers. Ensures consistent pricing strategies and protects profit margins while empowering sales teams."
+  },
+  {
+    "id": 132,
+    "title": "Product Shelf-Life Testing Protocols",
+    "description": "Procedures for conducting stability and shelf-life testing of products to determine their optimal freshness and quality duration. Essential for product integrity and consumer safety."
+  },
+  {
+    "id": 133,
+    "title": "Brand Strategy Document",
+    "description": "High-level document outlining the company's long-term brand vision, target audience, core values, and market positioning. Guides all marketing and product development efforts."
+  },
+  {
+    "id": 134,
+    "title": "Employee Wellness Program",
+    "description": "Information on company-sponsored wellness initiatives, resources for physical and mental health, and healthy living challenges. Access programs designed to support your overall well-being."
+  },
+  {
+    "id": 135,
+    "title": "Accounts Payable Policy",
+    "description": "Guidelines and procedures for processing and paying vendor invoices and managing accounts payable. Ensures accurate and timely payments while maintaining financial controls."
+  },
+  {
+    "id": 136,
+    "title": "IT Disaster Recovery Plan",
+    "description": "Comprehensive plan outlining procedures for recovering critical IT systems and data in the event of a major disruption. Ensures business continuity and minimizes downtime during emergencies."
+  },
+  {
+    "id": 137,
+    "title": "Confidentiality Agreement Template",
+    "description": "Standard Non-Disclosure Agreement (NDA) template for use when sharing confidential company information with external parties. Crucial for protecting intellectual property and sensitive data."
+  },
+  {
+    "id": 138,
+    "title": "Supplier Performance Review Form",
+    "description": "Form for evaluating the performance of key suppliers based on criteria like quality, delivery, and cost. Helps ensure that our supply chain partners meet expected standards."
+  },
+  {
+    "id": 139,
+    "title": "Production Equipment Maintenance Schedule",
+    "description": "Planned schedule for routine maintenance and servicing of all production machinery and equipment. Essential for preventing breakdowns, ensuring operational efficiency, and extending asset lifespan."
+  },
+  {
+    "id": 140,
+    "title": "Product Portfolio Strategy",
+    "description": "Strategic overview of the company's entire product range, including current offerings, future development areas, and market positioning. Guides investment decisions and resource allocation for sustained growth."
+  },
+  {
+    "id": 141,
+    "title": "Employee Code of Conduct Training",
+    "description": "Mandatory e-learning module that explains the company's ethical expectations and standards of behavior. Ensures all employees understand their responsibilities in upholding our core values."
+  },
+  {
+    "id": 142,
+    "title": "Pricing Strategy Document",
+    "description": "Outlines the rationale behind product pricing, including cost analysis, competitive positioning, and market demand considerations. Guides sales teams in quoting and negotiating with customers."
+  },
+  {
+    "id": 143,
+    "title": "R&D Budget Request Form",
+    "description": "Form for R&D project leads to submit proposals for new research initiatives requiring specific funding. Details the projected costs, expected outcomes, and strategic importance of the research."
+  },
+  {
+    "id": 144,
+    "title": "Marketing Data Analytics Platform (e.g., Google Analytics)",
+    "description": "Platform for tracking website traffic, user behavior, and marketing campaign performance. Provides critical data for optimizing digital marketing efforts and understanding customer journeys."
+  },
+  {
+    "id": 145,
+    "title": "Employee Recognition Program",
+    "description": "Information on how employees can nominate colleagues for outstanding achievements and contributions. Celebrates individual and team successes across the organization."
+  },
+  {
+    "id": 146,
+    "title": "Financial Close Process Manual",
+    "description": "Detailed step-by-step instructions for the monthly and quarterly financial closing procedures. Ensures accurate and timely reporting of financial results."
+  },
+  {
+    "id": 147,
+    "title": "IT Infrastructure Diagrams",
+    "description": "Visual representations of the company's network architecture, server layouts, and critical IT systems. Essential reference for IT staff for troubleshooting, planning, and system upgrades."
+  },
+  {
+    "id": 148,
+    "title": "Supplier Diversity Program",
+    "description": "Information about the company's commitment to engaging with a diverse range of suppliers, including minority-owned and women-owned businesses. Promotes inclusive sourcing practices."
+  },
+  {
+    "id": 149,
+    "title": "Crisis Management Team Contact List",
+    "description": "List of key personnel and their contact information for the company's crisis management team. Essential for rapid response and coordination during emergencies."
+  },
+  {
+    "id": 150,
+    "title": "Sales Battle Cards",
+    "description": "Quick reference guides for sales representatives containing key product benefits, competitive differentiators, and responses to common objections. Helps prepare for effective sales conversations."
+  },
+  {
+    "id": 151,
+    "title": "Product Recipe Change Request Form",
+    "description": "Form for initiating modifications to existing product formulations or recipes. Requires detailed justification and impact analysis to ensure controlled changes."
+  },
+  {
+    "id": 152,
+    "title": "Annual Marketing Plan",
+    "description": "Comprehensive document outlining the marketing department's strategic goals, key initiatives, and budget allocation for the upcoming year. Aligns marketing efforts with overall business objectives."
+  },
+  {
+    "id": 153,
+    "title": "Employee Exit Interview Form",
+    "description": "Form used to conduct exit interviews with departing employees to gather feedback on their employment experience. Provides valuable insights for improving workplace culture and retention."
+  },
+  {
+    "id": 154,
+    "title": "Cash Flow Forecasts",
+    "description": "Projections of future cash inflows and outflows to help manage liquidity and financial planning. Provides critical insights into the company's short-term financial health."
+  },
+  {
+    "id": 155,
+    "title": "Password Reset Tool",
+    "description": "Self-service portal for resetting your company account password. Use this tool if you've forgotten your password or need to change it securely."
+  },
+  {
+    "id": 156,
+    "title": "Company Value Proposition",
+    "description": "Clear statement defining what makes our company unique and valuable to customers and stakeholders. Provides a unified message for all external and internal communications."
+  },
+  {
+    "id": 157,
+    "title": "Trade Marketing Guidelines",
+    "description": "Guidelines for creating and executing marketing programs specifically designed for retailers and distributors. Ensures consistent messaging and promotional support at the point of sale."
+  },
+  {
+    "id": 158,
+    "title": "Environmental Policy",
+    "description": "Outlines the company's commitment to environmental sustainability, including waste reduction, resource conservation, and pollution prevention. Guides employees in making environmentally responsible choices."
+  },
+  {
+    "id": 159,
+    "title": "IT Change Management Process",
+    "description": "Procedures for requesting, approving, implementing, and reviewing changes to IT systems and infrastructure. Ensures controlled and documented modifications to prevent disruptions."
+  },
+  {
+    "id": 160,
+    "title": "Sales Performance Dashboard",
+    "description": "Real-time visualization of individual and team sales metrics, including revenue generated, pipeline value, and conversion rates. Helps track progress towards targets and identify areas for focus."
+  },
+  {
+    "id": 161,
+    "title": "Product Costing Models",
+    "description": "Templates and methodologies for calculating the cost of producing each product, including raw materials, labor, and overhead. Essential for pricing decisions and profitability analysis."
+  },
+  {
+    "id": 162,
+    "title": "Employee Relations Guidelines",
+    "description": "Guidance for managers on handling workplace conflicts, employee grievances, and maintaining positive employee relations. Promotes a fair and productive work environment."
+  },
+  {
+    "id": 163,
+    "title": "Supplier Code of Conduct",
+    "description": "Outlines the ethical, social, and environmental standards expected of all company suppliers and business partners. Ensures responsible and sustainable practices throughout the supply chain."
+  },
+  {
+    "id": 164,
+    "title": "Food Product Labeling Guidelines",
+    "description": "Rules and best practices for creating compliant and effective labels for food products, including nutritional information, allergens, and claims. Ensures regulatory adherence and consumer clarity."
+  },
+  {
+    "id": 165,
+    "title": "Innovation Fund Application",
+    "description": "Application form for employees to propose and seek funding for innovative projects or ideas that can benefit the company. Encourages internal entrepreneurship and creative problem-solving."
+  },
+  {
+    "id": 166,
+    "title": "IT Security Awareness Training",
+    "description": "Mandatory e-learning module on best practices for cybersecurity, identifying phishing attempts, and protecting company data. Essential for maintaining a secure digital environment."
+  },
+  {
+    "id": 167,
+    "title": "General Ledger (GL) System",
+    "description": "Core accounting system where all financial transactions are recorded, enabling the generation of financial statements. Used by finance teams to manage and reconcile all financial data."
+  },
+  {
+    "id": 168,
+    "title": "Internal Audit Report Request",
+    "description": "Form for managers to request an internal audit of specific departmental processes or financial records. Ensures compliance, efficiency, and identification of potential risks."
+  },
+  {
+    "id": 169,
+    "title": "Career Development Resources",
+    "description": "Collection of guides, tools, and links to support employee career growth, including mentorship programs, skill development frameworks, and professional certification opportunities. Helps employees plan their career path within the company."
+  },
+  {
+    "id": 170,
+    "title": "Sales Contract Templates",
+    "description": "Approved legal templates for various sales agreements, including supply agreements and service contracts. Ensures all sales contracts are legally sound and consistent."
+  },
+  {
+    "id": 171,
+    "title": "Production Capacity Planning Tool",
+    "description": "Application to forecast and manage manufacturing capacity based on demand, equipment availability, and labor resources. Optimizes production schedules to meet market needs efficiently."
+  },
+  {
+    "id": 172,
+    "title": "Marketing ROI Calculator",
+    "description": "Tool for calculating the return on investment for various marketing campaigns and initiatives. Helps justify marketing spend and optimize future strategy based on financial performance."
+  },
+  {
+    "id": 173,
+    "title": "Travel Expense Form",
+    "description": "Form for submitting detailed travel expenses that may not be covered by the automated Concur system, such as mileage or specific per diems. Ensure you have all necessary receipts."
+  },
+  {
+    "id": 174,
+    "title": "Employee Grievance Policy",
+    "description": "Procedure for employees to formally raise workplace concerns or complaints. Ensures a fair and timely resolution process for all personnel issues."
+  },
+  {
+    "id": 175,
+    "title": "Supply Chain Analytics Dashboard",
+    "description": "Interactive dashboard providing key metrics on supply chain performance, including lead times, inventory turns, and supplier reliability. Helps identify inefficiencies and drive improvements."
+  },
+  {
+    "id": 176,
+    "title": "Legal Policy Review Request",
+    "description": "Form for requesting a review or update of existing company policies to ensure legal compliance and relevance. Used by department heads to initiate policy changes."
+  },
+  {
+    "id": 177,
+    "title": "IT System Outage Notification",
+    "description": "Real-time status page for all company IT systems, providing updates on outages, scheduled maintenance, and service disruptions. Check here first for information on system accessibility issues."
+  },
+  {
+    "id": 178,
+    "title": "Sales Quota Setting Guidelines",
+    "description": "Methodology and best practices for establishing fair and achievable sales quotas for individual sales representatives and teams. Ensures motivation and alignment with company revenue goals."
+  },
+  {
+    "id": 179,
+    "title": "Product Recipe Scale-Up Manual",
+    "description": "Guide detailing the process of transitioning a product recipe from laboratory to full-scale production, ensuring consistency and efficiency. Essential for successful commercialization of new products."
+  },
+  {
+    "id": 180,
+    "title": "ESG (Environmental, Social, Governance) Report",
+    "description": "Annual report detailing the company's performance and initiatives related to environmental impact, social responsibility, and corporate governance. Demonstrates commitment to sustainable business practices."
+  },
+  {
+    "id": 181,
+    "title": "Company Value Statements",
+    "description": "Official statements outlining the core values that guide our company's culture, decisions, and interactions. Helps everyone understand what drives our collective behavior and purpose."
+  },
+  {
+    "id": 182,
+    "title": "Procurement Software (e.g., Coupa)",
+    "description": "Cloud-based platform for managing the entire procure-to-pay process, from requisitioning to invoicing. Streamlines purchasing, expense management, and supplier interactions."
+  },
+  {
+    "id": 183,
+    "title": "GDPR Training Module",
+    "description": "Mandatory e-learning module providing essential knowledge about GDPR principles and data protection best practices. Ensures all employees handle personal data compliantly."
+  },
+  {
+    "id": 184,
+    "title": "Inventory Management System (IMS)",
+    "description": "Software for tracking stock levels, managing raw materials, and monitoring finished goods inventory across warehouses. Essential for optimizing stock, preventing shortages, and reducing waste."
+  },
+  {
+    "id": 185,
+    "title": "IT Incident Management Process",
+    "description": "Procedures for identifying, logging, diagnosing, and resolving IT incidents and service disruptions. Ensures rapid response and minimal impact on business operations."
+  },
+  {
+    "id": 186,
+    "title": "Global Sales Strategy",
+    "description": "High-level document outlining the company's approach to expanding sales into international markets and achieving global revenue targets. Guides regional sales teams and market entry strategies."
+  },
+  {
+    "id": 187,
+    "title": "New Vendor Application Form",
+    "description": "Form for submitting details of a prospective new supplier for consideration and onboarding. Ensures all necessary information is collected before engaging with a new vendor."
+  },
+  {
+    "id": 188,
+    "title": "Marketing Campaign Templates",
+    "description": "Standardized templates for various marketing campaign elements, such as email newsletters, social media posts, and landing pages. Helps ensure consistency and efficiency in campaign execution."
+  },
+  {
+    "id": 189,
+    "title": "Annual Performance Review Form",
+    "description": "The official form used for annual performance evaluations, covering goals, achievements, and development areas. Both employees and managers will use this form during the review cycle."
+  },
+  {
+    "id": 190,
+    "title": "Food Product Traceability System",
+    "description": "System for tracking raw materials and finished products throughout the supply chain, from source to consumer. Essential for managing recalls, ensuring food safety, and meeting regulatory requirements."
+  },
+  {
+    "id": 191,
+    "title": "Business Continuity Plan",
+    "description": "Plan outlining procedures to maintain essential business functions during and after a major disruption or disaster. Ensures resilience and rapid recovery to minimize operational impact."
+  },
+  {
+    "id": 192,
+    "title": "Accounts Receivable Policy",
+    "description": "Guidelines for managing customer invoices, collecting payments, and handling overdue accounts. Ensures efficient cash collection and reduces financial risk."
+  },
+  {
+    "id": 193,
+    "title": "Employee Training Request Form",
+    "description": "Form for employees to request specific training courses, workshops, or professional development opportunities. Helps align individual growth with business needs."
+  },
+  {
+    "id": 194,
+    "title": "Sales Region Performance Analysis",
+    "description": "In-depth reports evaluating the performance of different sales regions, highlighting market trends, growth opportunities, and challenges. Informs strategic decisions for regional allocation and focus."
+  },
+  {
+    "id": 195,
+    "title": "Market Research Request Form",
+    "description": "Form for submitting requests to the marketing team for specific market research, consumer insights, or competitive intelligence. Helps inform strategic decisions across departments."
+  },
+  {
+    "id": 196,
+    "title": "Factory Tour Safety Briefing",
+    "description": "Safety instructions and guidelines for anyone visiting or touring the company's manufacturing facilities. Essential reading to ensure compliance with safety protocols on the factory floor."
+  },
+  {
+    "id": 197,
+    "title": "Sustainability Initiatives Dashboard",
+    "description": "Tracks progress on the company's environmental and social responsibility goals, including waste reduction, energy consumption, and community engagement. Provides transparency on our sustainability journey."
+  },
+  {
+    "id": 198,
+    "title": "IT Budget Overview",
+    "description": "Summary of the annual budget allocated to the IT department, including spending on infrastructure, software, and personnel. Provides insight into IT investment priorities."
+  },
+  {
+    "id": 199,
+    "title": "Expense Category Codes",
+    "description": "List of standardized codes for categorizing business expenses in expense reports. Ensures proper accounting and financial tracking of all expenditures."
+  },
+  {
+    "id": 200,
+    "title": "Team Collaboration Guidelines",
+    "description": "Best practices and tips for effective teamwork, communication, and project collaboration across departments. Helps foster a productive and harmonious work environment."
+  }
+]

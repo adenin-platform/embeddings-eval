@@ -1,0 +1,2597 @@
+[
+  {
+    "id": 1,
+    "title": "Employee Handbook",
+    "url": "https://intranet.company.com/hr/employee-handbook",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Comprehensive guide covering company policies, procedures, code of conduct, and employee benefits. Essential reading for all new hires and a reference guide for existing employees on workplace rules and expectations.",
+    "vendor_url": null
+  },
+  {
+    "id": 2,
+    "title": "Salesforce CRM",
+    "url": "https://company.salesforce.com",
+    "type": "tool",
+    "audience": [
+      "sales agents",
+      "managers"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Customer relationship management system for tracking leads, opportunities, and customer interactions. Primary tool for sales team to manage pipeline, forecast revenue, and maintain customer contact information.",
+    "vendor_url": "https://www.salesforce.com"
+  },
+  {
+    "id": 3,
+    "title": "Product Catalog 2024",
+    "url": "https://intranet.company.com/products/catalog-2024",
+    "type": "document",
+    "audience": [
+      "sales agents",
+      "marketing"
+    ],
+    "owner_email": "productteam@company.com",
+    "description": "Complete listing of all current products with specifications, pricing tiers, and SKU numbers. Includes product images, nutritional information, and packaging details for the entire portfolio.",
+    "vendor_url": null
+  },
+  {
+    "id": 4,
+    "title": "IT Help Desk Portal",
+    "url": "https://helpdesk.company.com",
+    "type": "tool",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Submit tickets for technical issues, request new hardware/software, and find solutions to common IT problems. This is your first stop for any computer, software, or network related difficulties.",
+    "vendor_url": null
+  },
+  {
+    "id": 5,
+    "title": "Concur Expense Reporting",
+    "url": "https://www.concursolutions.com/company",
+    "type": "app",
+    "audience": [
+      "all employees",
+      "finance"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "System for submitting and managing business travel and entertainment expenses. Use this platform to upload receipts, categorize spending, and request reimbursement for company-related costs.",
+    "vendor_url": "https://www.concur.com"
+  },
+  {
+    "id": 6,
+    "title": "Company Org Chart",
+    "url": "https://intranet.company.com/hr/orgchart",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Visual representation of the company's internal structure, showing reporting lines and departmental hierarchies. Helps new employees understand who reports to whom and where different teams fit into the organization.",
+    "vendor_url": null
+  },
+  {
+    "id": 7,
+    "title": "Marketing Asset Library",
+    "url": "https://assets.company.com",
+    "type": "tool",
+    "audience": [
+      "marketing",
+      "sales agents"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Central repository for approved logos, brand imagery, product photos, videos, and campaign materials. Essential for ensuring consistent brand representation across all external communications.",
+    "vendor_url": null
+  },
+  {
+    "id": 8,
+    "title": "Production Schedule Dashboard",
+    "url": "https://intranet.company.com/operations/production-schedule",
+    "type": "app",
+    "audience": [
+      "operations",
+      "supply chain"
+    ],
+    "owner_email": "operations@company.com",
+    "description": "Real-time overview of current and upcoming production runs across all facilities. Provides critical information on product quantities, manufacturing timelines, and resource allocation for production teams.",
+    "vendor_url": null
+  },
+  {
+    "id": 9,
+    "title": "Jira Project Management",
+    "url": "https://company.atlassian.net",
+    "type": "tool",
+    "audience": [
+      "product development",
+      "it",
+      "marketing"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Agile project management and issue tracking software used for software development, IT operations, and certain marketing initiatives. Create, track, and manage tasks, sprints, and project backlogs collaboratively.",
+    "vendor_url": "https://www.atlassian.com/software/jira"
+  },
+  {
+    "id": 10,
+    "title": "Employee Benefits Guide",
+    "url": "https://intranet.company.com/hr/benefits-guide",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Detailed information about health insurance, retirement plans, paid time off, and other employee perks. Consult this guide for understanding and utilizing your company-provided benefits.",
+    "vendor_url": null
+  },
+  {
+    "id": 11,
+    "title": "SharePoint Document Management",
+    "url": "https://company.sharepoint.com",
+    "type": "tool",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Platform for storing, sharing, and collaborating on documents and files across teams. Use it to access departmental folders, co-author documents, and manage versions of important company records.",
+    "vendor_url": "https://www.microsoft.com/sharepoint"
+  },
+  {
+    "id": 12,
+    "title": "New Employee Onboarding Checklist",
+    "url": "https://intranet.company.com/hr/onboarding-checklist",
+    "type": "document",
+    "audience": [
+      "new hires",
+      "managers"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Step-by-step guide for new employees to complete essential tasks during their first weeks. Helps managers ensure a smooth integration for their new team members by covering all administrative and training requirements.",
+    "vendor_url": null
+  },
+  {
+    "id": 13,
+    "title": "Brand Guidelines",
+    "url": "https://intranet.company.com/marketing/brand-guidelines",
+    "type": "document",
+    "audience": [
+      "marketing",
+      "sales agents",
+      "designers"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Official rules and standards for using company logos, colors, typography, and messaging. Ensures consistency in all internal and external communications to maintain a strong and unified brand identity.",
+    "vendor_url": null
+  },
+  {
+    "id": 14,
+    "title": "SAP ERP System",
+    "url": "https://sap.company.com",
+    "type": "app",
+    "audience": [
+      "finance",
+      "supply chain",
+      "operations",
+      "sales ops"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Enterprise Resource Planning system for managing core business processes like finance, procurement, and logistics. It's used for tracking orders, managing inventory, and processing financial transactions.",
+    "vendor_url": "https://www.sap.com"
+  },
+  {
+    "id": 15,
+    "title": "Travel Policy",
+    "url": "https://intranet.company.com/hr/travel-policy",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Guidelines and rules for booking business travel, including approved vendors, expense limits, and reimbursement procedures. Refer to this document before planning any company-related trips to ensure compliance.",
+    "vendor_url": null
+  },
+  {
+    "id": 16,
+    "title": "Sales Playbook",
+    "url": "https://intranet.company.com/sales/sales-playbook",
+    "type": "document",
+    "audience": [
+      "sales agents",
+      "sales managers"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Strategic guide for sales professionals detailing best practices, pitch decks, competitive analysis, and objection handling. Provides a comprehensive toolkit to maximize sales effectiveness and achieve targets.",
+    "vendor_url": null
+  },
+  {
+    "id": 17,
+    "title": "Quality Management System (QMS)",
+    "url": "https://qms.company.com",
+    "type": "tool",
+    "audience": [
+      "operations",
+      "quality assurance",
+      "product development"
+    ],
+    "owner_email": "quality@company.com",
+    "description": "System for managing quality standards, non-conformances, audits, and corrective actions. Essential for maintaining product quality, ensuring compliance with regulations, and driving continuous improvement.",
+    "vendor_url": null
+  },
+  {
+    "id": 18,
+    "title": "Meeting Room Booking System",
+    "url": "https://meetingrooms.company.com",
+    "type": "app",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "admin@company.com",
+    "description": "Online platform to reserve company meeting rooms, conference spaces, and collaboration zones. Check availability and book resources and catering for your internal meetings efficiently.",
+    "vendor_url": null
+  },
+  {
+    "id": 19,
+    "title": "Employee Directory",
+    "url": "https://intranet.company.com/hr/directory",
+    "type": "tool",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Searchable database of all employees, including their contact information, department, and job title. Useful for finding colleagues and connecting with team members across the organization.",
+    "vendor_url": null
+  },
+  {
+    "id": 20,
+    "title": "Power BI Dashboards",
+    "url": "https://app.powerbi.com/company",
+    "type": "tool",
+    "audience": [
+      "managers",
+      "analysts",
+      "sales agents",
+      "marketing"
+    ],
+    "owner_email": "dataanalytics@company.com",
+    "description": "Collection of interactive data dashboards providing insights into sales performance, marketing campaigns, operational metrics, and financial results. Use these dashboards to monitor key performance indicators and make data-driven decisions.",
+    "vendor_url": "https://powerbi.microsoft.com"
+  },
+  {
+    "id": 21,
+    "title": "IT Security Policy",
+    "url": "https://intranet.company.com/it/security-policy",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Guidelines for protecting company data, systems, and information assets. This policy outlines best practices for password management, data handling, and cybersecurity awareness to ensure a secure work environment.",
+    "vendor_url": null
+  },
+  {
+    "id": 22,
+    "title": "Product Development Process Manual",
+    "url": "https://intranet.company.com/productdev/process-manual",
+    "type": "manual",
+    "audience": [
+      "product development",
+      "r&d",
+      "project managers"
+    ],
+    "owner_email": "productdev@company.com",
+    "description": "Step-by-step guide detailing the entire lifecycle of new product creation, from concept generation to launch. Essential for understanding and adhering to the company's innovation and product realization framework.",
+    "vendor_url": null
+  },
+  {
+    "id": 23,
+    "title": "Supplier Portal",
+    "url": "https://suppliers.company.com",
+    "type": "tool",
+    "audience": [
+      "procurement",
+      "supply chain"
+    ],
+    "owner_email": "procurement@company.com",
+    "description": "Online platform for managing interactions with external suppliers, including purchase orders, invoices, and performance tracking. Used by procurement teams to streamline supplier relationships and ensure efficient sourcing.",
+    "vendor_url": null
+  },
+  {
+    "id": 24,
+    "title": "GDPR Compliance Guide",
+    "url": "https://intranet.company.com/legal/gdpr-guide",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "legal@company.com",
+    "description": "Detailed explanation of the General Data Protection Regulation and how it applies to our company's operations. Provides guidance on handling personal data to ensure legal compliance and protect customer privacy.",
+    "vendor_url": null
+  },
+  {
+    "id": 25,
+    "title": "Workday HCM",
+    "url": "https://www.myworkday.com/company",
+    "type": "app",
+    "audience": [
+      "all employees",
+      "hr",
+      "managers"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Human Capital Management system for managing personal information, requesting time off, viewing pay stubs, and performance reviews. It's your central hub for all HR-related self-service tasks.",
+    "vendor_url": "https://www.workday.com"
+  },
+  {
+    "id": 26,
+    "title": "Marketing Campaign Request Form",
+    "url": "https://intranet.company.com/marketing/campaign-request",
+    "type": "link",
+    "audience": [
+      "sales agents",
+      "product development",
+      "marketing"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Online form for submitting requests to the marketing team for new campaigns, promotional materials, or creative support. Fill this out with detailed information to initiate a new marketing project.",
+    "vendor_url": null
+  },
+  {
+    "id": 27,
+    "title": "Warehouse Management System (WMS)",
+    "url": "https://wms.company.com",
+    "type": "tool",
+    "audience": [
+      "operations",
+      "supply chain",
+      "warehouse staff"
+    ],
+    "owner_email": "operations@company.com",
+    "description": "Software for managing inventory, tracking stock movements, and optimizing warehouse operations. Used for receiving, picking, packing, and shipping products efficiently.",
+    "vendor_url": null
+  },
+  {
+    "id": 28,
+    "title": "Financial Report Templates",
+    "url": "https://intranet.company.com/finance/report-templates",
+    "type": "document",
+    "audience": [
+      "finance",
+      "managers"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Standardized templates for creating various financial reports, including budget summaries, profit & loss statements, and balance sheets. Ensures consistency and accuracy in financial reporting across departments.",
+    "vendor_url": null
+  },
+  {
+    "id": 29,
+    "title": "Code of Conduct and Ethics",
+    "url": "https://intranet.company.com/legal/code-of-conduct",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "legal@company.com",
+    "description": "Outlines the ethical principles and professional standards expected of all employees. This document is crucial for understanding our company values and making responsible decisions in the workplace.",
+    "vendor_url": null
+  },
+  {
+    "id": 30,
+    "title": "Microsoft Teams",
+    "url": "https://teams.microsoft.com",
+    "type": "app",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Collaboration platform for chat, video conferencing, file sharing, and project workspaces. Use Teams to communicate with colleagues, hold virtual meetings, and collaborate on documents in real-time.",
+    "vendor_url": "https://www.microsoft.com/microsoft-teams"
+  },
+  {
+    "id": 31,
+    "title": "Product Specification Database",
+    "url": "https://intranet.company.com/productdev/specs-db",
+    "type": "tool",
+    "audience": [
+      "product development",
+      "r&d",
+      "quality assurance"
+    ],
+    "owner_email": "productdev@company.com",
+    "description": "Centralized database containing detailed specifications for all products, including ingredients, formulations, packaging, and regulatory information. Essential for product development, quality control, and compliance teams.",
+    "vendor_url": null
+  },
+  {
+    "id": 32,
+    "title": "Supply Chain Visibility Dashboard",
+    "url": "https://intranet.company.com/supplychain/visibility",
+    "type": "app",
+    "audience": [
+      "supply chain",
+      "operations",
+      "managers"
+    ],
+    "owner_email": "supplychain@company.com",
+    "description": "Provides real-time tracking of raw materials, goods in transit, and finished product inventory across the entire supply chain. Helps manage logistics, identify bottlenecks, and ensure timely delivery.",
+    "vendor_url": null
+  },
+  {
+    "id": 33,
+    "title": "Annual Budget Templates",
+    "url": "https://intranet.company.com/finance/annual-budget",
+    "type": "document",
+    "audience": [
+      "managers",
+      "finance"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Standardized templates for department heads to submit their annual budget proposals. Use these forms to plan and justify your team's financial needs for the upcoming fiscal year.",
+    "vendor_url": null
+  },
+  {
+    "id": 34,
+    "title": "Vendor Contract Management System",
+    "url": "https://contracts.company.com",
+    "type": "tool",
+    "audience": [
+      "procurement",
+      "legal",
+      "finance"
+    ],
+    "owner_email": "legal@company.com",
+    "description": "Centralized system for storing, tracking, and managing all vendor contracts and agreements. Facilitates contract lifecycle management from negotiation to renewal, ensuring compliance and efficiency.",
+    "vendor_url": null
+  },
+  {
+    "id": 35,
+    "title": "Social Media Guidelines",
+    "url": "https://intranet.company.com/marketing/social-media-guidelines",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Rules and best practices for employees engaging with social media, both professionally and personally, when representing the company. Ensures appropriate conduct and protects the company's brand reputation online.",
+    "vendor_url": null
+  },
+  {
+    "id": 36,
+    "title": "Leave Request System",
+    "url": "https://hr.company.com/leave-request",
+    "type": "app",
+    "audience": [
+      "all employees",
+      "managers"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Online portal for employees to submit requests for vacation, sick leave, or other time off. Managers use this system to approve or deny requests and track team absences.",
+    "vendor_url": null
+  },
+  {
+    "id": 37,
+    "title": "Product Innovation Pipeline Tracker",
+    "url": "https://intranet.company.com/productdev/innovation-tracker",
+    "type": "tool",
+    "audience": [
+      "product development",
+      "r&d",
+      "marketing",
+      "managers"
+    ],
+    "owner_email": "productdev@company.com",
+    "description": "Tool for visualizing and managing the status of all ongoing and planned product innovation projects. Helps track progress from concept to commercialization, ensuring alignment with strategic goals.",
+    "vendor_url": null
+  },
+  {
+    "id": 38,
+    "title": "Food Safety Manual",
+    "url": "https://intranet.company.com/quality/food-safety-manual",
+    "type": "manual",
+    "audience": [
+      "operations",
+      "quality assurance",
+      "r&d"
+    ],
+    "owner_email": "quality@company.com",
+    "description": "Comprehensive guide on maintaining food safety standards and complying with regulatory requirements throughout the product lifecycle. Essential for all personnel involved in handling, processing, and packaging food products.",
+    "vendor_url": null
+  },
+  {
+    "id": 39,
+    "title": "Marketing Budget Tracker",
+    "url": "https://intranet.company.com/marketing/budget-tracker",
+    "type": "tool",
+    "audience": [
+      "marketing",
+      "finance"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Application to monitor and manage marketing expenditures against allocated budgets. Helps marketing teams stay within financial limits and track spending across various campaigns and initiatives.",
+    "vendor_url": null
+  },
+  {
+    "id": 40,
+    "title": "Conflict of Interest Policy",
+    "url": "https://intranet.company.com/legal/conflict-of-interest",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "legal@company.com",
+    "description": "Policy outlining situations where personal interests might conflict with company interests and how to manage them. Crucial for maintaining integrity and ethical conduct in all business dealings.",
+    "vendor_url": null
+  },
+  {
+    "id": 41,
+    "title": "Performance Review System",
+    "url": "https://hr.company.com/performance-review",
+    "type": "app",
+    "audience": [
+      "all employees",
+      "managers"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Platform for conducting and documenting employee performance reviews and setting goals. Used by both employees and managers to track progress, provide feedback, and support career development.",
+    "vendor_url": null
+  },
+  {
+    "id": 42,
+    "title": "Sales Territory Map",
+    "url": "https://intranet.company.com/sales/territory-map",
+    "type": "document",
+    "audience": [
+      "sales agents",
+      "sales managers"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Visual representation of assigned sales regions and their corresponding sales representatives. Helps sales teams understand their coverage areas and avoid territory conflicts.",
+    "vendor_url": null
+  },
+  {
+    "id": 43,
+    "title": "Ingredient Sourcing Guidelines",
+    "url": "https://intranet.company.com/procurement/ingredient-sourcing",
+    "type": "document",
+    "audience": [
+      "procurement",
+      "r&d",
+      "quality assurance"
+    ],
+    "owner_email": "procurement@company.com",
+    "description": "Standards and procedures for selecting and approving raw material suppliers, ensuring quality, sustainability, and ethical sourcing. Essential for maintaining product integrity and supply chain reliability.",
+    "vendor_url": null
+  },
+  {
+    "id": 44,
+    "title": "Customer Feedback Management System",
+    "url": "https://feedback.company.com",
+    "type": "tool",
+    "audience": [
+      "marketing",
+      "product development",
+      "customer service"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Platform for collecting, analyzing, and acting upon customer feedback from various channels. Helps identify areas for product improvement and enhance customer satisfaction.",
+    "vendor_url": null
+  },
+  {
+    "id": 45,
+    "title": "Fixed Asset Register",
+    "url": "https://intranet.company.com/finance/fixed-asset-register",
+    "type": "document",
+    "audience": [
+      "finance",
+      "operations"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Comprehensive list of all company-owned physical assets, including their acquisition date, value, and depreciation schedule. Critical for financial reporting and asset management.",
+    "vendor_url": null
+  },
+  {
+    "id": 46,
+    "title": "Data Privacy Policy",
+    "url": "https://intranet.company.com/legal/data-privacy",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "legal@company.com",
+    "description": "Explains how the company collects, uses, stores, and protects personal data in compliance with relevant regulations. All employees must understand this policy to handle customer and employee data responsibly.",
+    "vendor_url": null
+  },
+  {
+    "id": 47,
+    "title": "Internal Job Postings",
+    "url": "https://hr.company.com/careers",
+    "type": "app",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Portal to view and apply for internal job openings within the company. Explore opportunities for career growth and professional development here before looking externally.",
+    "vendor_url": null
+  },
+  {
+    "id": 48,
+    "title": "Market Research Database",
+    "url": "https://research.company.com",
+    "type": "tool",
+    "audience": [
+      "marketing",
+      "product development",
+      "sales agents"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Repository of market trends, consumer insights, competitive analysis, and industry reports. Provides valuable data for strategic planning, product development, and sales strategy formulation.",
+    "vendor_url": null
+  },
+  {
+    "id": 49,
+    "title": "Logistics & Distribution Manual",
+    "url": "https://intranet.company.com/supplychain/logistics-manual",
+    "type": "manual",
+    "audience": [
+      "supply chain",
+      "operations",
+      "logistics staff"
+    ],
+    "owner_email": "supplychain@company.com",
+    "description": "Detailed procedures for managing the transportation, warehousing, and distribution of finished goods. Ensures efficient and cost-effective delivery of products to customers and retailers.",
+    "vendor_url": null
+  },
+  {
+    "id": 50,
+    "title": "Expense Policy",
+    "url": "https://intranet.company.com/finance/expense-policy",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Guidelines on what types of expenses are reimbursable, spending limits, and the process for submitting expense reports. Refer to this document before incurring any company-related costs.",
+    "vendor_url": null
+  },
+  {
+    "id": 51,
+    "title": "Anti-Harassment Policy",
+    "url": "https://intranet.company.com/hr/anti-harassment-policy",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Outlines the company's commitment to a workplace free from harassment and provides procedures for reporting and investigating such incidents. Ensures a respectful and safe environment for everyone.",
+    "vendor_url": null
+  },
+  {
+    "id": 52,
+    "title": "Sales Training Modules",
+    "url": "https://lms.company.com/sales-training",
+    "type": "manual",
+    "audience": [
+      "sales agents",
+      "new hires"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Interactive training materials covering product knowledge, sales techniques, CRM usage, and closing strategies. Essential for new sales hires and ongoing professional development for the sales team.",
+    "vendor_url": null
+  },
+  {
+    "id": 53,
+    "title": "Packaging Standards & Guidelines",
+    "url": "https://intranet.company.com/productdev/packaging-standards",
+    "type": "document",
+    "audience": [
+      "product development",
+      "marketing",
+      "operations"
+    ],
+    "owner_email": "productdev@company.com",
+    "description": "Specifications and guidelines for all product packaging, including materials, dimensions, labeling requirements, and sustainability considerations. Ensures consistent brand presentation and compliance with regulatory standards.",
+    "vendor_url": null
+  },
+  {
+    "id": 54,
+    "title": "Crisis Communication Plan",
+    "url": "https://intranet.company.com/marketing/crisis-plan",
+    "type": "document",
+    "audience": [
+      "managers",
+      "marketing",
+      "legal"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Step-by-step guide for managing public relations during a crisis, including communication protocols and designated spokespersons. Critical for protecting the company's reputation during unforeseen events.",
+    "vendor_url": null
+  },
+  {
+    "id": 55,
+    "title": "Payroll Information Portal",
+    "url": "https://payroll.company.com",
+    "type": "app",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Secure portal to access pay stubs, update tax information, and view year-end statements. This is where you can find all your personal payroll details.",
+    "vendor_url": null
+  },
+  {
+    "id": 56,
+    "title": "Legal Request Form",
+    "url": "https://intranet.company.com/legal/request-form",
+    "type": "link",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "legal@company.com",
+    "description": "Online form for submitting requests for legal review of contracts, marketing materials, or compliance questions. Provides a structured way to engage with the legal department for official guidance.",
+    "vendor_url": null
+  },
+  {
+    "id": 57,
+    "title": "Company Holiday Schedule",
+    "url": "https://intranet.company.com/hr/holiday-schedule",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Official list of company-observed holidays for the current calendar year. Use this document to plan your time off and be aware of company closures.",
+    "vendor_url": null
+  },
+  {
+    "id": 58,
+    "title": "Sales Meeting Minutes Archive",
+    "url": "https://intranet.company.com/sales/meeting-minutes",
+    "type": "document",
+    "audience": [
+      "sales agents",
+      "sales managers"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Repository of notes and action items from past sales meetings, including team updates, strategy discussions, and performance reviews. Useful for catching up on past discussions and decisions.",
+    "vendor_url": null
+  },
+  {
+    "id": 59,
+    "title": "R&D Lab Protocols",
+    "url": "https://intranet.company.com/r&d/lab-protocols",
+    "type": "manual",
+    "audience": [
+      "r&d",
+      "scientists"
+    ],
+    "owner_email": "r&d@company.com",
+    "description": "Standardized procedures and safety guidelines for all experiments and testing conducted in the R&D labs. Ensures consistency, reproducibility, and safety in all research activities.",
+    "vendor_url": null
+  },
+  {
+    "id": 60,
+    "title": "Campaign Performance Reporting Tool",
+    "url": "https://marketing.company.com/reports",
+    "type": "tool",
+    "audience": [
+      "marketing",
+      "managers"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Application to track the effectiveness and ROI of various marketing campaigns. Provides metrics on reach, engagement, conversion rates, and overall campaign success.",
+    "vendor_url": null
+  },
+  {
+    "id": 61,
+    "title": "Health & Safety Policy",
+    "url": "https://intranet.company.com/hr/health-safety",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Outlines the company's commitment to providing a safe and healthy workplace, including emergency procedures and accident reporting. Essential for understanding your responsibilities regarding workplace safety.",
+    "vendor_url": null
+  },
+  {
+    "id": 62,
+    "title": "Procurement Policy",
+    "url": "https://intranet.company.com/procurement/policy",
+    "type": "document",
+    "audience": [
+      "procurement",
+      "all employees"
+    ],
+    "owner_email": "procurement@company.com",
+    "description": "Rules and guidelines for purchasing goods and services on behalf of the company. Ensures fair practices, cost-effectiveness, and compliance in all procurement activities.",
+    "vendor_url": null
+  },
+  {
+    "id": 63,
+    "title": "Microsoft 365 Portal",
+    "url": "https://portal.office.com",
+    "type": "tool",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Access point for all Microsoft 365 applications like Outlook, Word, Excel, PowerPoint, and OneDrive. Your central hub for productivity tools and cloud storage.",
+    "vendor_url": "https://www.microsoft.com/microsoft-365"
+  },
+  {
+    "id": 64,
+    "title": "Customer Service Knowledge Base",
+    "url": "https://support.company.com/knowledge-base",
+    "type": "tool",
+    "audience": [
+      "customer service",
+      "sales agents"
+    ],
+    "owner_email": "customerservice@company.com",
+    "description": "Searchable database of frequently asked questions, product troubleshooting guides, and common customer issues. Essential for providing quick and accurate support to customers.",
+    "vendor_url": null
+  },
+  {
+    "id": 65,
+    "title": "Ingredient Approval Process",
+    "url": "https://intranet.company.com/r&d/ingredient-approval",
+    "type": "document",
+    "audience": [
+      "r&d",
+      "quality assurance",
+      "procurement"
+    ],
+    "owner_email": "r&d@company.com",
+    "description": "Steps and requirements for approving new ingredients for use in company products, including safety assessments and regulatory checks. Ensures all components meet quality and compliance standards.",
+    "vendor_url": null
+  },
+  {
+    "id": 66,
+    "title": "Trade Show & Event Calendar",
+    "url": "https://intranet.company.com/marketing/events-calendar",
+    "type": "document",
+    "audience": [
+      "marketing",
+      "sales agents"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Upcoming schedule of industry trade shows, promotional events, and conferences where the company will have a presence. Helps sales and marketing teams plan attendance and outreach.",
+    "vendor_url": null
+  },
+  {
+    "id": 67,
+    "title": "Fleet Management System",
+    "url": "https://fleet.company.com",
+    "type": "tool",
+    "audience": [
+      "logistics",
+      "sales agents",
+      "operations"
+    ],
+    "owner_email": "operations@company.com",
+    "description": "System for managing company vehicles, including maintenance schedules, fuel tracking, and route optimization. Used by logistics and sales teams to manage transportation assets effectively.",
+    "vendor_url": null
+  },
+  {
+    "id": 68,
+    "title": "Accounts Payable Portal",
+    "url": "https://ap.company.com",
+    "type": "app",
+    "audience": [
+      "finance",
+      "procurement"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Platform for processing vendor invoices and managing payments. Procurement teams use this to submit invoices, and finance ensures timely and accurate disbursement.",
+    "vendor_url": null
+  },
+  {
+    "id": 69,
+    "title": "Whistleblower Policy",
+    "url": "https://intranet.company.com/legal/whistleblower-policy",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "legal@company.com",
+    "description": "Policy ensuring protection for employees who report unethical or illegal activities within the company. Provides a confidential channel for raising concerns without fear of retaliation.",
+    "vendor_url": null
+  },
+  {
+    "id": 70,
+    "title": "IT Asset Inventory",
+    "url": "https://intranet.company.com/it/asset-inventory",
+    "type": "tool",
+    "audience": [
+      "it"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Database of all company IT assets, including hardware, software licenses, and network devices. Essential for IT teams to manage equipment, track deployments, and ensure compliance.",
+    "vendor_url": null
+  },
+  {
+    "id": 71,
+    "title": "Training & Development Catalog",
+    "url": "https://lms.company.com/course-catalog",
+    "type": "tool",
+    "audience": [
+      "all employees",
+      "hr"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Listing of all available internal and external training courses, workshops, and development programs. Browse here to find opportunities to enhance your skills and advance your career.",
+    "vendor_url": null
+  },
+  {
+    "id": 72,
+    "title": "Sales Performance Reports",
+    "url": "https://intranet.company.com/sales/performance-reports",
+    "type": "document",
+    "audience": [
+      "sales managers",
+      "sales agents"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Monthly and quarterly reports detailing sales figures, individual and team performance against targets, and market share analysis. Provides insights into sales trends and areas for improvement.",
+    "vendor_url": null
+  },
+  {
+    "id": 73,
+    "title": "New Product Launch Checklist",
+    "url": "https://intranet.company.com/productdev/launch-checklist",
+    "type": "document",
+    "audience": [
+      "product development",
+      "marketing",
+      "sales agents"
+    ],
+    "owner_email": "productdev@company.com",
+    "description": "Comprehensive checklist outlining all tasks and responsibilities required before launching a new product. Ensures all departments are aligned and prepared for a successful market introduction.",
+    "vendor_url": null
+  },
+  {
+    "id": 74,
+    "title": "Digital Asset Management (DAM)",
+    "url": "https://dam.company.com",
+    "type": "tool",
+    "audience": [
+      "marketing",
+      "designers",
+      "agencies"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "System for storing, organizing, and distributing all digital media assets, including high-resolution images, videos, and audio files. Ensures easy access and consistent usage of brand assets.",
+    "vendor_url": null
+  },
+  {
+    "id": 75,
+    "title": "Safety Data Sheets (SDS) Library",
+    "url": "https://intranet.company.com/quality/sds-library",
+    "type": "document",
+    "audience": [
+      "operations",
+      "r&d",
+      "quality assurance"
+    ],
+    "owner_email": "quality@company.com",
+    "description": "Collection of Safety Data Sheets for all chemicals and hazardous materials used in production and R&D. Provides critical information on safe handling, storage, and emergency procedures.",
+    "vendor_url": null
+  },
+  {
+    "id": 76,
+    "title": "Quarterly Financial Statements",
+    "url": "https://intranet.company.com/finance/quarterly-statements",
+    "type": "document",
+    "audience": [
+      "managers",
+      "finance"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Official financial reports issued quarterly, providing an overview of the company's financial performance. Includes profit & loss, balance sheet, and cash flow statements.",
+    "vendor_url": null
+  },
+  {
+    "id": 77,
+    "title": "Employee Referral Program",
+    "url": "https://hr.company.com/referral-program",
+    "type": "link",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Information and submission portal for referring qualified candidates for open positions. Learn about the program benefits and help recruit top talent for the company.",
+    "vendor_url": null
+  },
+  {
+    "id": 78,
+    "title": "Sales Forecasting Tool",
+    "url": "https://sales.company.com/forecasting",
+    "type": "tool",
+    "audience": [
+      "sales managers",
+      "sales agents"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Application to predict future sales revenue based on historical data, market trends, and pipeline opportunities. Essential for strategic planning and resource allocation for the sales department.",
+    "vendor_url": null
+  },
+  {
+    "id": 79,
+    "title": "Customer Relationship Management (CRM) Manual",
+    "url": "https://intranet.company.com/sales/crm-manual",
+    "type": "manual",
+    "audience": [
+      "sales agents",
+      "new hires",
+      "sales ops"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Detailed user guide for effectively utilizing the company's CRM system (e.g., Salesforce). Covers data entry, reporting, lead management, and customer interaction best practices.",
+    "vendor_url": null
+  },
+  {
+    "id": 80,
+    "title": "Product Lifecycle Management (PLM) System",
+    "url": "https://plm.company.com",
+    "type": "tool",
+    "audience": [
+      "product development",
+      "r&d",
+      "operations",
+      "marketing"
+    ],
+    "owner_email": "productdev@company.com",
+    "description": "System for managing a product's entire lifecycle from conception, through design and manufacturing, to service and disposal. Centralizes product data and processes for greater efficiency.",
+    "vendor_url": null
+  },
+  {
+    "id": 81,
+    "title": "Digital Marketing Strategy",
+    "url": "https://intranet.company.com/marketing/digital-strategy",
+    "type": "document",
+    "audience": [
+      "marketing",
+      "managers"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Overview of the company's digital marketing objectives, channels, and tactics, including SEO, SEM, social media, and email marketing. Guides the team's online presence and engagement efforts.",
+    "vendor_url": null
+  },
+  {
+    "id": 82,
+    "title": "Supplier Auditing Process",
+    "url": "https://intranet.company.com/procurement/supplier-audit",
+    "type": "document",
+    "audience": [
+      "procurement",
+      "quality assurance"
+    ],
+    "owner_email": "procurement@company.com",
+    "description": "Procedures for conducting audits of current and potential suppliers to ensure compliance with quality, ethical, and sustainability standards. Critical for maintaining a reliable and responsible supply chain.",
+    "vendor_url": null
+  },
+  {
+    "id": 83,
+    "title": "Annual Report Archive",
+    "url": "https://intranet.company.com/finance/annual-reports",
+    "type": "document",
+    "audience": [
+      "managers",
+      "all employees"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Collection of past annual reports summarizing the company's financial performance, strategic achievements, and future outlook. Provides a historical perspective on company growth and direction.",
+    "vendor_url": null
+  },
+  {
+    "id": 84,
+    "title": "Emergency Response Plan",
+    "url": "https://intranet.company.com/hr/emergency-plan",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Protocols and procedures to follow in various emergency situations, such as fire, medical emergencies, or natural disasters. Essential reading for ensuring personal safety and coordinated action during crises.",
+    "vendor_url": null
+  },
+  {
+    "id": 85,
+    "title": "New Hire Training Schedule",
+    "url": "https://intranet.company.com/hr/new-hire-training",
+    "type": "document",
+    "audience": [
+      "new hires",
+      "managers"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Detailed schedule for all mandatory onboarding training sessions for new employees. Helps new hires navigate their initial learning period and ensures they receive essential company information.",
+    "vendor_url": null
+  },
+  {
+    "id": 86,
+    "title": "Competitive Analysis Reports",
+    "url": "https://intranet.company.com/sales/competitive-analysis",
+    "type": "document",
+    "audience": [
+      "sales agents",
+      "marketing",
+      "product development"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Reports detailing the strengths, weaknesses, and strategies of key competitors in the market. Provides valuable insights for positioning products and developing effective sales tactics.",
+    "vendor_url": null
+  },
+  {
+    "id": 87,
+    "title": "Product Development Idea Submission",
+    "url": "https://ideas.company.com",
+    "type": "link",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "productdev@company.com",
+    "description": "Portal for all employees to submit new product ideas, improvements, or innovative concepts. Contribute your creativity to shape the future of our product portfolio.",
+    "vendor_url": null
+  },
+  {
+    "id": 88,
+    "title": "E-Learning Platform",
+    "url": "https://lms.company.com",
+    "type": "tool",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Learning Management System (LMS) hosting various online courses for professional development and mandatory compliance training. Access self-paced modules to enhance your skills and knowledge.",
+    "vendor_url": null
+  },
+  {
+    "id": 89,
+    "title": "Food Packaging Regulations Guide",
+    "url": "https://intranet.company.com/legal/packaging-regulations",
+    "type": "document",
+    "audience": [
+      "r&d",
+      "quality assurance",
+      "marketing",
+      "legal"
+    ],
+    "owner_email": "legal@company.com",
+    "description": "Comprehensive guide to national and international regulations governing food packaging and labeling. Ensures compliance for all products sold in various markets.",
+    "vendor_url": null
+  },
+  {
+    "id": 90,
+    "title": "Audit Report Archive (Internal & External)",
+    "url": "https://intranet.company.com/quality/audit-archive",
+    "type": "document",
+    "audience": [
+      "quality assurance",
+      "operations",
+      "finance",
+      "managers"
+    ],
+    "owner_email": "quality@company.com",
+    "description": "Repository of all internal and external audit reports, including findings, corrective actions, and follow-ups. Provides a record of compliance and continuous improvement efforts.",
+    "vendor_url": null
+  },
+  {
+    "id": 91,
+    "title": "Shareholder Communications",
+    "url": "https://intranet.company.com/investor-relations/communications",
+    "type": "document",
+    "audience": [
+      "executive leadership",
+      "finance"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Archive of official communications and presentations intended for shareholders and investors. Provides transparency on company performance and strategic direction.",
+    "vendor_url": null
+  },
+  {
+    "id": 92,
+    "title": "Company News & Announcements",
+    "url": "https://intranet.company.com/news",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "communications@company.com",
+    "description": "Latest updates, important announcements, and success stories from across the company. Stay informed about company-wide developments, achievements, and upcoming events.",
+    "vendor_url": null
+  },
+  {
+    "id": 93,
+    "title": "IT Equipment Request Form",
+    "url": "https://helpdesk.company.com/equipment-request",
+    "type": "link",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Form for requesting new IT hardware such as laptops, monitors, or accessories, or specific software licenses. Please fill this out carefully to ensure you receive the correct equipment.",
+    "vendor_url": null
+  },
+  {
+    "id": 94,
+    "title": "Sales Incentive Programs",
+    "url": "https://intranet.company.com/sales/incentives",
+    "type": "document",
+    "audience": [
+      "sales agents"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Details of current sales commission structures, bonus programs, and performance-based incentives. Learn how your sales efforts can lead to additional rewards and recognition.",
+    "vendor_url": null
+  },
+  {
+    "id": 95,
+    "title": "Product Recipe Management System",
+    "url": "https://recipes.company.com",
+    "type": "tool",
+    "audience": [
+      "r&d",
+      "operations",
+      "quality assurance"
+    ],
+    "owner_email": "r&d@company.com",
+    "description": "Database and management tool for all product formulations and recipes. Ensures consistent production and allows for version control of critical product data.",
+    "vendor_url": null
+  },
+  {
+    "id": 96,
+    "title": "Public Relations Media Kit",
+    "url": "https://intranet.company.com/marketing/media-kit",
+    "type": "document",
+    "audience": [
+      "marketing",
+      "executive leadership"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Collection of approved press releases, company backgrounders, executive bios, and high-resolution images for media inquiries. Ensures consistent and professional communication with external media.",
+    "vendor_url": null
+  },
+  {
+    "id": 97,
+    "title": "Safety Incident Reporting",
+    "url": "https://intranet.company.com/safety/incident-report",
+    "type": "link",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Form for reporting workplace accidents, near misses, or safety hazards. Your prompt reporting helps ensure a safe environment for everyone and supports continuous safety improvements.",
+    "vendor_url": null
+  },
+  {
+    "id": 98,
+    "title": "Purchase Order (PO) System",
+    "url": "https://po.company.com",
+    "type": "app",
+    "audience": [
+      "procurement",
+      "finance",
+      "managers"
+    ],
+    "owner_email": "procurement@company.com",
+    "description": "System for creating, approving, and tracking purchase orders for goods and services. Ensures proper authorization and budget allocation before commitments are made to suppliers.",
+    "vendor_url": null
+  },
+  {
+    "id": 99,
+    "title": "Legal Document Templates",
+    "url": "https://intranet.company.com/legal/templates",
+    "type": "document",
+    "audience": [
+      "managers",
+      "legal"
+    ],
+    "owner_email": "legal@company.com",
+    "description": "Collection of standardized legal document templates, such as non-disclosure agreements (NDAs), basic service agreements, and terms and conditions. Use these for common legal needs, but consult legal for complex matters.",
+    "vendor_url": null
+  },
+  {
+    "id": 100,
+    "title": "VPN Access Request",
+    "url": "https://helpdesk.company.com/vpn-request",
+    "type": "link",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Form to request Virtual Private Network (VPN) access for secure remote connection to company resources. Essential for employees working off-site who need to access internal systems securely.",
+    "vendor_url": null
+  },
+  {
+    "id": 101,
+    "title": "Expense Approval Workflow",
+    "url": "https://intranet.company.com/finance/expense-workflow",
+    "type": "document",
+    "audience": [
+      "all employees",
+      "managers",
+      "finance"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Illustrates the step-by-step process for submitting and approving expense reports within the company. Helps employees understand the journey of their expense claim from submission to reimbursement.",
+    "vendor_url": null
+  },
+  {
+    "id": 102,
+    "title": "Sales Lead Generation Guidelines",
+    "url": "https://intranet.company.com/sales/lead-gen-guidelines",
+    "type": "document",
+    "audience": [
+      "sales agents",
+      "marketing"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Best practices and approved methods for identifying and qualifying potential customer leads. Provides a framework for effective prospecting and expanding the sales pipeline.",
+    "vendor_url": null
+  },
+  {
+    "id": 103,
+    "title": "Product Quality Standards",
+    "url": "https://intranet.company.com/quality/product-standards",
+    "type": "document",
+    "audience": [
+      "operations",
+      "quality assurance",
+      "r&d"
+    ],
+    "owner_email": "quality@company.com",
+    "description": "Defines the quality benchmarks and criteria that all finished products must meet before release. Essential for ensuring product excellence and consumer satisfaction.",
+    "vendor_url": null
+  },
+  {
+    "id": 104,
+    "title": "Investor Relations Page",
+    "url": "https://intranet.company.com/investor-relations",
+    "type": "link",
+    "audience": [
+      "executive leadership",
+      "finance"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Central hub for financial reports, stock information, and presentations for shareholders and the investment community. Provides transparency on the company's financial health and performance.",
+    "vendor_url": null
+  },
+  {
+    "id": 105,
+    "title": "Talent Acquisition Strategy",
+    "url": "https://intranet.company.com/hr/talent-strategy",
+    "type": "document",
+    "audience": [
+      "hr",
+      "managers",
+      "executive leadership"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Outlines the company's approach to attracting, recruiting, and retaining top talent. Provides insight into long-term hiring goals and strategies to build a strong workforce.",
+    "vendor_url": null
+  },
+  {
+    "id": 106,
+    "title": "Social Media Management Tool (e.g., Hootsuite)",
+    "url": "https://hootsuite.com/dashboard/company",
+    "type": "tool",
+    "audience": [
+      "marketing",
+      "social media specialists"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Platform for scheduling social media posts, monitoring engagement, and analyzing performance across various platforms. Centralizes social media operations for efficiency and effectiveness.",
+    "vendor_url": "https://www.hootsuite.com"
+  },
+  {
+    "id": 107,
+    "title": "Disciplinary Policy",
+    "url": "https://intranet.company.com/hr/disciplinary-policy",
+    "type": "document",
+    "audience": [
+      "all employees",
+      "managers",
+      "hr"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Outlines the procedures for addressing employee misconduct or performance issues, including warnings and termination guidelines. Ensures fair and consistent application of company rules.",
+    "vendor_url": null
+  },
+  {
+    "id": 108,
+    "title": "Sales Performance Incentive Fund (SPIF) Requests",
+    "url": "https://intranet.company.com/sales/spif-requests",
+    "type": "link",
+    "audience": [
+      "sales agents",
+      "sales managers"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Form for sales representatives to submit claims for Sales Performance Incentive Fund (SPIF) payouts based on specific promotional achievements. Ensure all criteria are met before submission.",
+    "vendor_url": null
+  },
+  {
+    "id": 109,
+    "title": "Sensory Evaluation Protocols",
+    "url": "https://intranet.company.com/r&d/sensory-protocols",
+    "type": "manual",
+    "audience": [
+      "r&d",
+      "quality assurance"
+    ],
+    "owner_email": "r&d@company.com",
+    "description": "Standardized methods for conducting sensory evaluations of food and beverage products, including taste tests and texture analysis. Ensures objective assessment of product attributes and consumer acceptance.",
+    "vendor_url": null
+  },
+  {
+    "id": 110,
+    "title": "Vendor Onboarding Process",
+    "url": "https://intranet.company.com/procurement/vendor-onboarding",
+    "type": "document",
+    "audience": [
+      "procurement",
+      "finance"
+    ],
+    "owner_email": "procurement@company.com",
+    "description": "Step-by-step guide for bringing new suppliers into the company's approved vendor network. Ensures all necessary documentation, background checks, and contractual agreements are in place.",
+    "vendor_url": null
+  },
+  {
+    "id": 111,
+    "title": "Budget Request Form",
+    "url": "https://intranet.company.com/finance/budget-request",
+    "type": "link",
+    "audience": [
+      "managers",
+      "all employees"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Form for submitting requests for additional budget allocation or special project funding outside of the annual budgeting cycle. Provide clear justification and financial impact analysis.",
+    "vendor_url": null
+  },
+  {
+    "id": 112,
+    "title": "Brand Asset Request Form",
+    "url": "https://intranet.company.com/marketing/asset-request",
+    "type": "link",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Form for requesting specific brand assets, such as high-resolution logos, product images, or marketing collateral not found in the Digital Asset Management system. Ensures controlled distribution of brand materials.",
+    "vendor_url": null
+  },
+  {
+    "id": 113,
+    "title": "Travel Booking Tool (e.g., Egencia)",
+    "url": "https://www.egencia.com/company",
+    "type": "app",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "admin@company.com",
+    "description": "Online platform for booking flights, hotels, and rental cars for business travel in accordance with company policy. Streamlines the travel planning process and ensures cost efficiency.",
+    "vendor_url": "https://www.egencia.com"
+  },
+  {
+    "id": 114,
+    "title": "Supply Chain Risk Management Framework",
+    "url": "https://intranet.company.com/supplychain/risk-management",
+    "type": "document",
+    "audience": [
+      "supply chain",
+      "operations",
+      "managers"
+    ],
+    "owner_email": "supplychain@company.com",
+    "description": "Framework outlining the identification, assessment, and mitigation strategies for potential risks within the supply chain. Critical for ensuring business continuity and resilience against disruptions.",
+    "vendor_url": null
+  },
+  {
+    "id": 115,
+    "title": "IT Policy on Software Installation",
+    "url": "https://intranet.company.com/it/software-policy",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Guidelines regarding the installation of software on company-owned devices. Ensures compliance with licensing agreements and maintains system security and performance.",
+    "vendor_url": null
+  },
+  {
+    "id": 116,
+    "title": "Remote Work Policy",
+    "url": "https://intranet.company.com/hr/remote-work-policy",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Guidelines and expectations for employees working remotely, including eligibility, technology requirements, and communication protocols. Ensures productive and compliant remote work arrangements.",
+    "vendor_url": null
+  },
+  {
+    "id": 117,
+    "title": "Sales Pitch Deck Templates",
+    "url": "https://intranet.company.com/sales/pitch-decks",
+    "type": "document",
+    "audience": [
+      "sales agents",
+      "marketing"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Approved and customizable presentation templates for various sales scenarios, product lines, and customer segments. Helps sales teams deliver consistent and compelling presentations to clients.",
+    "vendor_url": null
+  },
+  {
+    "id": 118,
+    "title": "New Ingredient Request Form",
+    "url": "https://intranet.company.com/r&d/new-ingredient-request",
+    "type": "link",
+    "audience": [
+      "r&d",
+      "product development"
+    ],
+    "owner_email": "r&d@company.com",
+    "description": "Form for R&D teams to propose and request evaluation of new ingredients for future product development. Initiates the process for sourcing and testing novel components.",
+    "vendor_url": null
+  },
+  {
+    "id": 119,
+    "title": "Market Segmentation Analysis",
+    "url": "https://intranet.company.com/marketing/market-segments",
+    "type": "document",
+    "audience": [
+      "marketing",
+      "sales managers",
+      "product development"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Reports detailing the various customer segments for the company's products, including demographics, psychographics, and purchasing behaviors. Essential for targeted marketing and product strategy.",
+    "vendor_url": null
+  },
+  {
+    "id": 120,
+    "title": "Accounts Receivable Dashboard",
+    "url": "https://intranet.company.com/finance/ar-dashboard",
+    "type": "app",
+    "audience": [
+      "finance",
+      "sales ops"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Dashboard providing an overview of outstanding invoices, payment statuses, and customer credit limits. Helps finance teams manage cash flow and reduce overdue payments.",
+    "vendor_url": null
+  },
+  {
+    "id": 121,
+    "title": "Sexual Harassment Training",
+    "url": "https://lms.company.com/sexual-harassment-training",
+    "type": "manual",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Mandatory e-learning module on recognizing, preventing, and reporting sexual harassment in the workplace. Ensures all employees understand their rights and responsibilities in maintaining a respectful environment.",
+    "vendor_url": null
+  },
+  {
+    "id": 122,
+    "title": "Sales CRM Training Guide",
+    "url": "https://intranet.company.com/sales/crm-training",
+    "type": "manual",
+    "audience": [
+      "sales agents",
+      "new hires"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "A step-by-step guide and resources for mastering the company's CRM system, focusing on key functionalities for sales professionals. Critical for effective lead and customer management.",
+    "vendor_url": null
+  },
+  {
+    "id": 123,
+    "title": "Manufacturing Best Practices",
+    "url": "https://intranet.company.com/operations/manufacturing-best-practices",
+    "type": "manual",
+    "audience": [
+      "operations",
+      "production staff",
+      "quality assurance"
+    ],
+    "owner_email": "operations@company.com",
+    "description": "Compilation of established procedures and guidelines for efficient and high-quality production processes. Ensures consistent adherence to operational standards and continuous improvement on the factory floor.",
+    "vendor_url": null
+  },
+  {
+    "id": 124,
+    "title": "Employee Engagement Survey Results",
+    "url": "https://intranet.company.com/hr/engagement-survey-results",
+    "type": "document",
+    "audience": [
+      "all employees",
+      "managers"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Reports summarizing the findings from recent employee engagement surveys, including areas of strength and opportunities for improvement. Provides transparency on workplace sentiment and company culture.",
+    "vendor_url": null
+  },
+  {
+    "id": 125,
+    "title": "Customer Onboarding Process",
+    "url": "https://intranet.company.com/sales/customer-onboarding",
+    "type": "document",
+    "audience": [
+      "sales agents",
+      "customer service"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Step-by-step guide outlining the procedures for bringing new customers onto our platforms and ensuring their successful initial experience. Helps streamline the post-sale process and foster strong client relationships.",
+    "vendor_url": null
+  },
+  {
+    "id": 126,
+    "title": "Budget Management Guidelines",
+    "url": "https://intranet.company.com/finance/budget-guidelines",
+    "type": "document",
+    "audience": [
+      "managers",
+      "finance"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Rules and best practices for managing departmental budgets throughout the fiscal year. Provides guidance on expenditure control, forecasting, and reporting budget variances.",
+    "vendor_url": null
+  },
+  {
+    "id": 127,
+    "title": "New Product Idea Evaluation Form",
+    "url": "https://intranet.company.com/r&d/idea-evaluation",
+    "type": "link",
+    "audience": [
+      "product development",
+      "r&d"
+    ],
+    "owner_email": "productdev@company.com",
+    "description": "Standardized form used by the R&D and product development teams to evaluate potential new product concepts. Helps assess feasibility, market potential, and alignment with company strategy.",
+    "vendor_url": null
+  },
+  {
+    "id": 128,
+    "title": "Internal Communications Policy",
+    "url": "https://intranet.company.com/communications/policy",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "communications@company.com",
+    "description": "Guidelines for effective internal communication, including preferred channels, tone, and appropriate content for company-wide announcements. Ensures clarity and consistency in messages to employees.",
+    "vendor_url": null
+  },
+  {
+    "id": 129,
+    "title": "Office 365 Training Resources",
+    "url": "https://intranet.company.com/it/office365-training",
+    "type": "manual",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Collection of tutorials, guides, and tips for maximizing productivity with Microsoft 365 applications like Word, Excel, PowerPoint, and Outlook. Improve your proficiency with essential workplace tools.",
+    "vendor_url": null
+  },
+  {
+    "id": 130,
+    "title": "Employee Self-Service Portal",
+    "url": "https://hr.company.com/self-service",
+    "type": "app",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Your central hub for updating personal information, checking benefits, requesting leave, and accessing payroll details. Empower yourself by managing your HR needs efficiently.",
+    "vendor_url": null
+  },
+  {
+    "id": 131,
+    "title": "Sales Discount Approval Policy",
+    "url": "https://intranet.company.com/sales/discount-policy",
+    "type": "document",
+    "audience": [
+      "sales agents",
+      "sales managers"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Guidelines and approval levels for offering discounts to customers. Ensures consistent pricing strategies and protects profit margins while empowering sales teams.",
+    "vendor_url": null
+  },
+  {
+    "id": 132,
+    "title": "Product Shelf-Life Testing Protocols",
+    "url": "https://intranet.company.com/r&d/shelf-life-protocols",
+    "type": "manual",
+    "audience": [
+      "r&d",
+      "quality assurance"
+    ],
+    "owner_email": "r&d@company.com",
+    "description": "Procedures for conducting stability and shelf-life testing of products to determine their optimal freshness and quality duration. Essential for product integrity and consumer safety.",
+    "vendor_url": null
+  },
+  {
+    "id": 133,
+    "title": "Brand Strategy Document",
+    "url": "https://intranet.company.com/marketing/brand-strategy",
+    "type": "document",
+    "audience": [
+      "marketing",
+      "executive leadership",
+      "product development"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "High-level document outlining the company's long-term brand vision, target audience, core values, and market positioning. Guides all marketing and product development efforts.",
+    "vendor_url": null
+  },
+  {
+    "id": 134,
+    "title": "Employee Wellness Program",
+    "url": "https://intranet.company.com/hr/wellness-program",
+    "type": "link",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Information on company-sponsored wellness initiatives, resources for physical and mental health, and healthy living challenges. Access programs designed to support your overall well-being.",
+    "vendor_url": null
+  },
+  {
+    "id": 135,
+    "title": "Accounts Payable Policy",
+    "url": "https://intranet.company.com/finance/ap-policy",
+    "type": "document",
+    "audience": [
+      "finance",
+      "procurement",
+      "managers"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Guidelines and procedures for processing and paying vendor invoices and managing accounts payable. Ensures accurate and timely payments while maintaining financial controls.",
+    "vendor_url": null
+  },
+  {
+    "id": 136,
+    "title": "IT Disaster Recovery Plan",
+    "url": "https://intranet.company.com/it/dr-plan",
+    "type": "document",
+    "audience": [
+      "it",
+      "executive leadership"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Comprehensive plan outlining procedures for recovering critical IT systems and data in the event of a major disruption. Ensures business continuity and minimizes downtime during emergencies.",
+    "vendor_url": null
+  },
+  {
+    "id": 137,
+    "title": "Confidentiality Agreement Template",
+    "url": "https://intranet.company.com/legal/nda-template",
+    "type": "document",
+    "audience": [
+      "managers",
+      "legal"
+    ],
+    "owner_email": "legal@company.com",
+    "description": "Standard Non-Disclosure Agreement (NDA) template for use when sharing confidential company information with external parties. Crucial for protecting intellectual property and sensitive data.",
+    "vendor_url": null
+  },
+  {
+    "id": 138,
+    "title": "Supplier Performance Review Form",
+    "url": "https://intranet.company.com/procurement/supplier-review",
+    "type": "link",
+    "audience": [
+      "procurement",
+      "operations",
+      "quality assurance"
+    ],
+    "owner_email": "procurement@company.com",
+    "description": "Form for evaluating the performance of key suppliers based on criteria like quality, delivery, and cost. Helps ensure that our supply chain partners meet expected standards.",
+    "vendor_url": null
+  },
+  {
+    "id": 139,
+    "title": "Production Equipment Maintenance Schedule",
+    "url": "https://intranet.company.com/operations/maintenance-schedule",
+    "type": "document",
+    "audience": [
+      "operations",
+      "maintenance staff"
+    ],
+    "owner_email": "operations@company.com",
+    "description": "Planned schedule for routine maintenance and servicing of all production machinery and equipment. Essential for preventing breakdowns, ensuring operational efficiency, and extending asset lifespan.",
+    "vendor_url": null
+  },
+  {
+    "id": 140,
+    "title": "Product Portfolio Strategy",
+    "url": "https://intranet.company.com/productdev/portfolio-strategy",
+    "type": "document",
+    "audience": [
+      "executive leadership",
+      "product development",
+      "marketing"
+    ],
+    "owner_email": "productdev@company.com",
+    "description": "Strategic overview of the company's entire product range, including current offerings, future development areas, and market positioning. Guides investment decisions and resource allocation for sustained growth.",
+    "vendor_url": null
+  },
+  {
+    "id": 141,
+    "title": "Employee Code of Conduct Training",
+    "url": "https://lms.company.com/code-of-conduct-training",
+    "type": "manual",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Mandatory e-learning module that explains the company's ethical expectations and standards of behavior. Ensures all employees understand their responsibilities in upholding our core values.",
+    "vendor_url": null
+  },
+  {
+    "id": 142,
+    "title": "Pricing Strategy Document",
+    "url": "https://intranet.company.com/sales/pricing-strategy",
+    "type": "document",
+    "audience": [
+      "sales managers",
+      "marketing",
+      "finance"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Outlines the rationale behind product pricing, including cost analysis, competitive positioning, and market demand considerations. Guides sales teams in quoting and negotiating with customers.",
+    "vendor_url": null
+  },
+  {
+    "id": 143,
+    "title": "R&D Budget Request Form",
+    "url": "https://intranet.company.com/r&d/budget-request",
+    "type": "link",
+    "audience": [
+      "r&d",
+      "managers"
+    ],
+    "owner_email": "r&d@company.com",
+    "description": "Form for R&D project leads to submit proposals for new research initiatives requiring specific funding. Details the projected costs, expected outcomes, and strategic importance of the research.",
+    "vendor_url": null
+  },
+  {
+    "id": 144,
+    "title": "Marketing Data Analytics Platform (e.g., Google Analytics)",
+    "url": "https://analytics.google.com/company",
+    "type": "tool",
+    "audience": [
+      "marketing",
+      "analysts"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Platform for tracking website traffic, user behavior, and marketing campaign performance. Provides critical data for optimizing digital marketing efforts and understanding customer journeys.",
+    "vendor_url": "https://analytics.google.com"
+  },
+  {
+    "id": 145,
+    "title": "Employee Recognition Program",
+    "url": "https://intranet.company.com/hr/recognition-program",
+    "type": "link",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Information on how employees can nominate colleagues for outstanding achievements and contributions. Celebrates individual and team successes across the organization.",
+    "vendor_url": null
+  },
+  {
+    "id": 146,
+    "title": "Financial Close Process Manual",
+    "url": "https://intranet.company.com/finance/close-manual",
+    "type": "manual",
+    "audience": [
+      "finance"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Detailed step-by-step instructions for the monthly and quarterly financial closing procedures. Ensures accurate and timely reporting of financial results.",
+    "vendor_url": null
+  },
+  {
+    "id": 147,
+    "title": "IT Infrastructure Diagrams",
+    "url": "https://intranet.company.com/it/infra-diagrams",
+    "type": "document",
+    "audience": [
+      "it"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Visual representations of the company's network architecture, server layouts, and critical IT systems. Essential reference for IT staff for troubleshooting, planning, and system upgrades.",
+    "vendor_url": null
+  },
+  {
+    "id": 148,
+    "title": "Supplier Diversity Program",
+    "url": "https://intranet.company.com/procurement/supplier-diversity",
+    "type": "document",
+    "audience": [
+      "procurement",
+      "all employees"
+    ],
+    "owner_email": "procurement@company.com",
+    "description": "Information about the company's commitment to engaging with a diverse range of suppliers, including minority-owned and women-owned businesses. Promotes inclusive sourcing practices.",
+    "vendor_url": null
+  },
+  {
+    "id": 149,
+    "title": "Crisis Management Team Contact List",
+    "url": "https://intranet.company.com/hr/crisis-contacts",
+    "type": "document",
+    "audience": [
+      "managers",
+      "executive leadership"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "List of key personnel and their contact information for the company's crisis management team. Essential for rapid response and coordination during emergencies.",
+    "vendor_url": null
+  },
+  {
+    "id": 150,
+    "title": "Sales Battle Cards",
+    "url": "https://intranet.company.com/sales/battle-cards",
+    "type": "document",
+    "audience": [
+      "sales agents"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Quick reference guides for sales representatives containing key product benefits, competitive differentiators, and responses to common objections. Helps prepare for effective sales conversations.",
+    "vendor_url": null
+  },
+  {
+    "id": 151,
+    "title": "Product Recipe Change Request Form",
+    "url": "https://intranet.company.com/r&d/recipe-change-form",
+    "type": "link",
+    "audience": [
+      "r&d",
+      "operations",
+      "quality assurance"
+    ],
+    "owner_email": "r&d@company.com",
+    "description": "Form for initiating modifications to existing product formulations or recipes. Requires detailed justification and impact analysis to ensure controlled changes.",
+    "vendor_url": null
+  },
+  {
+    "id": 152,
+    "title": "Annual Marketing Plan",
+    "url": "https://intranet.company.com/marketing/annual-plan",
+    "type": "document",
+    "audience": [
+      "marketing",
+      "executive leadership",
+      "sales managers"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Comprehensive document outlining the marketing department's strategic goals, key initiatives, and budget allocation for the upcoming year. Aligns marketing efforts with overall business objectives.",
+    "vendor_url": null
+  },
+  {
+    "id": 153,
+    "title": "Employee Exit Interview Form",
+    "url": "https://intranet.company.com/hr/exit-interview",
+    "type": "link",
+    "audience": [
+      "hr"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Form used to conduct exit interviews with departing employees to gather feedback on their employment experience. Provides valuable insights for improving workplace culture and retention.",
+    "vendor_url": null
+  },
+  {
+    "id": 154,
+    "title": "Cash Flow Forecasts",
+    "url": "https://intranet.company.com/finance/cash-flow-forecasts",
+    "type": "document",
+    "audience": [
+      "finance",
+      "executive leadership"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Projections of future cash inflows and outflows to help manage liquidity and financial planning. Provides critical insights into the company's short-term financial health.",
+    "vendor_url": null
+  },
+  {
+    "id": 155,
+    "title": "Password Reset Tool",
+    "url": "https://password.company.com",
+    "type": "tool",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Self-service portal for resetting your company account password. Use this tool if you've forgotten your password or need to change it securely.",
+    "vendor_url": null
+  },
+  {
+    "id": 156,
+    "title": "Company Value Proposition",
+    "url": "https://intranet.company.com/marketing/value-prop",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Clear statement defining what makes our company unique and valuable to customers and stakeholders. Provides a unified message for all external and internal communications.",
+    "vendor_url": null
+  },
+  {
+    "id": 157,
+    "title": "Trade Marketing Guidelines",
+    "url": "https://intranet.company.com/marketing/trade-guidelines",
+    "type": "document",
+    "audience": [
+      "marketing",
+      "sales agents"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Guidelines for creating and executing marketing programs specifically designed for retailers and distributors. Ensures consistent messaging and promotional support at the point of sale.",
+    "vendor_url": null
+  },
+  {
+    "id": 158,
+    "title": "Environmental Policy",
+    "url": "https://intranet.company.com/quality/environmental-policy",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "quality@company.com",
+    "description": "Outlines the company's commitment to environmental sustainability, including waste reduction, resource conservation, and pollution prevention. Guides employees in making environmentally responsible choices.",
+    "vendor_url": null
+  },
+  {
+    "id": 159,
+    "title": "IT Change Management Process",
+    "url": "https://intranet.company.com/it/change-management",
+    "type": "document",
+    "audience": [
+      "it",
+      "project managers"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Procedures for requesting, approving, implementing, and reviewing changes to IT systems and infrastructure. Ensures controlled and documented modifications to prevent disruptions.",
+    "vendor_url": null
+  },
+  {
+    "id": 160,
+    "title": "Sales Performance Dashboard",
+    "url": "https://sales.company.com/dashboard",
+    "type": "app",
+    "audience": [
+      "sales agents",
+      "sales managers"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Real-time visualization of individual and team sales metrics, including revenue generated, pipeline value, and conversion rates. Helps track progress towards targets and identify areas for focus.",
+    "vendor_url": null
+  },
+  {
+    "id": 161,
+    "title": "Product Costing Models",
+    "url": "https://intranet.company.com/finance/product-costing",
+    "type": "document",
+    "audience": [
+      "finance",
+      "product development",
+      "operations"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Templates and methodologies for calculating the cost of producing each product, including raw materials, labor, and overhead. Essential for pricing decisions and profitability analysis.",
+    "vendor_url": null
+  },
+  {
+    "id": 162,
+    "title": "Employee Relations Guidelines",
+    "url": "https://intranet.company.com/hr/employee-relations",
+    "type": "document",
+    "audience": [
+      "managers",
+      "hr"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Guidance for managers on handling workplace conflicts, employee grievances, and maintaining positive employee relations. Promotes a fair and productive work environment.",
+    "vendor_url": null
+  },
+  {
+    "id": 163,
+    "title": "Supplier Code of Conduct",
+    "url": "https://intranet.company.com/procurement/supplier-code",
+    "type": "document",
+    "audience": [
+      "procurement",
+      "all employees"
+    ],
+    "owner_email": "procurement@company.com",
+    "description": "Outlines the ethical, social, and environmental standards expected of all company suppliers and business partners. Ensures responsible and sustainable practices throughout the supply chain.",
+    "vendor_url": null
+  },
+  {
+    "id": 164,
+    "title": "Food Product Labeling Guidelines",
+    "url": "https://intranet.company.com/marketing/labeling-guidelines",
+    "type": "document",
+    "audience": [
+      "marketing",
+      "r&d",
+      "quality assurance",
+      "legal"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Rules and best practices for creating compliant and effective labels for food products, including nutritional information, allergens, and claims. Ensures regulatory adherence and consumer clarity.",
+    "vendor_url": null
+  },
+  {
+    "id": 165,
+    "title": "Innovation Fund Application",
+    "url": "https://intranet.company.com/r&d/innovation-fund-application",
+    "type": "link",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "productdev@company.com",
+    "description": "Application form for employees to propose and seek funding for innovative projects or ideas that can benefit the company. Encourages internal entrepreneurship and creative problem-solving.",
+    "vendor_url": null
+  },
+  {
+    "id": 166,
+    "title": "IT Security Awareness Training",
+    "url": "https://lms.company.com/security-awareness",
+    "type": "manual",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Mandatory e-learning module on best practices for cybersecurity, identifying phishing attempts, and protecting company data. Essential for maintaining a secure digital environment.",
+    "vendor_url": null
+  },
+  {
+    "id": 167,
+    "title": "General Ledger (GL) System",
+    "url": "https://gl.company.com",
+    "type": "tool",
+    "audience": [
+      "finance"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Core accounting system where all financial transactions are recorded, enabling the generation of financial statements. Used by finance teams to manage and reconcile all financial data.",
+    "vendor_url": null
+  },
+  {
+    "id": 168,
+    "title": "Internal Audit Report Request",
+    "url": "https://intranet.company.com/finance/internal-audit-request",
+    "type": "link",
+    "audience": [
+      "managers"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Form for managers to request an internal audit of specific departmental processes or financial records. Ensures compliance, efficiency, and identification of potential risks.",
+    "vendor_url": null
+  },
+  {
+    "id": 169,
+    "title": "Career Development Resources",
+    "url": "https://intranet.company.com/hr/career-development",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Collection of guides, tools, and links to support employee career growth, including mentorship programs, skill development frameworks, and professional certification opportunities. Helps employees plan their career path within the company.",
+    "vendor_url": null
+  },
+  {
+    "id": 170,
+    "title": "Sales Contract Templates",
+    "url": "https://intranet.company.com/sales/contract-templates",
+    "type": "document",
+    "audience": [
+      "sales agents",
+      "legal"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Approved legal templates for various sales agreements, including supply agreements and service contracts. Ensures all sales contracts are legally sound and consistent.",
+    "vendor_url": null
+  },
+  {
+    "id": 171,
+    "title": "Production Capacity Planning Tool",
+    "url": "https://intranet.company.com/operations/capacity-planning",
+    "type": "tool",
+    "audience": [
+      "operations",
+      "supply chain"
+    ],
+    "owner_email": "operations@company.com",
+    "description": "Application to forecast and manage manufacturing capacity based on demand, equipment availability, and labor resources. Optimizes production schedules to meet market needs efficiently.",
+    "vendor_url": null
+  },
+  {
+    "id": 172,
+    "title": "Marketing ROI Calculator",
+    "url": "https://intranet.company.com/marketing/roi-calculator",
+    "type": "tool",
+    "audience": [
+      "marketing",
+      "finance"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Tool for calculating the return on investment for various marketing campaigns and initiatives. Helps justify marketing spend and optimize future strategy based on financial performance.",
+    "vendor_url": null
+  },
+  {
+    "id": 173,
+    "title": "Travel Expense Form",
+    "url": "https://intranet.company.com/finance/travel-expense-form",
+    "type": "link",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Form for submitting detailed travel expenses that may not be covered by the automated Concur system, such as mileage or specific per diems. Ensure you have all necessary receipts.",
+    "vendor_url": null
+  },
+  {
+    "id": 174,
+    "title": "Employee Grievance Policy",
+    "url": "https://intranet.company.com/hr/grievance-policy",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Procedure for employees to formally raise workplace concerns or complaints. Ensures a fair and timely resolution process for all personnel issues.",
+    "vendor_url": null
+  },
+  {
+    "id": 175,
+    "title": "Supply Chain Analytics Dashboard",
+    "url": "https://intranet.company.com/supplychain/analytics-dashboard",
+    "type": "app",
+    "audience": [
+      "supply chain",
+      "managers",
+      "operations"
+    ],
+    "owner_email": "supplychain@company.com",
+    "description": "Interactive dashboard providing key metrics on supply chain performance, including lead times, inventory turns, and supplier reliability. Helps identify inefficiencies and drive improvements.",
+    "vendor_url": null
+  },
+  {
+    "id": 176,
+    "title": "Legal Policy Review Request",
+    "url": "https://intranet.company.com/legal/policy-review-request",
+    "type": "link",
+    "audience": [
+      "managers",
+      "executive leadership"
+    ],
+    "owner_email": "legal@company.com",
+    "description": "Form for requesting a review or update of existing company policies to ensure legal compliance and relevance. Used by department heads to initiate policy changes.",
+    "vendor_url": null
+  },
+  {
+    "id": 177,
+    "title": "IT System Outage Notification",
+    "url": "https://status.company.com",
+    "type": "link",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Real-time status page for all company IT systems, providing updates on outages, scheduled maintenance, and service disruptions. Check here first for information on system accessibility issues.",
+    "vendor_url": null
+  },
+  {
+    "id": 178,
+    "title": "Sales Quota Setting Guidelines",
+    "url": "https://intranet.company.com/sales/quota-guidelines",
+    "type": "document",
+    "audience": [
+      "sales managers",
+      "sales ops"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "Methodology and best practices for establishing fair and achievable sales quotas for individual sales representatives and teams. Ensures motivation and alignment with company revenue goals.",
+    "vendor_url": null
+  },
+  {
+    "id": 179,
+    "title": "Product Recipe Scale-Up Manual",
+    "url": "https://intranet.company.com/r&d/scale-up-manual",
+    "type": "manual",
+    "audience": [
+      "r&d",
+      "operations"
+    ],
+    "owner_email": "r&d@company.com",
+    "description": "Guide detailing the process of transitioning a product recipe from laboratory to full-scale production, ensuring consistency and efficiency. Essential for successful commercialization of new products.",
+    "vendor_url": null
+  },
+  {
+    "id": 180,
+    "title": "ESG (Environmental, Social, Governance) Report",
+    "url": "https://intranet.company.com/sustainability/esg-report",
+    "type": "document",
+    "audience": [
+      "all employees",
+      "executive leadership",
+      "marketing"
+    ],
+    "owner_email": "sustainability@company.com",
+    "description": "Annual report detailing the company's performance and initiatives related to environmental impact, social responsibility, and corporate governance. Demonstrates commitment to sustainable business practices.",
+    "vendor_url": null
+  },
+  {
+    "id": 181,
+    "title": "Company Value Statements",
+    "url": "https://intranet.company.com/hr/values",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Official statements outlining the core values that guide our company's culture, decisions, and interactions. Helps everyone understand what drives our collective behavior and purpose.",
+    "vendor_url": null
+  },
+  {
+    "id": 182,
+    "title": "Procurement Software (e.g., Coupa)",
+    "url": "https://coupa.com/company",
+    "type": "tool",
+    "audience": [
+      "procurement",
+      "finance"
+    ],
+    "owner_email": "procurement@company.com",
+    "description": "Cloud-based platform for managing the entire procure-to-pay process, from requisitioning to invoicing. Streamlines purchasing, expense management, and supplier interactions.",
+    "vendor_url": "https://www.coupa.com"
+  },
+  {
+    "id": 183,
+    "title": "GDPR Training Module",
+    "url": "https://lms.company.com/gdpr-training",
+    "type": "manual",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "legal@company.com",
+    "description": "Mandatory e-learning module providing essential knowledge about GDPR principles and data protection best practices. Ensures all employees handle personal data compliantly.",
+    "vendor_url": null
+  },
+  {
+    "id": 184,
+    "title": "Inventory Management System (IMS)",
+    "url": "https://ims.company.com",
+    "type": "tool",
+    "audience": [
+      "supply chain",
+      "operations",
+      "finance"
+    ],
+    "owner_email": "operations@company.com",
+    "description": "Software for tracking stock levels, managing raw materials, and monitoring finished goods inventory across warehouses. Essential for optimizing stock, preventing shortages, and reducing waste.",
+    "vendor_url": null
+  },
+  {
+    "id": 185,
+    "title": "IT Incident Management Process",
+    "url": "https://intranet.company.com/it/incident-management",
+    "type": "document",
+    "audience": [
+      "it",
+      "managers"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Procedures for identifying, logging, diagnosing, and resolving IT incidents and service disruptions. Ensures rapid response and minimal impact on business operations.",
+    "vendor_url": null
+  },
+  {
+    "id": 186,
+    "title": "Global Sales Strategy",
+    "url": "https://intranet.company.com/sales/global-strategy",
+    "type": "document",
+    "audience": [
+      "executive leadership",
+      "sales managers"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "High-level document outlining the company's approach to expanding sales into international markets and achieving global revenue targets. Guides regional sales teams and market entry strategies.",
+    "vendor_url": null
+  },
+  {
+    "id": 187,
+    "title": "New Vendor Application Form",
+    "url": "https://intranet.company.com/procurement/new-vendor-form",
+    "type": "link",
+    "audience": [
+      "procurement",
+      "all employees"
+    ],
+    "owner_email": "procurement@company.com",
+    "description": "Form for submitting details of a prospective new supplier for consideration and onboarding. Ensures all necessary information is collected before engaging with a new vendor.",
+    "vendor_url": null
+  },
+  {
+    "id": 188,
+    "title": "Marketing Campaign Templates",
+    "url": "https://intranet.company.com/marketing/campaign-templates",
+    "type": "document",
+    "audience": [
+      "marketing"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Standardized templates for various marketing campaign elements, such as email newsletters, social media posts, and landing pages. Helps ensure consistency and efficiency in campaign execution.",
+    "vendor_url": null
+  },
+  {
+    "id": 189,
+    "title": "Annual Performance Review Form",
+    "url": "https://intranet.company.com/hr/annual-review-form",
+    "type": "link",
+    "audience": [
+      "all employees",
+      "managers"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "The official form used for annual performance evaluations, covering goals, achievements, and development areas. Both employees and managers will use this form during the review cycle.",
+    "vendor_url": null
+  },
+  {
+    "id": 190,
+    "title": "Food Product Traceability System",
+    "url": "https://traceability.company.com",
+    "type": "tool",
+    "audience": [
+      "operations",
+      "quality assurance",
+      "supply chain"
+    ],
+    "owner_email": "quality@company.com",
+    "description": "System for tracking raw materials and finished products throughout the supply chain, from source to consumer. Essential for managing recalls, ensuring food safety, and meeting regulatory requirements.",
+    "vendor_url": null
+  },
+  {
+    "id": 191,
+    "title": "Business Continuity Plan",
+    "url": "https://intranet.company.com/operations/bcp",
+    "type": "document",
+    "audience": [
+      "executive leadership",
+      "managers"
+    ],
+    "owner_email": "operations@company.com",
+    "description": "Plan outlining procedures to maintain essential business functions during and after a major disruption or disaster. Ensures resilience and rapid recovery to minimize operational impact.",
+    "vendor_url": null
+  },
+  {
+    "id": 192,
+    "title": "Accounts Receivable Policy",
+    "url": "https://intranet.company.com/finance/ar-policy",
+    "type": "document",
+    "audience": [
+      "finance",
+      "sales ops"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "Guidelines for managing customer invoices, collecting payments, and handling overdue accounts. Ensures efficient cash collection and reduces financial risk.",
+    "vendor_url": null
+  },
+  {
+    "id": 193,
+    "title": "Employee Training Request Form",
+    "url": "https://intranet.company.com/hr/training-request",
+    "type": "link",
+    "audience": [
+      "all employees",
+      "managers"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Form for employees to request specific training courses, workshops, or professional development opportunities. Helps align individual growth with business needs.",
+    "vendor_url": null
+  },
+  {
+    "id": 194,
+    "title": "Sales Region Performance Analysis",
+    "url": "https://intranet.company.com/sales/region-analysis",
+    "type": "document",
+    "audience": [
+      "sales managers",
+      "executive leadership"
+    ],
+    "owner_email": "salesops@company.com",
+    "description": "In-depth reports evaluating the performance of different sales regions, highlighting market trends, growth opportunities, and challenges. Informs strategic decisions for regional allocation and focus.",
+    "vendor_url": null
+  },
+  {
+    "id": 195,
+    "title": "Market Research Request Form",
+    "url": "https://intranet.company.com/marketing/research-request",
+    "type": "link",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "marketing@company.com",
+    "description": "Form for submitting requests to the marketing team for specific market research, consumer insights, or competitive intelligence. Helps inform strategic decisions across departments.",
+    "vendor_url": null
+  },
+  {
+    "id": 196,
+    "title": "Factory Tour Safety Briefing",
+    "url": "https://intranet.company.com/operations/factory-tour-safety",
+    "type": "document",
+    "audience": [
+      "all employees",
+      "visitors"
+    ],
+    "owner_email": "operations@company.com",
+    "description": "Safety instructions and guidelines for anyone visiting or touring the company's manufacturing facilities. Essential reading to ensure compliance with safety protocols on the factory floor.",
+    "vendor_url": null
+  },
+  {
+    "id": 197,
+    "title": "Sustainability Initiatives Dashboard",
+    "url": "https://intranet.company.com/sustainability/dashboard",
+    "type": "app",
+    "audience": [
+      "executive leadership",
+      "marketing",
+      "all employees"
+    ],
+    "owner_email": "sustainability@company.com",
+    "description": "Tracks progress on the company's environmental and social responsibility goals, including waste reduction, energy consumption, and community engagement. Provides transparency on our sustainability journey.",
+    "vendor_url": null
+  },
+  {
+    "id": 198,
+    "title": "IT Budget Overview",
+    "url": "https://intranet.company.com/it/budget-overview",
+    "type": "document",
+    "audience": [
+      "it",
+      "executive leadership"
+    ],
+    "owner_email": "it@company.com",
+    "description": "Summary of the annual budget allocated to the IT department, including spending on infrastructure, software, and personnel. Provides insight into IT investment priorities.",
+    "vendor_url": null
+  },
+  {
+    "id": 199,
+    "title": "Expense Category Codes",
+    "url": "https://intranet.company.com/finance/expense-codes",
+    "type": "document",
+    "audience": [
+      "all employees",
+      "finance"
+    ],
+    "owner_email": "finance@company.com",
+    "description": "List of standardized codes for categorizing business expenses in expense reports. Ensures proper accounting and financial tracking of all expenditures.",
+    "vendor_url": null
+  },
+  {
+    "id": 200,
+    "title": "Team Collaboration Guidelines",
+    "url": "https://intranet.company.com/hr/collaboration-guidelines",
+    "type": "document",
+    "audience": [
+      "all employees"
+    ],
+    "owner_email": "hr@company.com",
+    "description": "Best practices and tips for effective teamwork, communication, and project collaboration across departments. Helps foster a productive and harmonious work environment.",
+    "vendor_url": null
+  }
+]
