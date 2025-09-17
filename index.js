@@ -12,7 +12,7 @@ class EmbeddingsEvaluator {
     this.dataset = dataset;
     this.modelName = modelName;
     this.datasetPath = path.join(__dirname, dataset);
-    this.indexPath = path.join(this.datasetPath, modelName); // Use model name as directory
+    this.indexPath = path.join(this.datasetPath, 'embeddings'); // Use embeddings as directory
     this.index = null;
     this.modelConfig = null;
     this.metrics = new Metrics();
@@ -45,8 +45,8 @@ class EmbeddingsEvaluator {
     // Load model configuration first
     await this.loadModelConfig();
     
-    // Create or load the vector index from dataset folder with standard filename
-    const indexFileName = 'index.json';
+    // Create or load the vector index from dataset folder with model name as filename
+    const indexFileName = `${this.modelName}.json`;
     this.index = new LocalIndex(this.indexPath, indexFileName);
     
     // Check if index exists
