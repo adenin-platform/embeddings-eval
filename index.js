@@ -280,7 +280,7 @@ class EmbeddingsEvaluator {
       // Custom JSON replacer to prevent scientific notation for cost values
       const jsonReplacer = (key, value) => {
         if (key === 'cost' || key === 'totalCost') {
-          return typeof value === 'number' ? parseFloat(value.toFixed(8)) : value;
+          return typeof value === 'number' ? value.toFixed(8) : value;
         }
         return value;
       };
@@ -325,7 +325,7 @@ class EmbeddingsEvaluator {
       // Custom JSON replacer to prevent scientific notation for cost values
       const jsonReplacer = (key, value) => {
         if (key === 'cost' || key === 'totalCost') {
-          return typeof value === 'number' ? parseFloat(value.toFixed(8)) : value;
+          return typeof value === 'number' ? value.toFixed(8) : value;
         }
         return value;
       };
