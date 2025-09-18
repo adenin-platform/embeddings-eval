@@ -149,12 +149,12 @@ class EmbeddingsEvaluator {
           const rerankerInput = allResultsFormatted.slice(0, 10); // Take top 10 for reranking
           const rerankedResults = await this.rerankerService.rerank(query, rerankerInput, 10);
           
-          // Separate reranked results into above and below threshold based on original minSimilarity
+          // Separate reranked results into above and below threshold based on reranked scores
           const rerankedAboveThreshold = [];
           const rerankedBelowThreshold = [];
           
           rerankedResults.forEach(result => {
-            if (result.originalScore >= minSimilarity) {
+            if (result.score >= minSimilarity) {
               rerankedAboveThreshold.push(result);
             } else {
               rerankedBelowThreshold.push(result);
