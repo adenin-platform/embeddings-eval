@@ -1,0 +1,8 @@
+{
+  "cost": 0.10,
+  "vendor": "google",
+  "model": "gemini-embedding-001",
+  "minSimilarity": 0.66,
+  "generate_task_type": "RETRIEVAL_DOCUMENT",
+  "query_task_type": "QUESTION_ANSWERING"
+}

@@ -1,0 +1,80 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "title": "Introduction to Machine Learning",
+      "tokens": 59,
+      "runtime": 393,
+      "cost": "0.00000590"
+    },
+    {
+      "id": 2,
+      "title": "JavaScript for Beginners",
+      "tokens": 42,
+      "runtime": 266,
+      "cost": "0.00000420"
+    },
+    {
+      "id": 3,
+      "title": "Cloud Computing with AWS",
+      "tokens": 41,
+      "runtime": 266,
+      "cost": "0.00000410"
+    },
+    {
+      "id": 4,
+      "title": "Database Design Principles",
+      "tokens": 40,
+      "runtime": 246,
+      "cost": "0.00000400"
+    },
+    {
+      "id": 5,
+      "title": "React Native Mobile Development",
+      "tokens": 43,
+      "runtime": 279,
+      "cost": "0.00000430"
+    },
+    {
+      "id": 6,
+      "title": "Data Science with Python",
+      "tokens": 39,
+      "runtime": 244,
+      "cost": "0.00000390"
+    },
+    {
+      "id": 7,
+      "title": "Cybersecurity Fundamentals",
+      "tokens": 42,
+      "runtime": 237,
+      "cost": "0.00000420"
+    },
+    {
+      "id": 8,
+      "title": "UI/UX Design Principles",
+      "tokens": 40,
+      "runtime": 262,
+      "cost": "0.00000400"
+    },
+    {
+      "id": 9,
+      "title": "DevOps and Continuous Integration",
+      "tokens": 39,
+      "runtime": 248,
+      "cost": "0.00000390"
+    },
+    {
+      "id": 10,
+      "title": "Blockchain Technology Overview",
+      "tokens": 43,
+      "runtime": 258,
+      "cost": "0.00000430"
+    }
+  ],
+  "totals": {
+    "totalTokens": 428,
+    "totalRuntime": 2699,
+    "totalCost": "0.00004280",
+    "documentCount": 10
+  }
+}
