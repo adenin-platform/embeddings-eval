@@ -6,7 +6,7 @@
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/index.js",
-      "args": ["generate", "--dataset", "default", "--model", "gemini-semantic"],
+      "args": ["generate", "--dataset", "default", "--model", "voyageai"],
       "console": "integratedTerminal",
       "envFile": "${workspaceFolder}/.env",
       "skipFiles": ["<node_internals>/**"]

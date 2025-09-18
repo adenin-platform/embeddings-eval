@@ -1,14 +1,287 @@
-[
+[  
   {
-    "search": "bratwurst",
-    "expected": []
+    "search": "handbook",
+    "expected": [1]
+  },
+  {
+    "search": "benefits",
+    "expected": [10, 25, 130, 134]
+  },
+  {
+    "search": "payroll",
+    "expected": [55, 130]
+  },
+  {
+    "search": "jira",
+    "expected": [9]
+  },
+  {
+    "search": "sharepoint",
+    "expected": [11]
+  },
+  {
+    "search": "teams",
+    "expected": [30]
+  },
+  {
+    "search": "concur",
+    "expected": [5]
+  },
+  {
+    "search": "salesforce",
+    "expected": [2]
+  },
+  {
+    "search": "workday",
+    "expected": [25]
+  },
+  {
+    "search": "training",
+    "expected": [71, 85, 88, 121, 122, 129, 141, 166, 183, 193]
   },  
+  
   {
-    "search": "request pto",
+    "search": "employee directory",
+    "expected": [19]
+  },
+  {
+    "search": "org chart",
+    "expected": [6]
+  },
+  {
+    "search": "safety policy",
+    "expected": [61]
+  },
+  {
+    "search": "travel policy",
+    "expected": [15]
+  },
+  {
+    "search": "brand guidelines",
+    "expected": [13]
+  },
+  {
+    "search": "food safety",
+    "expected": [38]
+  },
+  {
+    "search": "performance review",
+    "expected": [41, 189]
+  },
+  {
+    "search": "meeting rooms",
+    "expected": [18]
+  },
+  {
+    "search": "it help",
+    "expected": [4]
+  },
+  {
+    "search": "product catalog",
+    "expected": [3]
+  },
+  
+  
+  {
+    "search": "code of conduct",
+    "expected": [29]
+  },
+  {
+    "search": "new employee onboarding",
+    "expected": [12]
+  },
+  {
+    "search": "power bi dashboards",
+    "expected": [20]
+  },
+  {
+    "search": "sales training modules",
+    "expected": [52]
+  },
+  {
+    "search": "marketing asset library",
+    "expected": [7]
+  },
+  {
+    "search": "emergency response plan",
+    "expected": [84]
+  },
+  {
+    "search": "quality management system",
+    "expected": [17]
+  },
+  {
+    "search": "supplier code conduct",
+    "expected": [163]
+  },
+  {
+    "search": "it security policy",
+    "expected": [21]
+  },
+  {
+    "search": "expense approval workflow",
+    "expected": [101]
+  },
+  
+  
+  {
+    "search": "how do I request time off",
     "expected": [36]
   },
   {
-    "search":  "order catering for a meeting" ,
+    "search": "I want to order catering for our team meeting",
     "expected": [18]
+  },
+  {
+    "search": "how to submit my expenses from the business trip",
+    "expected": [5, 101]
+  },
+  {
+    "search": "I need to find Sarah's phone number",
+    "expected": [19]
+  },
+  {
+    "search": "how do I book flights for next week's conference",
+    "expected": [113]
+  },
+  {
+    "search": "my laptop is broken, how can I get a new one",
+    "expected": [93]
+  },
+  {
+    "search": "someone got hurt in the warehouse, what should I do",
+    "expected": [97]
+  },
+  {
+    "search": "where can I see my latest paycheck",
+    "expected": [55, 130]
+  },
+  {
+    "search": "I need to order supplies for the department",
+    "expected": [98]
+  },
+  {
+    "search": "what are the ingredients in our chocolate bars",
+    "expected": [31]
+  },
+  {
+    "search": "I want to create a new advertising campaign",
+    "expected": [26]
+  },
+  {
+    "search": "how are my sales numbers looking this quarter",
+    "expected": [72, 160]
+  },
+  {
+    "search": "my team needs more budget for this project",
+    "expected": [111]
+  },
+  {
+    "search": "my manager is making inappropriate comments",
+    "expected": [51]
+  },
+  {
+    "search": "who does John report to",
+    "expected": [19, 6]
+  },
+  {
+    "search": "I need to work from home, how do I connect to the network",
+    "expected": [100]
+  },
+  {
+    "search": "I have an idea for a new product",
+    "expected": [87]
+  },
+  {
+    "search": "I need a contract template for this vendor",
+    "expected": [99]
+  },
+  {
+    "search": "is Christmas day a company holiday this year",
+    "expected": [57]
+  },
+  {
+    "search": "what are our competitors doing in the market",
+    "expected": [86]
+  },
+  {
+    "search": "I want to take a Excel course",
+    "expected": [193, 71]
+  },
+  {
+    "search": "how well is our supplier ABC Company performing",
+    "expected": [138]
+  },
+  {
+    "search": "I need the Q3 financial results for my presentation",
+    "expected": [76, 104]
+  },
+  {
+    "search": "what information needs to be on food packaging",
+    "expected": [164]
+  },
+  {
+    "search": "the production line machine needs repair",
+    "expected": [139]
+  },
+  {
+    "search": "I have an innovative idea that needs funding",
+    "expected": [165, 87]
+  },
+  {
+    "search": "our department might need an audit",
+    "expected": [168]
+  },
+  {
+    "search": "there's been a product recall, what do we communicate",
+    "expected": [54]
+  },
+  {
+    "search": "I'm meeting with a difficult customer tomorrow",
+    "expected": [150]
+  },
+  {
+    "search": "we need to change the recipe for our cookies",
+    "expected": [151]
+  },
+  {
+    "search": "I'm having problems with my supervisor",
+    "expected": [174]
+  },
+  {
+    "search": "how is the company doing on environmental goals",
+    "expected": [197]
+  },
+  {
+    "search": "I need data on what consumers want",
+    "expected": [195]
+  },
+  {
+    "search": "how much inventory do we have left",
+    "expected": [184]
+  },
+  {
+    "search": "what are the rules for product packaging design",
+    "expected": [53]
+  },
+  {
+    "search": "I'm leaving the company next week",
+    "expected": [153]
+  },
+  {
+    "search": "I need the company logo for a presentation",
+    "expected": [112, 7]
+  },
+  {
+    "search": "when will the next batch of products be ready",
+    "expected": [8]
+  },
+  {
+    "search": "I want to report unethical behavior anonymously",
+    "expected": [69]
+  },
+  {
+    "search": "what are customers saying about our new product",
+    "expected": [44]
   }
 ]

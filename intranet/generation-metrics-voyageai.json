@@ -1,0 +1,1410 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "title": "Employee Handbook",
+      "tokens": 36,
+      "runtime": 414,
+      "cost": "0.00000216"
+    },
+    {
+      "id": 2,
+      "title": "Salesforce CRM",
+      "tokens": 33,
+      "runtime": 251,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 3,
+      "title": "Product Catalog 2024",
+      "tokens": 37,
+      "runtime": 237,
+      "cost": "0.00000222"
+    },
+    {
+      "id": 4,
+      "title": "IT Help Desk Portal",
+      "tokens": 38,
+      "runtime": 236,
+      "cost": "0.00000228"
+    },
+    {
+      "id": 5,
+      "title": "Concur Expense Reporting",
+      "tokens": 33,
+      "runtime": 241,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 6,
+      "title": "Company Org Chart",
+      "tokens": 38,
+      "runtime": 242,
+      "cost": "0.00000228"
+    },
+    {
+      "id": 7,
+      "title": "Marketing Asset Library",
+      "tokens": 31,
+      "runtime": 239,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 8,
+      "title": "Production Schedule Dashboard",
+      "tokens": 32,
+      "runtime": 247,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 9,
+      "title": "Jira Project Management",
+      "tokens": 41,
+      "runtime": 258,
+      "cost": "0.00000246"
+    },
+    {
+      "id": 10,
+      "title": "Employee Benefits Guide",
+      "tokens": 33,
+      "runtime": 242,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 11,
+      "title": "SharePoint Document Management",
+      "tokens": 37,
+      "runtime": 239,
+      "cost": "0.00000222"
+    },
+    {
+      "id": 12,
+      "title": "New Employee Onboarding Checklist",
+      "tokens": 39,
+      "runtime": 237,
+      "cost": "0.00000234"
+    },
+    {
+      "id": 13,
+      "title": "Brand Guidelines",
+      "tokens": 35,
+      "runtime": 255,
+      "cost": "0.00000210"
+    },
+    {
+      "id": 14,
+      "title": "SAP ERP System",
+      "tokens": 34,
+      "runtime": 240,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 15,
+      "title": "Travel Policy",
+      "tokens": 34,
+      "runtime": 242,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 16,
+      "title": "Sales Playbook",
+      "tokens": 33,
+      "runtime": 243,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 17,
+      "title": "Quality Management System (QMS)",
+      "tokens": 39,
+      "runtime": 254,
+      "cost": "0.00000234"
+    },
+    {
+      "id": 18,
+      "title": "Meeting Room Booking System",
+      "tokens": 31,
+      "runtime": 243,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 19,
+      "title": "Employee Directory",
+      "tokens": 32,
+      "runtime": 246,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 20,
+      "title": "Power BI Dashboards",
+      "tokens": 40,
+      "runtime": 242,
+      "cost": "0.00000240"
+    },
+    {
+      "id": 21,
+      "title": "IT Security Policy",
+      "tokens": 36,
+      "runtime": 230,
+      "cost": "0.00000216"
+    },
+    {
+      "id": 22,
+      "title": "Product Development Process Manual",
+      "tokens": 38,
+      "runtime": 263,
+      "cost": "0.00000228"
+    },
+    {
+      "id": 23,
+      "title": "Supplier Portal",
+      "tokens": 33,
+      "runtime": 246,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 24,
+      "title": "GDPR Compliance Guide",
+      "tokens": 35,
+      "runtime": 237,
+      "cost": "0.00000210"
+    },
+    {
+      "id": 25,
+      "title": "Workday HCM",
+      "tokens": 38,
+      "runtime": 250,
+      "cost": "0.00000228"
+    },
+    {
+      "id": 26,
+      "title": "Marketing Campaign Request Form",
+      "tokens": 36,
+      "runtime": 254,
+      "cost": "0.00000216"
+    },
+    {
+      "id": 27,
+      "title": "Warehouse Management System (WMS)",
+      "tokens": 33,
+      "runtime": 245,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 28,
+      "title": "Financial Report Templates",
+      "tokens": 35,
+      "runtime": 240,
+      "cost": "0.00000210"
+    },
+    {
+      "id": 29,
+      "title": "Code of Conduct and Ethics",
+      "tokens": 34,
+      "runtime": 243,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 30,
+      "title": "Microsoft Teams",
+      "tokens": 37,
+      "runtime": 242,
+      "cost": "0.00000222"
+    },
+    {
+      "id": 31,
+      "title": "Product Specification Database",
+      "tokens": 35,
+      "runtime": 241,
+      "cost": "0.00000210"
+    },
+    {
+      "id": 32,
+      "title": "Supply Chain Visibility Dashboard",
+      "tokens": 39,
+      "runtime": 252,
+      "cost": "0.00000234"
+    },
+    {
+      "id": 33,
+      "title": "Annual Budget Templates",
+      "tokens": 33,
+      "runtime": 243,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 34,
+      "title": "Vendor Contract Management System",
+      "tokens": 35,
+      "runtime": 246,
+      "cost": "0.00000210"
+    },
+    {
+      "id": 35,
+      "title": "Social Media Guidelines",
+      "tokens": 36,
+      "runtime": 249,
+      "cost": "0.00000216"
+    },
+    {
+      "id": 36,
+      "title": "Leave Request System",
+      "tokens": 35,
+      "runtime": 244,
+      "cost": "0.00000210"
+    },
+    {
+      "id": 37,
+      "title": "Product Innovation Pipeline Tracker",
+      "tokens": 35,
+      "runtime": 264,
+      "cost": "0.00000210"
+    },
+    {
+      "id": 38,
+      "title": "Food Safety Manual",
+      "tokens": 34,
+      "runtime": 241,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 39,
+      "title": "Marketing Budget Tracker",
+      "tokens": 29,
+      "runtime": 240,
+      "cost": "0.00000174"
+    },
+    {
+      "id": 40,
+      "title": "Conflict of Interest Policy",
+      "tokens": 33,
+      "runtime": 232,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 41,
+      "title": "Performance Review System",
+      "tokens": 32,
+      "runtime": 243,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 42,
+      "title": "Sales Territory Map",
+      "tokens": 26,
+      "runtime": 240,
+      "cost": "0.00000156"
+    },
+    {
+      "id": 43,
+      "title": "Ingredient Sourcing Guidelines",
+      "tokens": 33,
+      "runtime": 251,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 44,
+      "title": "Customer Feedback Management System",
+      "tokens": 29,
+      "runtime": 237,
+      "cost": "0.00000174"
+    },
+    {
+      "id": 45,
+      "title": "Fixed Asset Register",
+      "tokens": 30,
+      "runtime": 254,
+      "cost": "0.00000180"
+    },
+    {
+      "id": 46,
+      "title": "Data Privacy Policy",
+      "tokens": 37,
+      "runtime": 242,
+      "cost": "0.00000222"
+    },
+    {
+      "id": 47,
+      "title": "Internal Job Postings",
+      "tokens": 29,
+      "runtime": 254,
+      "cost": "0.00000174"
+    },
+    {
+      "id": 48,
+      "title": "Market Research Database",
+      "tokens": 32,
+      "runtime": 230,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 49,
+      "title": "Logistics & Distribution Manual",
+      "tokens": 33,
+      "runtime": 275,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 50,
+      "title": "Expense Policy",
+      "tokens": 35,
+      "runtime": 234,
+      "cost": "0.00000210"
+    },
+    {
+      "id": 51,
+      "title": "Anti-Harassment Policy",
+      "tokens": 37,
+      "runtime": 242,
+      "cost": "0.00000222"
+    },
+    {
+      "id": 52,
+      "title": "Sales Training Modules",
+      "tokens": 33,
+      "runtime": 248,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 53,
+      "title": "Packaging Standards & Guidelines",
+      "tokens": 34,
+      "runtime": 250,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 54,
+      "title": "Crisis Communication Plan",
+      "tokens": 34,
+      "runtime": 237,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 55,
+      "title": "Payroll Information Portal",
+      "tokens": 33,
+      "runtime": 244,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 56,
+      "title": "Legal Request Form",
+      "tokens": 34,
+      "runtime": 235,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 57,
+      "title": "Company Holiday Schedule",
+      "tokens": 31,
+      "runtime": 221,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 58,
+      "title": "Sales Meeting Minutes Archive",
+      "tokens": 35,
+      "runtime": 271,
+      "cost": "0.00000210"
+    },
+    {
+      "id": 59,
+      "title": "R&D Lab Protocols",
+      "tokens": 37,
+      "runtime": 247,
+      "cost": "0.00000222"
+    },
+    {
+      "id": 60,
+      "title": "Campaign Performance Reporting Tool",
+      "tokens": 30,
+      "runtime": 230,
+      "cost": "0.00000180"
+    },
+    {
+      "id": 61,
+      "title": "Health & Safety Policy",
+      "tokens": 33,
+      "runtime": 234,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 62,
+      "title": "Procurement Policy",
+      "tokens": 32,
+      "runtime": 248,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 63,
+      "title": "Microsoft 365 Portal",
+      "tokens": 38,
+      "runtime": 236,
+      "cost": "0.00000228"
+    },
+    {
+      "id": 64,
+      "title": "Customer Service Knowledge Base",
+      "tokens": 30,
+      "runtime": 241,
+      "cost": "0.00000180"
+    },
+    {
+      "id": 65,
+      "title": "Ingredient Approval Process",
+      "tokens": 32,
+      "runtime": 238,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 66,
+      "title": "Trade Show & Event Calendar",
+      "tokens": 35,
+      "runtime": 251,
+      "cost": "0.00000210"
+    },
+    {
+      "id": 67,
+      "title": "Fleet Management System",
+      "tokens": 31,
+      "runtime": 252,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 68,
+      "title": "Accounts Payable Portal",
+      "tokens": 30,
+      "runtime": 250,
+      "cost": "0.00000180"
+    },
+    {
+      "id": 69,
+      "title": "Whistleblower Policy",
+      "tokens": 31,
+      "runtime": 283,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 70,
+      "title": "IT Asset Inventory",
+      "tokens": 34,
+      "runtime": 234,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 71,
+      "title": "Training & Development Catalog",
+      "tokens": 33,
+      "runtime": 237,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 72,
+      "title": "Sales Performance Reports",
+      "tokens": 32,
+      "runtime": 255,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 73,
+      "title": "New Product Launch Checklist",
+      "tokens": 31,
+      "runtime": 256,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 74,
+      "title": "Digital Asset Management (DAM)",
+      "tokens": 41,
+      "runtime": 243,
+      "cost": "0.00000246"
+    },
+    {
+      "id": 75,
+      "title": "Safety Data Sheets (SDS) Library",
+      "tokens": 38,
+      "runtime": 224,
+      "cost": "0.00000228"
+    },
+    {
+      "id": 76,
+      "title": "Quarterly Financial Statements",
+      "tokens": 31,
+      "runtime": 243,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 77,
+      "title": "Employee Referral Program",
+      "tokens": 29,
+      "runtime": 266,
+      "cost": "0.00000174"
+    },
+    {
+      "id": 78,
+      "title": "Sales Forecasting Tool",
+      "tokens": 33,
+      "runtime": 260,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 79,
+      "title": "Customer Relationship Management (CRM) Manual",
+      "tokens": 38,
+      "runtime": 229,
+      "cost": "0.00000228"
+    },
+    {
+      "id": 80,
+      "title": "Product Lifecycle Management (PLM) System",
+      "tokens": 38,
+      "runtime": 227,
+      "cost": "0.00000228"
+    },
+    {
+      "id": 81,
+      "title": "Digital Marketing Strategy",
+      "tokens": 38,
+      "runtime": 245,
+      "cost": "0.00000228"
+    },
+    {
+      "id": 82,
+      "title": "Supplier Auditing Process",
+      "tokens": 34,
+      "runtime": 229,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 83,
+      "title": "Annual Report Archive",
+      "tokens": 32,
+      "runtime": 250,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 84,
+      "title": "Emergency Response Plan",
+      "tokens": 36,
+      "runtime": 231,
+      "cost": "0.00000216"
+    },
+    {
+      "id": 85,
+      "title": "New Hire Training Schedule",
+      "tokens": 32,
+      "runtime": 254,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 86,
+      "title": "Competitive Analysis Reports",
+      "tokens": 30,
+      "runtime": 259,
+      "cost": "0.00000180"
+    },
+    {
+      "id": 87,
+      "title": "Product Development Idea Submission",
+      "tokens": 32,
+      "runtime": 239,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 88,
+      "title": "E-Learning Platform",
+      "tokens": 33,
+      "runtime": 232,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 89,
+      "title": "Food Packaging Regulations Guide",
+      "tokens": 27,
+      "runtime": 245,
+      "cost": "0.00000162"
+    },
+    {
+      "id": 90,
+      "title": "Audit Report Archive (Internal & External)",
+      "tokens": 36,
+      "runtime": 231,
+      "cost": "0.00000216"
+    },
+    {
+      "id": 91,
+      "title": "Shareholder Communications",
+      "tokens": 23,
+      "runtime": 235,
+      "cost": "0.00000138"
+    },
+    {
+      "id": 92,
+      "title": "Company News & Announcements",
+      "tokens": 31,
+      "runtime": 235,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 93,
+      "title": "IT Equipment Request Form",
+      "tokens": 36,
+      "runtime": 359,
+      "cost": "0.00000216"
+    },
+    {
+      "id": 94,
+      "title": "Sales Incentive Programs",
+      "tokens": 32,
+      "runtime": 237,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 95,
+      "title": "Product Recipe Management System",
+      "tokens": 28,
+      "runtime": 238,
+      "cost": "0.00000168"
+    },
+    {
+      "id": 96,
+      "title": "Public Relations Media Kit",
+      "tokens": 34,
+      "runtime": 234,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 97,
+      "title": "Safety Incident Reporting",
+      "tokens": 31,
+      "runtime": 229,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 98,
+      "title": "Purchase Order (PO) System",
+      "tokens": 34,
+      "runtime": 228,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 99,
+      "title": "Legal Document Templates",
+      "tokens": 42,
+      "runtime": 248,
+      "cost": "0.00000252"
+    },
+    {
+      "id": 100,
+      "title": "VPN Access Request",
+      "tokens": 34,
+      "runtime": 234,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 101,
+      "title": "Expense Approval Workflow",
+      "tokens": 33,
+      "runtime": 231,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 102,
+      "title": "Sales Lead Generation Guidelines",
+      "tokens": 29,
+      "runtime": 231,
+      "cost": "0.00000174"
+    },
+    {
+      "id": 103,
+      "title": "Product Quality Standards",
+      "tokens": 26,
+      "runtime": 245,
+      "cost": "0.00000156"
+    },
+    {
+      "id": 104,
+      "title": "Investor Relations Page",
+      "tokens": 31,
+      "runtime": 234,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 105,
+      "title": "Talent Acquisition Strategy",
+      "tokens": 33,
+      "runtime": 231,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 106,
+      "title": "Social Media Management Tool (e.g., Hootsuite)",
+      "tokens": 38,
+      "runtime": 246,
+      "cost": "0.00000228"
+    },
+    {
+      "id": 107,
+      "title": "Disciplinary Policy",
+      "tokens": 30,
+      "runtime": 262,
+      "cost": "0.00000180"
+    },
+    {
+      "id": 108,
+      "title": "Sales Performance Incentive Fund (SPIF) Requests",
+      "tokens": 43,
+      "runtime": 240,
+      "cost": "0.00000258"
+    },
+    {
+      "id": 109,
+      "title": "Sensory Evaluation Protocols",
+      "tokens": 35,
+      "runtime": 244,
+      "cost": "0.00000210"
+    },
+    {
+      "id": 110,
+      "title": "Vendor Onboarding Process",
+      "tokens": 35,
+      "runtime": 276,
+      "cost": "0.00000210"
+    },
+    {
+      "id": 111,
+      "title": "Budget Request Form",
+      "tokens": 30,
+      "runtime": 232,
+      "cost": "0.00000180"
+    },
+    {
+      "id": 112,
+      "title": "Brand Asset Request Form",
+      "tokens": 39,
+      "runtime": 234,
+      "cost": "0.00000234"
+    },
+    {
+      "id": 113,
+      "title": "Travel Booking Tool (e.g., Egencia)",
+      "tokens": 40,
+      "runtime": 244,
+      "cost": "0.00000240"
+    },
+    {
+      "id": 114,
+      "title": "Supply Chain Risk Management Framework",
+      "tokens": 32,
+      "runtime": 236,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 115,
+      "title": "IT Policy on Software Installation",
+      "tokens": 28,
+      "runtime": 235,
+      "cost": "0.00000168"
+    },
+    {
+      "id": 116,
+      "title": "Remote Work Policy",
+      "tokens": 29,
+      "runtime": 266,
+      "cost": "0.00000174"
+    },
+    {
+      "id": 117,
+      "title": "Sales Pitch Deck Templates",
+      "tokens": 31,
+      "runtime": 236,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 118,
+      "title": "New Ingredient Request Form",
+      "tokens": 32,
+      "runtime": 237,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 119,
+      "title": "Market Segmentation Analysis",
+      "tokens": 33,
+      "runtime": 238,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 120,
+      "title": "Accounts Receivable Dashboard",
+      "tokens": 30,
+      "runtime": 238,
+      "cost": "0.00000180"
+    },
+    {
+      "id": 121,
+      "title": "Sexual Harassment Training",
+      "tokens": 36,
+      "runtime": 232,
+      "cost": "0.00000216"
+    },
+    {
+      "id": 122,
+      "title": "Sales CRM Training Guide",
+      "tokens": 34,
+      "runtime": 241,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 123,
+      "title": "Manufacturing Best Practices",
+      "tokens": 31,
+      "runtime": 229,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 124,
+      "title": "Employee Engagement Survey Results",
+      "tokens": 32,
+      "runtime": 228,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 125,
+      "title": "Customer Onboarding Process",
+      "tokens": 36,
+      "runtime": 239,
+      "cost": "0.00000216"
+    },
+    {
+      "id": 126,
+      "title": "Budget Management Guidelines",
+      "tokens": 30,
+      "runtime": 229,
+      "cost": "0.00000180"
+    },
+    {
+      "id": 127,
+      "title": "New Product Idea Evaluation Form",
+      "tokens": 36,
+      "runtime": 264,
+      "cost": "0.00000216"
+    },
+    {
+      "id": 128,
+      "title": "Internal Communications Policy",
+      "tokens": 32,
+      "runtime": 232,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 129,
+      "title": "Office 365 Training Resources",
+      "tokens": 42,
+      "runtime": 230,
+      "cost": "0.00000252"
+    },
+    {
+      "id": 130,
+      "title": "Employee Self-Service Portal",
+      "tokens": 33,
+      "runtime": 244,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 131,
+      "title": "Sales Discount Approval Policy",
+      "tokens": 27,
+      "runtime": 256,
+      "cost": "0.00000162"
+    },
+    {
+      "id": 132,
+      "title": "Product Shelf-Life Testing Protocols",
+      "tokens": 32,
+      "runtime": 236,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 133,
+      "title": "Brand Strategy Document",
+      "tokens": 32,
+      "runtime": 238,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 134,
+      "title": "Employee Wellness Program",
+      "tokens": 31,
+      "runtime": 243,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 135,
+      "title": "Accounts Payable Policy",
+      "tokens": 28,
+      "runtime": 231,
+      "cost": "0.00000168"
+    },
+    {
+      "id": 136,
+      "title": "IT Disaster Recovery Plan",
+      "tokens": 33,
+      "runtime": 241,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 137,
+      "title": "Confidentiality Agreement Template",
+      "tokens": 35,
+      "runtime": 235,
+      "cost": "0.00000210"
+    },
+    {
+      "id": 138,
+      "title": "Supplier Performance Review Form",
+      "tokens": 33,
+      "runtime": 239,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 139,
+      "title": "Production Equipment Maintenance Schedule",
+      "tokens": 32,
+      "runtime": 238,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 140,
+      "title": "Product Portfolio Strategy",
+      "tokens": 34,
+      "runtime": 275,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 141,
+      "title": "Employee Code of Conduct Training",
+      "tokens": 34,
+      "runtime": 233,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 142,
+      "title": "Pricing Strategy Document",
+      "tokens": 32,
+      "runtime": 234,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 143,
+      "title": "R&D Budget Request Form",
+      "tokens": 36,
+      "runtime": 291,
+      "cost": "0.00000216"
+    },
+    {
+      "id": 144,
+      "title": "Marketing Data Analytics Platform (e.g., Google Analytics)",
+      "tokens": 37,
+      "runtime": 230,
+      "cost": "0.00000222"
+    },
+    {
+      "id": 145,
+      "title": "Employee Recognition Program",
+      "tokens": 25,
+      "runtime": 227,
+      "cost": "0.00000150"
+    },
+    {
+      "id": 146,
+      "title": "Financial Close Process Manual",
+      "tokens": 27,
+      "runtime": 238,
+      "cost": "0.00000162"
+    },
+    {
+      "id": 147,
+      "title": "IT Infrastructure Diagrams",
+      "tokens": 34,
+      "runtime": 246,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 148,
+      "title": "Supplier Diversity Program",
+      "tokens": 31,
+      "runtime": 234,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 149,
+      "title": "Crisis Management Team Contact List",
+      "tokens": 29,
+      "runtime": 254,
+      "cost": "0.00000174"
+    },
+    {
+      "id": 150,
+      "title": "Sales Battle Cards",
+      "tokens": 30,
+      "runtime": 229,
+      "cost": "0.00000180"
+    },
+    {
+      "id": 151,
+      "title": "Product Recipe Change Request Form",
+      "tokens": 26,
+      "runtime": 252,
+      "cost": "0.00000156"
+    },
+    {
+      "id": 152,
+      "title": "Annual Marketing Plan",
+      "tokens": 32,
+      "runtime": 240,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 153,
+      "title": "Employee Exit Interview Form",
+      "tokens": 30,
+      "runtime": 229,
+      "cost": "0.00000180"
+    },
+    {
+      "id": 154,
+      "title": "Cash Flow Forecasts",
+      "tokens": 33,
+      "runtime": 224,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 155,
+      "title": "Password Reset Tool",
+      "tokens": 28,
+      "runtime": 246,
+      "cost": "0.00000168"
+    },
+    {
+      "id": 156,
+      "title": "Company Value Proposition",
+      "tokens": 28,
+      "runtime": 235,
+      "cost": "0.00000168"
+    },
+    {
+      "id": 157,
+      "title": "Trade Marketing Guidelines",
+      "tokens": 29,
+      "runtime": 278,
+      "cost": "0.00000174"
+    },
+    {
+      "id": 158,
+      "title": "Environmental Policy",
+      "tokens": 30,
+      "runtime": 231,
+      "cost": "0.00000180"
+    },
+    {
+      "id": 159,
+      "title": "IT Change Management Process",
+      "tokens": 30,
+      "runtime": 233,
+      "cost": "0.00000180"
+    },
+    {
+      "id": 160,
+      "title": "Sales Performance Dashboard",
+      "tokens": 34,
+      "runtime": 228,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 161,
+      "title": "Product Costing Models",
+      "tokens": 32,
+      "runtime": 235,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 162,
+      "title": "Employee Relations Guidelines",
+      "tokens": 28,
+      "runtime": 253,
+      "cost": "0.00000168"
+    },
+    {
+      "id": 163,
+      "title": "Supplier Code of Conduct",
+      "tokens": 33,
+      "runtime": 246,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 164,
+      "title": "Food Product Labeling Guidelines",
+      "tokens": 36,
+      "runtime": 237,
+      "cost": "0.00000216"
+    },
+    {
+      "id": 165,
+      "title": "Innovation Fund Application",
+      "tokens": 32,
+      "runtime": 229,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 166,
+      "title": "IT Security Awareness Training",
+      "tokens": 30,
+      "runtime": 313,
+      "cost": "0.00000180"
+    },
+    {
+      "id": 167,
+      "title": "General Ledger (GL) System",
+      "tokens": 34,
+      "runtime": 235,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 168,
+      "title": "Internal Audit Report Request",
+      "tokens": 32,
+      "runtime": 230,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 169,
+      "title": "Career Development Resources",
+      "tokens": 40,
+      "runtime": 226,
+      "cost": "0.00000240"
+    },
+    {
+      "id": 170,
+      "title": "Sales Contract Templates",
+      "tokens": 28,
+      "runtime": 233,
+      "cost": "0.00000168"
+    },
+    {
+      "id": 171,
+      "title": "Production Capacity Planning Tool",
+      "tokens": 31,
+      "runtime": 242,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 172,
+      "title": "Marketing ROI Calculator",
+      "tokens": 29,
+      "runtime": 256,
+      "cost": "0.00000174"
+    },
+    {
+      "id": 173,
+      "title": "Travel Expense Form",
+      "tokens": 36,
+      "runtime": 242,
+      "cost": "0.00000216"
+    },
+    {
+      "id": 174,
+      "title": "Employee Grievance Policy",
+      "tokens": 28,
+      "runtime": 251,
+      "cost": "0.00000168"
+    },
+    {
+      "id": 175,
+      "title": "Supply Chain Analytics Dashboard",
+      "tokens": 32,
+      "runtime": 229,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 176,
+      "title": "Legal Policy Review Request",
+      "tokens": 30,
+      "runtime": 233,
+      "cost": "0.00000180"
+    },
+    {
+      "id": 177,
+      "title": "IT System Outage Notification",
+      "tokens": 37,
+      "runtime": 234,
+      "cost": "0.00000222"
+    },
+    {
+      "id": 178,
+      "title": "Sales Quota Setting Guidelines",
+      "tokens": 33,
+      "runtime": 225,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 179,
+      "title": "Product Recipe Scale-Up Manual",
+      "tokens": 34,
+      "runtime": 238,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 180,
+      "title": "ESG (Environmental, Social, Governance) Report",
+      "tokens": 38,
+      "runtime": 240,
+      "cost": "0.00000228"
+    },
+    {
+      "id": 181,
+      "title": "Company Value Statements",
+      "tokens": 31,
+      "runtime": 233,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 182,
+      "title": "Procurement Software (e.g., Coupa)",
+      "tokens": 40,
+      "runtime": 235,
+      "cost": "0.00000240"
+    },
+    {
+      "id": 183,
+      "title": "GDPR Training Module",
+      "tokens": 28,
+      "runtime": 220,
+      "cost": "0.00000168"
+    },
+    {
+      "id": 184,
+      "title": "Inventory Management System (IMS)",
+      "tokens": 35,
+      "runtime": 245,
+      "cost": "0.00000210"
+    },
+    {
+      "id": 185,
+      "title": "IT Incident Management Process",
+      "tokens": 31,
+      "runtime": 238,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 186,
+      "title": "Global Sales Strategy",
+      "tokens": 31,
+      "runtime": 240,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 187,
+      "title": "New Vendor Application Form",
+      "tokens": 32,
+      "runtime": 245,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 188,
+      "title": "Marketing Campaign Templates",
+      "tokens": 33,
+      "runtime": 246,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 189,
+      "title": "Annual Performance Review Form",
+      "tokens": 34,
+      "runtime": 360,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 190,
+      "title": "Food Product Traceability System",
+      "tokens": 36,
+      "runtime": 235,
+      "cost": "0.00000216"
+    },
+    {
+      "id": 191,
+      "title": "Business Continuity Plan",
+      "tokens": 31,
+      "runtime": 247,
+      "cost": "0.00000186"
+    },
+    {
+      "id": 192,
+      "title": "Accounts Receivable Policy",
+      "tokens": 27,
+      "runtime": 234,
+      "cost": "0.00000162"
+    },
+    {
+      "id": 193,
+      "title": "Employee Training Request Form",
+      "tokens": 27,
+      "runtime": 254,
+      "cost": "0.00000162"
+    },
+    {
+      "id": 194,
+      "title": "Sales Region Performance Analysis",
+      "tokens": 34,
+      "runtime": 227,
+      "cost": "0.00000204"
+    },
+    {
+      "id": 195,
+      "title": "Market Research Request Form",
+      "tokens": 30,
+      "runtime": 261,
+      "cost": "0.00000180"
+    },
+    {
+      "id": 196,
+      "title": "Factory Tour Safety Briefing",
+      "tokens": 32,
+      "runtime": 259,
+      "cost": "0.00000192"
+    },
+    {
+      "id": 197,
+      "title": "Sustainability Initiatives Dashboard",
+      "tokens": 33,
+      "runtime": 247,
+      "cost": "0.00000198"
+    },
+    {
+      "id": 198,
+      "title": "IT Budget Overview",
+      "tokens": 30,
+      "runtime": 239,
+      "cost": "0.00000180"
+    },
+    {
+      "id": 199,
+      "title": "Expense Category Codes",
+      "tokens": 26,
+      "runtime": 237,
+      "cost": "0.00000156"
+    },
+    {
+      "id": 200,
+      "title": "Team Collaboration Guidelines",
+      "tokens": 28,
+      "runtime": 255,
+      "cost": "0.00000168"
+    }
+  ],
+  "totals": {
+    "totalTokens": 6597,
+    "totalRuntime": 48866,
+    "totalCost": "0.00039582",
+    "documentCount": 200
+  }
+}

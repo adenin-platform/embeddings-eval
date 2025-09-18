@@ -1,6 +1,6 @@
 {
-  "cost": 0.10,
+  "cost": 0.06,
   "vendor": "voyageai",
-  "model": "voyage-3",
-  "minSimilarity": 0.4
+  "model": "voyage-3.5",
+  "minSimilarity": 0.5
 }
