@@ -41,3 +41,27 @@ const test4Found = [2, 5, 6, 1, 3];
 const test4Expected = [2, 5, 6];
 const result4 = Validator.validateResults(test4Found, test4Expected);
 console.log(`Test 4 - Exact order at start: ${result4.isValid ? '✅' : '❌'} ${result4.message}`);
+
+// Test 5: Empty found results but expecting some
+const test5Found = [];
+const test5Expected = [1, 2];
+const result5 = Validator.validateResults(test5Found, test5Expected);
+console.log(`Test 5 - Empty found, expecting some: ${result5.isValid ? '✅' : '❌'} ${result5.message}`);
+
+// Test 6: Duplicates in expected and found
+const test6Found = [1, 2, 3, 2, 1];
+const test6Expected = [1, 2, 1];
+const result6 = Validator.validateResults(test6Found, test6Expected);
+console.log(`Test 6 - Duplicates: ${result6.isValid ? '✅' : '❌'} ${result6.message}`);
+
+// Test 7: Expected ID at the end
+const test7Found = [1, 2, 3, 4, 5];
+const test7Expected = [5];
+const result7 = Validator.validateResults(test7Found, test7Expected);
+console.log(`Test 7 - Expected at end: ${result7.isValid ? '✅' : '❌'} ${result7.message}`);
+
+// Test 8: Multiple missing IDs
+const test8Found = [1, 3, 5];
+const test8Expected = [1, 2, 4, 6];
+const result8 = Validator.validateResults(test8Found, test8Expected);
+console.log(`Test 8 - Multiple missing: ${result8.isValid ? '✅' : '❌'} ${result8.message}`);
