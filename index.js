@@ -119,7 +119,15 @@ class EmbeddingsEvaluator {
         console.log(`🔍 Filtered ${results.length - filteredResults.length} results below minSimilarity threshold (${minSimilarity})`);
       }
       
-      // Convert to searchResults format first
+      // Convert all results to searchResults format for potential reranking
+      const allResultsFormatted = results.map(result => ({
+        id: result.item.metadata.id,
+        score: result.score,
+        title: result.item.metadata.title,
+        description: result.item.metadata.description
+      }));
+      
+      // Convert above-threshold results for non-reranked scenarios
       let candidateResults = filteredResults.map(result => ({
         id: result.item.metadata.id,
         score: result.score,
@@ -127,15 +135,36 @@ class EmbeddingsEvaluator {
         description: result.item.metadata.description
       }));
       
+      let belowThresholdTop3 = belowThresholdResults.slice(0, 3).map(result => ({
+        id: result.item.metadata.id,
+        score: result.score,
+        title: result.item.metadata.title,
+        description: result.item.metadata.description
+      }));
+      
       // Apply reranking if configured
-      if (this.rerankerService && candidateResults.length > 0) {
+      if (this.rerankerService && allResultsFormatted.length > 0) {
         try {
-          // Send top 10 results (or all available) to reranker, ordered descending by similarity
-          const rerankerInput = candidateResults.slice(0, 10); // Take top 10 for reranking
+          // Send all results to reranker to get consistent reranked scores
+          const rerankerInput = allResultsFormatted.slice(0, 10); // Take top 10 for reranking
           const rerankedResults = await this.rerankerService.rerank(query, rerankerInput, 10);
           
+          // Separate reranked results into above and below threshold based on original minSimilarity
+          const rerankedAboveThreshold = [];
+          const rerankedBelowThreshold = [];
+          
+          rerankedResults.forEach(result => {
+            if (result.originalScore >= minSimilarity) {
+              rerankedAboveThreshold.push(result);
+            } else {
+              rerankedBelowThreshold.push(result);
+            }
+          });
+          
           // Use reranked results as the main results
-          candidateResults = rerankedResults;
+          candidateResults = rerankedAboveThreshold;
+          belowThresholdTop3 = rerankedBelowThreshold.slice(0, 3);
+          
         } catch (error) {
           console.error('⚠️  Reranking failed, falling back to similarity-based results:', error.message);
           // Continue with original results if reranking fails
@@ -147,14 +176,6 @@ class EmbeddingsEvaluator {
       const finalResults = minSimilarity > 0 ? candidateResults : candidateResults.slice(0, topK);
       
       const searchResults = finalResults;
-      
-      // Get top 3 results below threshold for display
-      const belowThresholdTop3 = belowThresholdResults.slice(0, 3).map(result => ({
-        id: result.item.metadata.id,
-        score: result.score,
-        title: result.item.metadata.title,
-        description: result.item.metadata.description
-      }));
       
       // Return results with timing information
       return {
@@ -229,7 +250,9 @@ class EmbeddingsEvaluator {
       if (belowThresholdResults && belowThresholdResults.length > 0) {
         console.log(`Next results below threshold:`);
         belowThresholdResults.forEach((result, index) => {
-          console.log(`  ${searchResults.length + index + 1}. [ID: ${result.id}, Score: ${result.score.toFixed(4)}] ${result.title}`);
+          const scoreLabel = result.reranked ? 'Relevance' : 'Score';
+          const originalScoreInfo = result.reranked && result.originalScore ? ` (orig: ${result.originalScore.toFixed(4)})` : '';
+          console.log(`  ${searchResults.length + index + 1}. [ID: ${result.id}, ${scoreLabel}: ${result.score.toFixed(4)}${originalScoreInfo}] ${result.title}`);
           console.log(`     ${result.description.substring(0, 100)}...`);
         });
       }
