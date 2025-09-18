@@ -219,7 +219,9 @@ class EmbeddingsEvaluator {
       console.log(`Results above threshold (${searchResults.length}):`);
       
       searchResults.forEach((result, index) => {
-        console.log(`  ${index + 1}. [ID: ${result.id}, Score: ${result.score.toFixed(4)}] ${result.title}`);
+        const scoreLabel = result.reranked ? 'Relevance' : 'Score';
+        const originalScoreInfo = result.reranked && result.originalScore ? ` (orig: ${result.originalScore.toFixed(4)})` : '';
+        console.log(`  ${index + 1}. [ID: ${result.id}, ${scoreLabel}: ${result.score.toFixed(4)}${originalScoreInfo}] ${result.title}`);
         console.log(`     ${result.description.substring(0, 100)}...`);
       });
       
