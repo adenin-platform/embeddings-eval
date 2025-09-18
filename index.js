@@ -6,6 +6,7 @@ const EmbeddingService = require('./lib/embedding');
 const Generator = require('./lib/generate');
 const Validator = require('./lib/validate');
 const Metrics = require('./lib/metrics');
+const RerankerService = require('./lib/reranker');
 
 class EmbeddingsEvaluator {
   constructor(dataset = 'default', modelName = 'default') {
@@ -25,7 +26,12 @@ class EmbeddingsEvaluator {
       const modelConfigPath = path.join(__dirname, `${this.modelName}-model.json`);
       const modelConfigData = await fs.readFile(modelConfigPath, 'utf8');
       this.modelConfig = JSON.parse(modelConfigData);
-      console.log(`📄 Loaded model '${this.modelName}': ${this.modelConfig.vendor}/${this.modelConfig.model} (cost: $${this.modelConfig.cost}/1M tokens, minSimilarity: ${this.modelConfig.minSimilarity || 0.0})`);
+      
+      // Check for reranker configuration
+      const hasReranker = this.modelConfig['reranker-vendor'] && this.modelConfig['reranker-model'];
+      const rerankerInfo = hasReranker ? `, reranker: ${this.modelConfig['reranker-vendor']}/${this.modelConfig['reranker-model']}` : '';
+      
+      console.log(`📄 Loaded model '${this.modelName}': ${this.modelConfig.vendor}/${this.modelConfig.model} (cost: $${this.modelConfig.cost}/1M tokens, minSimilarity: ${this.modelConfig.minSimilarity || 0.0}${rerankerInfo})`);
       
       // Check if API key is provided for the vendor
       const apiKeyName = `${this.modelConfig.vendor.toUpperCase()}_API_KEY`;
@@ -35,6 +41,24 @@ class EmbeddingsEvaluator {
       
       this.apiKey = process.env[apiKeyName];
       this.embeddingService = new EmbeddingService(this.apiKey, this.modelConfig);
+      
+      // Initialize reranker service if configured
+      if (hasReranker) {
+        // Check if reranker API key is provided (may be same as embedding service)
+        const rerankerApiKeyName = `${this.modelConfig['reranker-vendor'].toUpperCase()}_API_KEY`;
+        if (!process.env[rerankerApiKeyName]) {
+          throw new Error(`${rerankerApiKeyName} environment variable is required for reranker. Please set it in a .env file.`);
+        }
+        
+        const rerankerApiKey = process.env[rerankerApiKeyName];
+        const rerankerConfig = {
+          vendor: this.modelConfig['reranker-vendor'],
+          model: this.modelConfig['reranker-model']
+        };
+        
+        this.rerankerService = new RerankerService(rerankerApiKey, rerankerConfig);
+        console.log(`🔄 Reranker service initialized: ${rerankerConfig.vendor}/${rerankerConfig.model}`);
+      }
     } catch (error) {
       console.error(`❌ Error loading model config for '${this.modelName}':`, error.message);
       throw error;
@@ -82,8 +106,8 @@ class EmbeddingsEvaluator {
       const endTime = Date.now();
       const runtime = endTime - startTime;
       
-      // Search the index - get more results initially to account for filtering
-      const searchLimit = topK * 3; // Get 3x more results to have enough after filtering
+      // Search the index - get more results initially to account for filtering and reranking
+      const searchLimit = this.rerankerService ? Math.max(topK * 10, 20) : topK * 3; // Get more results for reranking
       const results = await this.index.queryItems(queryEmbedding, searchLimit);
       
       // Filter results based on minSimilarity threshold
@@ -91,20 +115,38 @@ class EmbeddingsEvaluator {
       const filteredResults = results.filter(result => result.score >= minSimilarity);
       const belowThresholdResults = results.filter(result => result.score < minSimilarity);
       
-      // When filtering by minSimilarity, show all results above threshold
-      // Otherwise, limit to topK results
-      const finalResults = minSimilarity > 0 ? filteredResults : filteredResults.slice(0, topK);
-      
       if (minSimilarity > 0 && filteredResults.length < results.length) {
         console.log(`🔍 Filtered ${results.length - filteredResults.length} results below minSimilarity threshold (${minSimilarity})`);
       }
       
-      const searchResults = finalResults.map(result => ({
+      // Convert to searchResults format first
+      let candidateResults = filteredResults.map(result => ({
         id: result.item.metadata.id,
         score: result.score,
         title: result.item.metadata.title,
         description: result.item.metadata.description
       }));
+      
+      // Apply reranking if configured
+      if (this.rerankerService && candidateResults.length > 0) {
+        try {
+          // Send top 10 results (or all available) to reranker, ordered descending by similarity
+          const rerankerInput = candidateResults.slice(0, 10); // Take top 10 for reranking
+          const rerankedResults = await this.rerankerService.rerank(query, rerankerInput, 10);
+          
+          // Use reranked results as the main results
+          candidateResults = rerankedResults;
+        } catch (error) {
+          console.error('⚠️  Reranking failed, falling back to similarity-based results:', error.message);
+          // Continue with original results if reranking fails
+        }
+      }
+      
+      // When filtering by minSimilarity, show all reranked results above threshold
+      // Otherwise, limit to topK results
+      const finalResults = minSimilarity > 0 ? candidateResults : candidateResults.slice(0, topK);
+      
+      const searchResults = finalResults;
       
       // Get top 3 results below threshold for display
       const belowThresholdTop3 = belowThresholdResults.slice(0, 3).map(result => ({
@@ -177,7 +219,9 @@ class EmbeddingsEvaluator {
       console.log(`Results above threshold (${searchResults.length}):`);
       
       searchResults.forEach((result, index) => {
-        console.log(`  ${index + 1}. [ID: ${result.id}, Score: ${result.score.toFixed(4)}] ${result.title}`);
+        const scoreLabel = result.reranked ? 'Relevance' : 'Score';
+        const originalScoreInfo = result.reranked && result.originalScore ? ` (orig: ${result.originalScore.toFixed(4)})` : '';
+        console.log(`  ${index + 1}. [ID: ${result.id}, ${scoreLabel}: ${result.score.toFixed(4)}${originalScoreInfo}] ${result.title}`);
         console.log(`     ${result.description.substring(0, 100)}...`);
       });
       
