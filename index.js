@@ -75,7 +75,7 @@ class EmbeddingsEvaluator {
       const startTime = Date.now();
       
       // Generate embedding for the search query
-      const result = await this.embeddingService.generateEmbedding(query);
+      const result = await this.embeddingService.generateEmbedding(query, 'query');
       const queryEmbedding = result.embedding;
       const tokens = result.tokens; // Use API-provided token count
       

@@ -13,7 +13,7 @@ This application supports multiple datasets with different embedding models:
 
 The application:
 1. Reads content from `{dataset}/content.json` (array of objects with `title` and `description` properties)
-2. Uses [Vectra](https://github.com/Stevenic/vectra) with configurable OpenAI embedding models to compute embeddings for `title + " " + description`
+2. Uses [Vectra](https://github.com/Stevenic/vectra) with configurable embedding models (OpenAI, Google AI, SiliconFlow) to compute embeddings for `title + " " + description`
 3. Loads evaluation data from `{dataset}/eval.json` (array of objects with `search` property)
 4. Stores embeddings in `{dataset}/embeddings/` folder with standard index structure
 5. Searches for each search term and returns the top 3 most relevant results
@@ -25,8 +25,14 @@ Each model file contains embedding model settings and search behavior configurat
 
 - **default-model.json**: OpenAI text-embedding-3-small model (`minSimilarity: 0.4`)
 - **oa3large-model.json**: OpenAI text-embedding-3-large model (`minSimilarity: 0.5`)
+- **google-model.json**: Google text-embedding-004 model with task types (`minSimilarity: 0.4`)
+- **sf-model.json**: SiliconFlow BAAI/bge-large-en-v1.5 model (`minSimilarity: 0.4`)
 
 The `minSimilarity` threshold filters search results to only return matches with similarity scores >= the threshold value. Configuration is now embedded directly in the model files.
+
+For Google models, additional parameters are supported:
+- `generate_task_type`: Task type for content embedding generation (e.g., "RETRIEVAL_DOCUMENT")
+- `query_task_type`: Task type for search query embedding (e.g., "RETRIEVAL_QUERY")
 
 ## Setup
 
@@ -35,9 +41,16 @@ The `minSimilarity` threshold filters search results to only return matches with
 npm install
 ```
 
-2. Create a `.env` file with your OpenAI API key:
+2. Create a `.env` file with your API key(s):
 ```
+# For OpenAI models
 OPENAI_API_KEY=your_openai_api_key_here
+
+# For Google AI models  
+GOOGLE_API_KEY=your_google_ai_api_key_here
+
+# For SiliconFlow models
+SF_API_KEY=your_siliconflow_api_key_here
 ```
 
 ## Usage
@@ -54,7 +67,9 @@ All commands support the `--dataset` parameter to specify which dataset to work 
 
 **Models:**
 - `--model default` (default): OpenAI text-embedding-3-small model (minSimilarity: 0.4)
-- `--model oa3large`: OpenAI text-embedding-3-large model (minSimilarity: 0.5)
+- `--model oa3large`: OpenAI text-embedding-3-large model (minSimilarity: 0.5)  
+- `--model google`: Google text-embedding-004 model with task types (minSimilarity: 0.4)
+- `--model sf`: SiliconFlow BAAI/bge-large-en-v1.5 model (minSimilarity: 0.4)
 
 ### Two-Step Process (Recommended)
 
@@ -63,8 +78,8 @@ All commands support the `--dataset` parameter to specify which dataset to work 
 npm run generate -- --dataset default --model default
 # or
 npm run generate -- --dataset courses-de --model oa3large
-# or
-npm run generate -- --dataset intranet --model default
+# or  
+npm run generate -- --dataset intranet --model google
 ```
 
 2. **Run evaluation for search terms:**
@@ -73,6 +88,8 @@ npm run evaluate -- --dataset default --model default
 # or  
 npm run evaluate -- --dataset courses-de --model oa3large
 # or
+npm run evaluate -- --dataset intranet --model google
+```
 npm run evaluate -- --dataset intranet --model default
 ```
 
@@ -84,7 +101,7 @@ npm start -- --dataset default --model default
 # or
 npm start -- --dataset courses-de --model oa3large
 # or
-npm start -- --dataset intranet --model default
+npm start -- --dataset intranet --model google
 ```
 
 ### Command Details
@@ -98,7 +115,7 @@ npm start -- --dataset intranet --model default
 **Note:** The `--` separator is required when passing parameters through npm scripts. Alternatively, you can run the commands directly:
 ```bash
 node index.js generate --dataset courses-de --model oa3large
-node index.js evaluate --dataset default --model default
+node index.js evaluate --dataset default --model google
 node index.js --dataset default --model default  # full pipeline
 ```
 
