@@ -21,8 +21,7 @@ for (let i = 0; i < args.length; i++) {
 
 // Validate arguments
 if (!inputFile || !outputFile) {
-    console.error('Usage: node script.js --in <input_file> --out <output_file>');
-    console.error('Example: node script.js --in data.json --out filtered.json');
+    console.error('Usage: node textonly.js --in <input_file> --out <output_file>');
     process.exit(1);
 }
 
