@@ -158,6 +158,7 @@ class EmbeddingsEvaluator {
       }));
       
       // Apply reranking if configured
+      let rerankerCost = 0;
       if (this.rerankerService && allResultsFormatted.length > 0) {
         try {
           // Send all results to reranker to get consistent reranked scores
@@ -168,7 +169,7 @@ class EmbeddingsEvaluator {
           const rerankerRuntime = Date.now() - rerankerStartTime;
           
           // Calculate reranker cost and create metrics
-          const rerankerCost = calculateRerankerCost(
+          rerankerCost = calculateRerankerCost(
             this.rerankerConfig.vendor, 
             1, 
             rerankerInput.length
@@ -197,6 +198,7 @@ class EmbeddingsEvaluator {
         } catch (error) {
           console.error('⚠️  Reranking failed, falling back to similarity-based results:', error.message);
           // Continue with original results if reranking fails
+          rerankerCost = 0; // Reset cost on failure
         }
       }
       
@@ -209,14 +211,7 @@ class EmbeddingsEvaluator {
       // Calculate embedding cost
       const embeddingCost = this.embeddingService.calculateCost(tokens);
       
-      // Get reranker cost from the most recent reranker operation (if any)
-      let rerankerCost = 0;
-      if (this.rerankerService && this.metrics.rerankerMetrics.length > 0) {
-        // Get the cost from the last reranker operation added during this search
-        const lastRerankerMetric = this.metrics.rerankerMetrics[this.metrics.rerankerMetrics.length - 1];
-        rerankerCost = lastRerankerMetric.cost;
-      }
-      
+      // rerankerCost is already calculated above during reranking process
       const totalCost = embeddingCost + rerankerCost;
       
       // Return results with timing and cost information
