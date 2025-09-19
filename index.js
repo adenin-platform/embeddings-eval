@@ -20,6 +20,8 @@ class EmbeddingsEvaluator {
     this.metrics = new Metrics();
     this.apiKey = null;
     this.embeddingService = null;
+    this.hasLegacyReranker = false;
+    this.hasNewReranker = false;
   }
 
   async loadModelConfig() {
@@ -28,9 +30,17 @@ class EmbeddingsEvaluator {
       const modelConfigData = await fs.readFile(modelConfigPath, 'utf8');
       this.modelConfig = JSON.parse(modelConfigData);
       
-      // Check for reranker configuration
-      const hasReranker = this.modelConfig['reranker-vendor'] && this.modelConfig['reranker-model'];
-      const rerankerInfo = hasReranker ? `, reranker: ${this.modelConfig['reranker-vendor']}/${this.modelConfig['reranker-model']}` : '';
+      // Check for reranker configuration (support both legacy and new formats)
+      this.hasLegacyReranker = this.modelConfig['reranker-vendor'] && this.modelConfig['reranker-model'];
+      this.hasNewReranker = this.modelConfig.reranker && this.modelConfig.reranker.vendor && this.modelConfig.reranker.model;
+      const hasReranker = this.hasLegacyReranker || this.hasNewReranker;
+      
+      let rerankerInfo = '';
+      if (this.hasNewReranker) {
+        rerankerInfo = `, reranker: ${this.modelConfig.reranker.vendor}/${this.modelConfig.reranker.model}`;
+      } else if (this.hasLegacyReranker) {
+        rerankerInfo = `, reranker: ${this.modelConfig['reranker-vendor']}/${this.modelConfig['reranker-model']}`;
+      }
       
       console.log(`📄 Loaded model '${this.modelName}': ${this.modelConfig.vendor}/${this.modelConfig.model} (cost: $${this.modelConfig.cost}/1M tokens, minSimilarity: ${this.modelConfig.minSimilarity || 0.0}${rerankerInfo})`);
       
@@ -45,8 +55,14 @@ class EmbeddingsEvaluator {
       
       // Initialize reranker service if configured
       if (hasReranker) {
-        // Use enhanced requirement checking for better error messages
-        const rerankerCheck = checkRerankerRequirements(this.modelConfig);
+        // Use enhanced requirement checking for better error messages (convert to legacy format for compatibility)
+        const legacyConfig = this.hasNewReranker ? {
+          ...this.modelConfig,
+          'reranker-vendor': this.modelConfig.reranker.vendor,
+          'reranker-model': this.modelConfig.reranker.model
+        } : this.modelConfig;
+        
+        const rerankerCheck = checkRerankerRequirements(legacyConfig);
         
         if (!rerankerCheck.isValid) {
           const errorMessage = [
@@ -56,10 +72,14 @@ class EmbeddingsEvaluator {
           throw new Error(errorMessage);
         }
         
-        const rerankerApiKey = process.env[`${this.modelConfig['reranker-vendor'].toUpperCase()}_API_KEY`];
+        // Get reranker vendor and model from appropriate format
+        const rerankerVendor = this.hasNewReranker ? this.modelConfig.reranker.vendor : this.modelConfig['reranker-vendor'];
+        const rerankerModel = this.hasNewReranker ? this.modelConfig.reranker.model : this.modelConfig['reranker-model'];
+        
+        const rerankerApiKey = process.env[`${rerankerVendor.toUpperCase()}_API_KEY`];
         const rerankerConfig = {
-          vendor: this.modelConfig['reranker-vendor'],
-          model: this.modelConfig['reranker-model']
+          vendor: rerankerVendor,
+          model: rerankerModel
         };
         
         this.rerankerService = new RerankerService(rerankerApiKey, rerankerConfig);
@@ -159,15 +179,18 @@ class EmbeddingsEvaluator {
           const rerankerRuntime = Date.now() - rerankerStartTime;
           
           // Calculate reranker cost and create metrics
+          const rerankerVendor = this.hasNewReranker ? this.modelConfig.reranker.vendor : this.modelConfig['reranker-vendor'];
+          const rerankerModel = this.hasNewReranker ? this.modelConfig.reranker.model : this.modelConfig['reranker-model'];
+          
           const rerankerCost = calculateRerankerCost(
-            this.modelConfig['reranker-vendor'], 
+            rerankerVendor, 
             1, 
             rerankerInput.length
           );
           
           const rerankerMetrics = createRerankerMetrics({
-            vendor: this.modelConfig['reranker-vendor'],
-            model: this.modelConfig['reranker-model'],
+            vendor: rerankerVendor,
+            model: rerankerModel,
             query,
             documentsCount: rerankerInput.length,
             runtime: rerankerRuntime,
