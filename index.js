@@ -166,24 +166,52 @@ class EmbeddingsEvaluator {
           const rerankerInput = allResultsFormatted.slice(0, 10); // Take top 10 for reranking
           
           const rerankerStartTime = Date.now();
-          const rerankedResults = await this.rerankerService.rerank(query, rerankerInput, 10);
+          const rerankerResponse = await this.rerankerService.rerank(query, rerankerInput, 10);
           const rerankerRuntime = Date.now() - rerankerStartTime;
           
-          // Calculate reranker cost and estimated tokens
+          // Handle different response formats from reranker
+          let rerankedResults, apiTokens;
+          if (Array.isArray(rerankerResponse)) {
+            // Old format: reranker returned array directly
+            rerankedResults = rerankerResponse;
+            apiTokens = 0;
+          } else if (rerankerResponse.results) {
+            // New format: reranker returned object with results and tokens
+            rerankedResults = rerankerResponse.results;
+            apiTokens = rerankerResponse.tokens || 0;
+          } else {
+            // Fallback
+            rerankedResults = rerankerResponse;
+            apiTokens = 0;
+          }
+          
+          // Use actual tokens from API if available, otherwise estimate only for specific vendors
+          if (apiTokens > 0) {
+            // Use real tokens from API
+            rerankerTokens = apiTokens;
+          } else {
+            // Only estimate for vendors that don't provide token counts (like Gemini)
+            // For most rerankers, leave tokens as 0 since they use different pricing models
+            if (this.rerankerConfig.vendor === 'google') {
+              // Estimate tokens only for Gemini which doesn't provide token counts
+              const queryTokens = Math.ceil(query.length / 4);
+              const documentTokens = rerankerInput.reduce((sum, doc) => {
+                const text = `${doc.title}. ${doc.description}`;
+                return sum + Math.ceil(text.length / 4);
+              }, 0);
+              rerankerTokens = queryTokens + documentTokens;
+            } else {
+              // For other vendors (VoyageAI, etc.), don't estimate - they use different pricing
+              rerankerTokens = 0;
+            }
+          }
+          
+          // Calculate reranker cost
           rerankerCost = calculateRerankerCost(
             this.rerankerConfig.vendor, 
             1, 
             rerankerInput.length
           );
-          
-          // Estimate reranker tokens based on query + documents text
-          // Rough estimation: 1 token per 4 characters (similar to OpenAI tokenization)
-          const queryTokens = Math.ceil(query.length / 4);
-          const documentTokens = rerankerInput.reduce((sum, doc) => {
-            const text = `${doc.title}. ${doc.description}`;
-            return sum + Math.ceil(text.length / 4);
-          }, 0);
-          rerankerTokens = queryTokens + documentTokens;
           
           const rerankerMetrics = createRerankerMetrics({
             vendor: this.rerankerConfig.vendor,
