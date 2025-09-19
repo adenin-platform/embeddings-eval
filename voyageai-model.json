@@ -3,8 +3,6 @@
   "vendor": "voyageai",
   "model": "voyage-3.5",
   "minSimilarity": 0.5,
-  "reranker": {
-    "vendor": "voyageai",
-    "model": "rerank-2.5"
-  }
+  "reranker": "voyageai",
+  "reranker-model": "rerank-2.5"
 }

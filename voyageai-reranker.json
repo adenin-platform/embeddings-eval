@@ -1,0 +1,5 @@
+{
+  "vendor": "voyageai",
+  "model": "rerank-2.5",
+  "cost": 0.05
+}
