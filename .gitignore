@@ -4,3 +4,4 @@ embeddings-index-*/
 */embeddings/
 evaluation-results-*.json
 generation-metrics.json
+demo-*.js
