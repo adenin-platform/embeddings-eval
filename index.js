@@ -185,25 +185,14 @@ class EmbeddingsEvaluator {
             apiTokens = 0;
           }
           
-          // Use actual tokens from API if available, otherwise estimate only for specific vendors
+          // Use actual tokens from API if available
           if (apiTokens > 0) {
-            // Use real tokens from API
+            // Use real tokens from API response
             rerankerTokens = apiTokens;
           } else {
-            // Only estimate for vendors that don't provide token counts (like Gemini)
-            // For most rerankers, leave tokens as 0 since they use different pricing models
-            if (this.rerankerConfig.vendor === 'google') {
-              // Estimate tokens only for Gemini which doesn't provide token counts
-              const queryTokens = Math.ceil(query.length / 4);
-              const documentTokens = rerankerInput.reduce((sum, doc) => {
-                const text = `${doc.title}. ${doc.description}`;
-                return sum + Math.ceil(text.length / 4);
-              }, 0);
-              rerankerTokens = queryTokens + documentTokens;
-            } else {
-              // For other vendors (VoyageAI, etc.), don't estimate - they use different pricing
-              rerankerTokens = 0;
-            }
+            // If API doesn't provide tokens, set to 0
+            // VoyageAI reranker should provide tokens in the response
+            rerankerTokens = 0;
           }
           
           // Calculate reranker cost
