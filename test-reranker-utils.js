@@ -7,7 +7,9 @@ const {
   createRerankerMetrics, 
   separateRerankedResults, 
   formatRerankerConfig, 
-  isRerankerAvailable 
+  isRerankerAvailable,
+  getRerankerConfigHelp,
+  checkRerankerRequirements
 } = require('./lib/rerank-utils');
 
 console.log('Running reranker utilities tests...');
@@ -68,6 +70,26 @@ console.assert(isRerankerAvailable(mockService, mockConfig), 'Should detect avai
 console.assert(!isRerankerAvailable(null, mockConfig), 'Should detect missing service');
 console.assert(!isRerankerAvailable(mockService, {}), 'Should detect missing config');
 
+// Test getRerankerConfigHelp
+console.log('7. Testing getRerankerConfigHelp...');
+const help = getRerankerConfigHelp('voyageai');
+console.assert(help.includes('VOYAGEAI_API_KEY'), 'Help should include API key name');
+console.assert(help.includes('rerank-2.5'), 'Help should include model names');
+const unknownHelp = getRerankerConfigHelp('unknown');
+console.assert(unknownHelp.includes('Unknown reranker vendor'), 'Should handle unknown vendor');
+
+// Test checkRerankerRequirements
+console.log('8. Testing checkRerankerRequirements...');
+const noRerankerConfig = { vendor: 'openai', model: 'text-embedding-3-small' };
+const noRerankerResult = checkRerankerRequirements(noRerankerConfig);
+console.assert(!noRerankerResult.hasReranker, 'Should detect no reranker');
+console.assert(noRerankerResult.isValid, 'Should be valid when no reranker is configured');
+
+const rerankerConfig = { 'reranker-vendor': 'voyageai', 'reranker-model': 'rerank-2.5' };
+const rerankerResult = checkRerankerRequirements(rerankerConfig);
+console.assert(rerankerResult.hasReranker, 'Should detect reranker configuration');
+// Note: This will fail validation due to missing API key in test environment, which is expected
+
 console.log('\n✅ All reranker utility tests passed!');
 console.log('   Configuration validation: ✅');
 console.log('   Cost calculation: ✅');
@@ -75,3 +97,5 @@ console.log('   Metrics creation: ✅');
 console.log('   Results separation: ✅');
 console.log('   Config formatting: ✅');
 console.log('   Availability checking: ✅');
+console.log('   Config help generation: ✅');
+console.log('   Requirements checking: ✅');

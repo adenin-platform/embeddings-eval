@@ -7,7 +7,7 @@ const Generator = require('./lib/generate');
 const Validator = require('./lib/validate');
 const Metrics = require('./lib/metrics');
 const RerankerService = require('./lib/reranker');
-const { validateRerankerConfig, calculateRerankerCost, createRerankerMetrics, separateRerankedResults, formatRerankerConfig, isRerankerAvailable } = require('./lib/rerank-utils');
+const { validateRerankerConfig, calculateRerankerCost, createRerankerMetrics, separateRerankedResults, formatRerankerConfig, isRerankerAvailable, getRerankerConfigHelp, checkRerankerRequirements } = require('./lib/rerank-utils');
 
 class EmbeddingsEvaluator {
   constructor(dataset = 'default', modelName = 'default') {
@@ -45,23 +45,22 @@ class EmbeddingsEvaluator {
       
       // Initialize reranker service if configured
       if (hasReranker) {
-        // Check if reranker API key is provided (may be same as embedding service)
-        const rerankerApiKeyName = `${this.modelConfig['reranker-vendor'].toUpperCase()}_API_KEY`;
-        if (!process.env[rerankerApiKeyName]) {
-          throw new Error(`${rerankerApiKeyName} environment variable is required for reranker. Please set it in a .env file.`);
+        // Use enhanced requirement checking for better error messages
+        const rerankerCheck = checkRerankerRequirements(this.modelConfig);
+        
+        if (!rerankerCheck.isValid) {
+          const errorMessage = [
+            'Reranker configuration issues:',
+            ...rerankerCheck.messages
+          ].join('\n  ');
+          throw new Error(errorMessage);
         }
         
-        const rerankerApiKey = process.env[rerankerApiKeyName];
+        const rerankerApiKey = process.env[`${this.modelConfig['reranker-vendor'].toUpperCase()}_API_KEY`];
         const rerankerConfig = {
           vendor: this.modelConfig['reranker-vendor'],
           model: this.modelConfig['reranker-model']
         };
-        
-        // Validate reranker configuration
-        const validation = validateRerankerConfig(rerankerConfig);
-        if (!validation.isValid) {
-          throw new Error(`Invalid reranker configuration: ${validation.errors.join(', ')}`);
-        }
         
         this.rerankerService = new RerankerService(rerankerApiKey, rerankerConfig);
         console.log(`🔄 Reranker service initialized: ${formatRerankerConfig(rerankerConfig)}`);
