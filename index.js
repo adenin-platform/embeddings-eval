@@ -158,6 +158,7 @@ class EmbeddingsEvaluator {
       }));
       
       // Apply reranking if configured
+      let rerankerCost = 0;
       if (this.rerankerService && allResultsFormatted.length > 0) {
         try {
           // Send all results to reranker to get consistent reranked scores
@@ -168,7 +169,7 @@ class EmbeddingsEvaluator {
           const rerankerRuntime = Date.now() - rerankerStartTime;
           
           // Calculate reranker cost and create metrics
-          const rerankerCost = calculateRerankerCost(
+          rerankerCost = calculateRerankerCost(
             this.rerankerConfig.vendor, 
             1, 
             rerankerInput.length
@@ -197,6 +198,7 @@ class EmbeddingsEvaluator {
         } catch (error) {
           console.error('⚠️  Reranking failed, falling back to similarity-based results:', error.message);
           // Continue with original results if reranking fails
+          rerankerCost = 0; // Reset cost on failure
         }
       }
       
@@ -206,13 +208,22 @@ class EmbeddingsEvaluator {
       
       const searchResults = finalResults;
       
-      // Return results with timing information
+      // Calculate embedding cost
+      const embeddingCost = this.embeddingService.calculateCost(tokens);
+      
+      // rerankerCost is already calculated above during reranking process
+      const totalCost = embeddingCost + rerankerCost;
+      
+      // Return results with timing and cost information
       return {
         results: searchResults,
         belowThresholdResults: belowThresholdTop3,
         metrics: {
           tokens: tokens,
-          runtime: runtime
+          runtime: runtime,
+          embeddingCost: embeddingCost,
+          rerankerCost: rerankerCost,
+          totalCost: totalCost
         }
       };
     } catch (error) {
@@ -243,13 +254,19 @@ class EmbeddingsEvaluator {
       // Track evaluation metrics
       const foundSet = new Set(foundIds);
       const expectedFound = expectedIds.filter(id => foundSet.has(id)).length;
-      const cost = this.embeddingService.calculateCost(searchMetrics.tokens);
+      
+      // Use the cost breakdown from search metrics
+      const embeddingCost = searchMetrics.embeddingCost;
+      const rerankerCost = searchMetrics.rerankerCost;
+      const totalCost = searchMetrics.totalCost;
       
       this.metrics.addEvaluateMetrics({
         search: evalItem.search,
         tokens: searchMetrics.tokens,
         runtime: searchMetrics.runtime,
-        cost: cost,
+        cost: totalCost, // Use total cost for metrics tracking
+        embeddingCost: embeddingCost,
+        rerankerCost: rerankerCost,
         recall: recall,
         precision: precision,
         expectedCount: expectedIds.length,
@@ -265,6 +282,14 @@ class EmbeddingsEvaluator {
       console.log(`Found: [${foundIds.join(', ')}]`);
       console.log(`Validation: ${validation.isValid ? '✅' : '❌'} ${validation.message}`);
       console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Runtime: ${searchMetrics.runtime}ms`);
+      
+      // Display cost breakdown
+      if (rerankerCost > 0) {
+        console.log(`Cost: $${totalCost.toFixed(8)} (Embedding: $${embeddingCost.toFixed(8)}, Reranker: $${rerankerCost.toFixed(8)})`);
+      } else {
+        console.log(`Cost: $${totalCost.toFixed(8)}`);
+      }
+      
       console.log(`Recall: ${recall.toFixed(1)}%, Precision: ${precision.toFixed(1)}%`);
       console.log(`Results above threshold (${searchResults.length}):`);
       
@@ -297,7 +322,9 @@ class EmbeddingsEvaluator {
         metrics: {
           tokens: searchMetrics.tokens,
           runtime: searchMetrics.runtime,
-          cost: cost, // Use calculated cost instead of hardcoded 0.1
+          cost: totalCost, // Use total cost
+          embeddingCost: embeddingCost,
+          rerankerCost: rerankerCost,
           recall: recall,
           precision: precision
         }
@@ -313,7 +340,14 @@ class EmbeddingsEvaluator {
     console.log(`  Total Queries: ${totals.queryCount}`);
     console.log(`  Total Tokens: ${totals.totalTokens}`);
     console.log(`  Total Runtime: ${totals.totalRuntime}ms`);
-    console.log(`  Total Cost: $${totals.totalCost.toFixed(8)}`);
+    
+    // Display cost breakdown
+    if (totals.totalRerankerCost > 0) {
+      console.log(`  Total Cost: $${totals.totalCost.toFixed(8)} (Embedding: $${totals.totalEmbeddingCost.toFixed(8)}, Reranker: $${totals.totalRerankerCost.toFixed(8)})`);
+    } else {
+      console.log(`  Total Cost: $${totals.totalCost.toFixed(8)}`);
+    }
+    
     console.log('\n📊 Recall & Precision Averages:');
     console.log(`  Micro-averaging: Recall ${totals.microAveraging.recall.toFixed(1)}%, Precision ${totals.microAveraging.precision.toFixed(1)}%`);
     console.log(`  Macro-averaging: Recall ${totals.macroAveraging.recall.toFixed(1)}%, Precision ${totals.macroAveraging.precision.toFixed(1)}%`);
