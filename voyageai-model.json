@@ -2,6 +2,6 @@
   "cost": 0.06,
   "vendor": "voyageai",
   "model": "voyage-3.5",
-  "minSimilarity": 0.5,
+  "minSimilarity": 0.48,
   "reranker": "voyageai"
 }

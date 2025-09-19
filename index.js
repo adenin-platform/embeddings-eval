@@ -110,16 +110,13 @@ class EmbeddingsEvaluator {
     try {
       console.log(`Searching for: "${query}"`);
       
-      // Track metrics for the search query
+      // Track metrics for the entire search operation (embedding + reranking + processing)
       const startTime = Date.now();
       
       // Generate embedding for the search query
       const result = await this.embeddingService.generateEmbedding(query, 'query');
       const queryEmbedding = result.embedding;
       const tokens = result.tokens; // Use API-provided token count
-      
-      const endTime = Date.now();
-      const runtime = endTime - startTime;
       
       // Search the index - get more results initially to account for filtering and reranking
       const searchLimit = this.rerankerService ? Math.max(topK * 10, 20) : topK * 3; // Get more results for reranking
@@ -237,9 +234,12 @@ class EmbeddingsEvaluator {
       
       // Calculate embedding cost
       const embeddingCost = this.embeddingService.calculateCost(tokens);
-      
       // rerankerCost is already calculated above during reranking process
       const totalCost = embeddingCost + rerankerCost;
+      
+      // Calculate total runtime for the entire operation (embedding + reranking + processing)
+      const endTime = Date.now();
+      const runtime = endTime - startTime;
       
       // Return results with timing and cost information
       return {
