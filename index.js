@@ -17,6 +17,7 @@ class EmbeddingsEvaluator {
     this.indexPath = path.join(this.datasetPath, 'embeddings'); // Use embeddings as directory
     this.index = null;
     this.modelConfig = null;
+    this.rerankerConfig = null;
     this.metrics = new Metrics();
     this.apiKey = null;
     this.embeddingService = null;
@@ -29,8 +30,20 @@ class EmbeddingsEvaluator {
       this.modelConfig = JSON.parse(modelConfigData);
       
       // Check for reranker configuration
-      const hasReranker = this.modelConfig['reranker'] && this.modelConfig['reranker-model'];
-      const rerankerInfo = hasReranker ? `, reranker: ${this.modelConfig['reranker']}/${this.modelConfig['reranker-model']}` : '';
+      const hasReranker = this.modelConfig['reranker'];
+      let rerankerInfo = '';
+      
+      if (hasReranker) {
+        // Load reranker configuration from separate file
+        try {
+          const rerankerConfigPath = path.join(__dirname, `${this.modelConfig['reranker']}-reranker.json`);
+          const rerankerConfigData = await fs.readFile(rerankerConfigPath, 'utf8');
+          this.rerankerConfig = JSON.parse(rerankerConfigData);
+          rerankerInfo = `, reranker: ${this.rerankerConfig.vendor}/${this.rerankerConfig.model}`;
+        } catch (error) {
+          throw new Error(`Failed to load reranker configuration from ${this.modelConfig['reranker']}-reranker.json: ${error.message}`);
+        }
+      }
       
       console.log(`📄 Loaded model '${this.modelName}': ${this.modelConfig.vendor}/${this.modelConfig.model} (cost: $${this.modelConfig.cost}/1M tokens, minSimilarity: ${this.modelConfig.minSimilarity || 0.0}${rerankerInfo})`);
       
@@ -56,14 +69,10 @@ class EmbeddingsEvaluator {
           throw new Error(errorMessage);
         }
         
-        const rerankerApiKey = process.env[`${this.modelConfig['reranker'].toUpperCase()}_API_KEY`];
-        const rerankerConfig = {
-          vendor: this.modelConfig['reranker'],
-          model: this.modelConfig['reranker-model']
-        };
+        const rerankerApiKey = process.env[`${this.rerankerConfig.vendor.toUpperCase()}_API_KEY`];
         
-        this.rerankerService = new RerankerService(rerankerApiKey, rerankerConfig);
-        console.log(`🔄 Reranker service initialized: ${formatRerankerConfig(rerankerConfig)}`);
+        this.rerankerService = new RerankerService(rerankerApiKey, this.rerankerConfig);
+        console.log(`🔄 Reranker service initialized: ${formatRerankerConfig(this.rerankerConfig)}`);
       }
     } catch (error) {
       console.error(`❌ Error loading model config for '${this.modelName}':`, error.message);
@@ -160,14 +169,14 @@ class EmbeddingsEvaluator {
           
           // Calculate reranker cost and create metrics
           const rerankerCost = calculateRerankerCost(
-            this.modelConfig['reranker'], 
+            this.rerankerConfig.vendor, 
             1, 
             rerankerInput.length
           );
           
           const rerankerMetrics = createRerankerMetrics({
-            vendor: this.modelConfig['reranker'],
-            model: this.modelConfig['reranker-model'],
+            vendor: this.rerankerConfig.vendor,
+            model: this.rerankerConfig.model,
             query,
             documentsCount: rerankerInput.length,
             runtime: rerankerRuntime,
