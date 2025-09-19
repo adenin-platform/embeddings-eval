@@ -7,6 +7,7 @@ const Generator = require('./lib/generate');
 const Validator = require('./lib/validate');
 const Metrics = require('./lib/metrics');
 const RerankerService = require('./lib/reranker');
+const { validateRerankerConfig, calculateRerankerCost, createRerankerMetrics, separateRerankedResults, formatRerankerConfig, isRerankerAvailable } = require('./lib/rerank-utils');
 
 class EmbeddingsEvaluator {
   constructor(dataset = 'default', modelName = 'default') {
@@ -56,8 +57,14 @@ class EmbeddingsEvaluator {
           model: this.modelConfig['reranker-model']
         };
         
+        // Validate reranker configuration
+        const validation = validateRerankerConfig(rerankerConfig);
+        if (!validation.isValid) {
+          throw new Error(`Invalid reranker configuration: ${validation.errors.join(', ')}`);
+        }
+        
         this.rerankerService = new RerankerService(rerankerApiKey, rerankerConfig);
-        console.log(`🔄 Reranker service initialized: ${rerankerConfig.vendor}/${rerankerConfig.model}`);
+        console.log(`🔄 Reranker service initialized: ${formatRerankerConfig(rerankerConfig)}`);
       }
     } catch (error) {
       console.error(`❌ Error loading model config for '${this.modelName}':`, error.message);
@@ -147,23 +154,37 @@ class EmbeddingsEvaluator {
         try {
           // Send all results to reranker to get consistent reranked scores
           const rerankerInput = allResultsFormatted.slice(0, 10); // Take top 10 for reranking
+          
+          const rerankerStartTime = Date.now();
           const rerankedResults = await this.rerankerService.rerank(query, rerankerInput, 10);
+          const rerankerRuntime = Date.now() - rerankerStartTime;
+          
+          // Calculate reranker cost and create metrics
+          const rerankerCost = calculateRerankerCost(
+            this.modelConfig['reranker-vendor'], 
+            1, 
+            rerankerInput.length
+          );
+          
+          const rerankerMetrics = createRerankerMetrics({
+            vendor: this.modelConfig['reranker-vendor'],
+            model: this.modelConfig['reranker-model'],
+            query,
+            documentsCount: rerankerInput.length,
+            runtime: rerankerRuntime,
+            cost: rerankerCost
+          });
+          
+          // Track reranker metrics
+          this.metrics.addRerankerMetrics(rerankerMetrics);
           
           // Separate reranked results into above and below threshold based on reranked scores
-          const rerankedAboveThreshold = [];
-          const rerankedBelowThreshold = [];
-          
-          rerankedResults.forEach(result => {
-            if (result.score >= minSimilarity) {
-              rerankedAboveThreshold.push(result);
-            } else {
-              rerankedBelowThreshold.push(result);
-            }
-          });
+          const { aboveThreshold: rerankedAboveThreshold, belowThreshold: rerankedBelowThreshold } = 
+            separateRerankedResults(rerankedResults, candidateResults, minSimilarity);
           
           // Use reranked results as the main results
           candidateResults = rerankedAboveThreshold;
-          belowThresholdTop3 = rerankedBelowThreshold.slice(0, 3);
+          belowThresholdTop3 = rerankedBelowThreshold;
           
         } catch (error) {
           console.error('⚠️  Reranking failed, falling back to similarity-based results:', error.message);
@@ -290,6 +311,18 @@ class EmbeddingsEvaluator {
     console.log(`  Macro-averaging: Recall ${totals.macroAveraging.recall.toFixed(1)}%, Precision ${totals.macroAveraging.precision.toFixed(1)}%`);
     console.log(`  Weighted-averaging: Recall ${totals.weightedAveraging.recall.toFixed(1)}%, Precision ${totals.weightedAveraging.precision.toFixed(1)}%`);
     
+    // Display reranker metrics if available
+    if (this.rerankerService && this.metrics.rerankerMetrics.length > 0) {
+      const rerankerTotals = this.metrics.getRerankerTotals();
+      console.log('\n🔄 Reranker Metrics Summary:');
+      console.log(`  Total Queries: ${rerankerTotals.queryCount}`);
+      console.log(`  Total Documents: ${rerankerTotals.totalDocuments}`);
+      console.log(`  Total Runtime: ${rerankerTotals.totalRuntime}ms`);
+      console.log(`  Total Cost: $${rerankerTotals.totalCost.toFixed(8)}`);
+      console.log(`  Average Documents per Query: ${rerankerTotals.averageDocumentsPerQuery}`);
+      console.log(`  Average Runtime per Query: ${rerankerTotals.averageRuntimePerQuery}ms`);
+      console.log(`  Average Cost per Query: $${rerankerTotals.averageCostPerQuery.toFixed(8)}`);
+    }
     return results;
   }
 
@@ -338,7 +371,7 @@ class EmbeddingsEvaluator {
       // Prepare complete results with metrics
       const completeResults = {
         results: results,
-        metrics: this.metrics.getAllMetrics().evaluate
+        metrics: this.metrics.getAllMetrics()
       };
       
       // Save results to file in dataset folder with model name
@@ -383,7 +416,7 @@ class EmbeddingsEvaluator {
       // Prepare complete results with metrics
       const completeResults = {
         results: results,
-        metrics: this.metrics.getAllMetrics().evaluate
+        metrics: this.metrics.getAllMetrics()
       };
       
       // Save results to file in dataset folder with model name
