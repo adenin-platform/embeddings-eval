@@ -159,16 +159,43 @@ class EmbeddingsEvaluator {
       
       // Apply reranking if configured
       let rerankerCost = 0;
+      let rerankerTokens = 0;
       if (this.rerankerService && allResultsFormatted.length > 0) {
         try {
           // Send all results to reranker to get consistent reranked scores
           const rerankerInput = allResultsFormatted.slice(0, 10); // Take top 10 for reranking
           
           const rerankerStartTime = Date.now();
-          const rerankedResults = await this.rerankerService.rerank(query, rerankerInput, 10);
+          const rerankerResponse = await this.rerankerService.rerank(query, rerankerInput, 10);
           const rerankerRuntime = Date.now() - rerankerStartTime;
           
-          // Calculate reranker cost and create metrics
+          // Handle different response formats from reranker
+          let rerankedResults, apiTokens;
+          if (Array.isArray(rerankerResponse)) {
+            // Old format: reranker returned array directly
+            rerankedResults = rerankerResponse;
+            apiTokens = 0;
+          } else if (rerankerResponse.results) {
+            // New format: reranker returned object with results and tokens
+            rerankedResults = rerankerResponse.results;
+            apiTokens = rerankerResponse.tokens || 0;
+          } else {
+            // Fallback
+            rerankedResults = rerankerResponse;
+            apiTokens = 0;
+          }
+          
+          // Use actual tokens from API if available
+          if (apiTokens > 0) {
+            // Use real tokens from API response
+            rerankerTokens = apiTokens;
+          } else {
+            // If API doesn't provide tokens, set to 0
+            // VoyageAI reranker should provide tokens in the response
+            rerankerTokens = 0;
+          }
+          
+          // Calculate reranker cost
           rerankerCost = calculateRerankerCost(
             this.rerankerConfig.vendor, 
             1, 
@@ -220,6 +247,7 @@ class EmbeddingsEvaluator {
         belowThresholdResults: belowThresholdTop3,
         metrics: {
           tokens: tokens,
+          rerankerTokens: rerankerTokens,
           runtime: runtime,
           embeddingCost: embeddingCost,
           rerankerCost: rerankerCost,
@@ -263,6 +291,7 @@ class EmbeddingsEvaluator {
       this.metrics.addEvaluateMetrics({
         search: evalItem.search,
         tokens: searchMetrics.tokens,
+        rerankerTokens: searchMetrics.rerankerTokens || 0,
         runtime: searchMetrics.runtime,
         cost: totalCost, // Use total cost for metrics tracking
         embeddingCost: embeddingCost,
@@ -281,13 +310,13 @@ class EmbeddingsEvaluator {
       console.log(`Expected: [${expectedIds.join(', ')}]`);
       console.log(`Found: [${foundIds.join(', ')}]`);
       console.log(`Validation: ${validation.isValid ? '✅' : '❌'} ${validation.message}`);
-      console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Runtime: ${searchMetrics.runtime}ms`);
-      
-      // Display cost breakdown
+      // Combined metrics and cost display in one line
       if (rerankerCost > 0) {
-        console.log(`Cost: $${totalCost.toFixed(8)} (Embedding: $${embeddingCost.toFixed(8)}, Reranker: $${rerankerCost.toFixed(8)})`);
+        // For reranker cases, show reranker tokens
+        const rerankerTokens = searchMetrics.rerankerTokens || 0;
+        console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Reranker Tokens: ${rerankerTokens}, Runtime: ${searchMetrics.runtime}ms, Cost: $${totalCost.toFixed(8)} (Embedding: $${embeddingCost.toFixed(8)}, Reranker: $${rerankerCost.toFixed(8)})`);
       } else {
-        console.log(`Cost: $${totalCost.toFixed(8)}`);
+        console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Runtime: ${searchMetrics.runtime}ms, Cost: $${totalCost.toFixed(8)}`);
       }
       
       console.log(`Recall: ${recall.toFixed(1)}%, Precision: ${precision.toFixed(1)}%`);
@@ -321,6 +350,7 @@ class EmbeddingsEvaluator {
         results: searchResults,
         metrics: {
           tokens: searchMetrics.tokens,
+          rerankerTokens: searchMetrics.rerankerTokens || 0,
           runtime: searchMetrics.runtime,
           cost: totalCost, // Use total cost
           embeddingCost: embeddingCost,
@@ -338,7 +368,14 @@ class EmbeddingsEvaluator {
     const totals = this.metrics.getEvaluateTotals();
     console.log('\n📈 Evaluation Metrics Summary:');
     console.log(`  Total Queries: ${totals.queryCount}`);
-    console.log(`  Total Tokens: ${totals.totalTokens}`);
+    
+    // Display tokens separately when reranker was used
+    if (totals.totalRerankerTokens > 0) {
+      console.log(`  Total Tokens: ${totals.totalTokens} (Embedding: ${totals.totalTokens}, Reranker: ${totals.totalRerankerTokens})`);
+    } else {
+      console.log(`  Total Tokens: ${totals.totalTokens}`);
+    }
+    
     console.log(`  Total Runtime: ${totals.totalRuntime}ms`);
     
     // Display cost breakdown
