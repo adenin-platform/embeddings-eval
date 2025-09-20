@@ -473,6 +473,91 @@ class EmbeddingsEvaluator {
     }
   }
 
+  async queryMode() {
+    try {
+      console.log(`🔍 Interactive search mode for dataset '${this.dataset}' using model '${this.modelName}'...\n`);
+      
+      await this.initialize();
+      
+      const stats = await this.index.getIndexStats();
+      console.log(`📊 Using existing index with ${stats.items} items.\n`);
+      
+      // Import readline for user input
+      const readline = require('readline');
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+      });
+      
+      // Prompt user for search term
+      rl.question('Enter your search term: ', async (searchTerm) => {
+        rl.close();
+        
+        if (!searchTerm || searchTerm.trim() === '') {
+          console.log('❌ No search term provided. Exiting.');
+          process.exit(1);
+        }
+        
+        try {
+          // Use the same search functionality as evaluate
+          const searchResponse = await this.search(searchTerm.trim(), 3);
+          const searchResults = searchResponse.results;
+          const belowThresholdResults = searchResponse.belowThresholdResults;
+          const searchMetrics = searchResponse.metrics;
+          
+          // Display results in the same format as evaluate
+          // Since this is interactive query mode, we don't have expected results
+          console.log(`Search: "${searchTerm.trim()}"`);
+          console.log(`Expected: []`); // No expected results for interactive mode
+          console.log(`Found: [${searchResults.map(r => r.id).join(', ')}]`);
+          console.log(`Validation: ✅ Interactive search - no validation needed`);
+          
+          // Display metrics (reuse logic from runEvaluation)
+          const embeddingCost = searchMetrics.embeddingCost;
+          const rerankerCost = searchMetrics.rerankerCost;
+          const totalCost = searchMetrics.totalCost;
+          
+          if (rerankerCost > 0) {
+            const rerankerTokens = searchMetrics.rerankerTokens || 0;
+            console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Reranker Tokens: ${rerankerTokens}, Runtime: ${searchMetrics.runtime}ms, Cost: $${totalCost.toFixed(8)} (Embedding: $${embeddingCost.toFixed(8)}, Reranker: $${rerankerCost.toFixed(8)})`);
+          } else {
+            console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Runtime: ${searchMetrics.runtime}ms, Cost: $${totalCost.toFixed(8)}`);
+          }
+          
+          console.log(`Recall: N/A, Precision: N/A`); // No ground truth for interactive query
+          console.log(`Results above threshold (${searchResults.length}):`);
+          
+          // Display search results
+          searchResults.forEach((result, index) => {
+            const scoreLabel = result.reranked ? 'Relevance' : 'Score';
+            const originalScoreInfo = result.reranked && result.originalScore ? ` (orig: ${result.originalScore.toFixed(4)})` : '';
+            console.log(`  ${index + 1}. [ID: ${result.id}, ${scoreLabel}: ${result.score.toFixed(4)}${originalScoreInfo}] ${result.title}`);
+            console.log(`     ${result.description.substring(0, 100)}...`);
+          });
+          
+          // Display below threshold results if they exist
+          if (belowThresholdResults && belowThresholdResults.length > 0) {
+            console.log(`Next results below threshold:`);
+            belowThresholdResults.forEach((result, index) => {
+              const scoreLabel = result.reranked ? 'Relevance' : 'Score';
+              const originalScoreInfo = result.reranked && result.originalScore ? ` (orig: ${result.originalScore.toFixed(4)})` : '';
+              console.log(`  ${searchResults.length + index + 1}. [ID: ${result.id}, ${scoreLabel}: ${result.score.toFixed(4)}${originalScoreInfo}] ${result.title}`);
+              console.log(`     ${result.description.substring(0, 100)}...`);
+            });
+          }
+          
+        } catch (searchError) {
+          console.error('❌ Error during search:', searchError.message);
+          process.exit(1);
+        }
+      });
+      
+    } catch (error) {
+      console.error('❌ Error running query mode:', error.message);
+      process.exit(1);
+    }
+  }
+
   async run() {
     try {
       console.log(`Starting Embeddings Evaluator for dataset '${this.dataset}' using model '${this.modelName}'...\n`);
@@ -538,7 +623,7 @@ if (require.main === module) {
       } else if (arg === '--model' && i + 1 < args.length) {
         modelName = args[i + 1];
         i++; // skip next argument as it's the model name
-      } else if (arg === 'generate' || arg === 'evaluate') {
+      } else if (arg === 'generate' || arg === 'evaluate' || arg === 'query') {
         command = arg;
       }
     }
@@ -558,10 +643,12 @@ if (require.main === module) {
       console.log('   npm start -- --dataset courses-de --model oa3large');      
       console.log('   npm run generate -- --dataset courses-de --model default');
       console.log('   npm run evaluate -- --dataset default --model oa3large');
+      console.log('   npm run query -- --dataset intranet --model voyageai');
       console.log('');
       console.log('   Or run directly:');
       console.log('   node index.js --dataset default --model default');
       console.log('   node index.js generate --dataset courses-de --model oa3large');
+      console.log('   node index.js query --dataset intranet --model voyageai');
       process.exit(1);
     }
     
@@ -576,6 +663,10 @@ if (require.main === module) {
       case 'evaluate':
         console.log(`🚀 Command: Run evaluation for search terms in dataset '${dataset}' using model '${modelName}'\n`); 
         evaluator.evaluateOnly();
+        break;
+      case 'query':
+        console.log(`🚀 Command: Interactive search query for dataset '${dataset}' using model '${modelName}'\n`);
+        evaluator.queryMode();
         break;
       default:
         console.log(`🚀 Command: Full pipeline (generate + evaluate) for dataset '${dataset}' using model '${modelName}'\n`);

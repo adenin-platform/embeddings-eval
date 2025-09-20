@@ -90,7 +90,14 @@ npm run evaluate -- --dataset courses-de --model oa3large
 # or
 npm run evaluate -- --dataset intranet --model google
 ```
-npm run evaluate -- --dataset intranet --model default
+
+3. **Run interactive query mode:**
+```bash
+npm run query -- --dataset default --model default
+# or  
+npm run query -- --dataset courses-de --model oa3large
+# or
+npm run query -- --dataset intranet --model voyageai
 ```
 
 ### Alternative Commands
@@ -108,6 +115,7 @@ npm start -- --dataset intranet --model google
 
 - `npm run generate -- --dataset {name} --model {model}`: Creates embeddings for all content in `{dataset}/content.json` and stores them in `{dataset}/embeddings/` folder using the specified model.
 - `npm run evaluate -- --dataset {name} --model {model}`: Runs search evaluation using queries from `{dataset}/eval.json` against the existing vector index for the specified model.
+- `npm run query -- --dataset {name} --model {model}`: Interactive query mode that prompts for a search term and displays results in the same format as evaluate mode.
 - `npm start -- --dataset {name} --model {model}`: Runs the full pipeline (equivalent to running generate then evaluate)
 - `npm run validate`: Validates that all project JSON files exist and shows item counts
 - `npm run validate-project {name}`: Validates a specific project
@@ -116,6 +124,7 @@ npm start -- --dataset intranet --model google
 ```bash
 node index.js generate --dataset courses-de --model oa3large
 node index.js evaluate --dataset default --model google
+node index.js query --dataset intranet --model voyageai
 node index.js --dataset default --model default  # full pipeline
 ```
 
