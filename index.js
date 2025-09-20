@@ -306,39 +306,8 @@ class EmbeddingsEvaluator {
       // Validate results
       const validation = Validator.validateResults(foundIds, expectedIds);
       
-      console.log(`Search: "${evalItem.search}"`);
-      console.log(`Expected: [${expectedIds.join(', ')}]`);
-      console.log(`Found: [${foundIds.join(', ')}]`);
-      console.log(`Validation: ${validation.isValid ? '✅' : '❌'} ${validation.message}`);
-      // Combined metrics and cost display in one line
-      if (rerankerCost > 0) {
-        // For reranker cases, show reranker tokens
-        const rerankerTokens = searchMetrics.rerankerTokens || 0;
-        console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Reranker Tokens: ${rerankerTokens}, Runtime: ${searchMetrics.runtime}ms, Cost: $${totalCost.toFixed(8)} (Embedding: $${embeddingCost.toFixed(8)}, Reranker: $${rerankerCost.toFixed(8)})`);
-      } else {
-        console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Runtime: ${searchMetrics.runtime}ms, Cost: $${totalCost.toFixed(8)}`);
-      }
-      
-      console.log(`Recall: ${recall.toFixed(1)}%, Precision: ${precision.toFixed(1)}%`);
-      console.log(`Results above threshold (${searchResults.length}):`);
-      
-      searchResults.forEach((result, index) => {
-        const scoreLabel = result.reranked ? 'Relevance' : 'Score';
-        const originalScoreInfo = result.reranked && result.originalScore ? ` (orig: ${result.originalScore.toFixed(4)})` : '';
-        console.log(`  ${index + 1}. [ID: ${result.id}, ${scoreLabel}: ${result.score.toFixed(4)}${originalScoreInfo}] ${result.title}`);
-        console.log(`     ${result.description.substring(0, 100)}...`);
-      });
-      
-      // Display top 3 results below threshold if they exist
-      if (belowThresholdResults && belowThresholdResults.length > 0) {
-        console.log(`Next results below threshold:`);
-        belowThresholdResults.forEach((result, index) => {
-          const scoreLabel = result.reranked ? 'Relevance' : 'Score';
-          const originalScoreInfo = result.reranked && result.originalScore ? ` (orig: ${result.originalScore.toFixed(4)})` : '';
-          console.log(`  ${searchResults.length + index + 1}. [ID: ${result.id}, ${scoreLabel}: ${result.score.toFixed(4)}${originalScoreInfo}] ${result.title}`);
-          console.log(`     ${result.description.substring(0, 100)}...`);
-        });
-      }
+      // Display results using the shared method
+      this.displaySearchResults(evalItem.search, searchResults, belowThresholdResults, searchMetrics, expectedIds);
       
       console.log('\n' + '-'.repeat(80) + '\n');
       
@@ -473,6 +442,59 @@ class EmbeddingsEvaluator {
     }
   }
 
+  // Helper method to display search results consistently
+  displaySearchResults(searchTerm, searchResults, belowThresholdResults, searchMetrics, expectedIds = []) {
+    const foundIds = searchResults.map(r => r.id);
+    const embeddingCost = searchMetrics.embeddingCost;
+    const rerankerCost = searchMetrics.rerankerCost;
+    const totalCost = searchMetrics.totalCost;
+    
+    console.log(`Search: "${searchTerm}"`);
+    console.log(`Expected: [${expectedIds.join(', ')}]`);
+    console.log(`Found: [${foundIds.join(', ')}]`);
+    
+    if (expectedIds.length > 0) {
+      const validation = Validator.validateResults(foundIds, expectedIds);
+      console.log(`Validation: ${validation.isValid ? '✅' : '❌'} ${validation.message}`);
+      
+      // Calculate recall and precision
+      const recall = Metrics.calculateRecall(foundIds, expectedIds);
+      const precision = Metrics.calculatePrecision(foundIds, expectedIds);
+      console.log(`Recall: ${recall.toFixed(1)}%, Precision: ${precision.toFixed(1)}%`);
+    } else {
+      console.log(`Validation: ✅ Interactive search - no validation needed`);
+      console.log(`Recall: N/A, Precision: N/A`);
+    }
+    
+    // Display metrics
+    if (rerankerCost > 0) {
+      const rerankerTokens = searchMetrics.rerankerTokens || 0;
+      console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Reranker Tokens: ${rerankerTokens}, Runtime: ${searchMetrics.runtime}ms, Cost: $${totalCost.toFixed(8)} (Embedding: $${embeddingCost.toFixed(8)}, Reranker: $${rerankerCost.toFixed(8)})`);
+    } else {
+      console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Runtime: ${searchMetrics.runtime}ms, Cost: $${totalCost.toFixed(8)}`);
+    }
+    
+    console.log(`Results above threshold (${searchResults.length}):`);
+    
+    searchResults.forEach((result, index) => {
+      const scoreLabel = result.reranked ? 'Relevance' : 'Score';
+      const originalScoreInfo = result.reranked && result.originalScore ? ` (orig: ${result.originalScore.toFixed(4)})` : '';
+      console.log(`  ${index + 1}. [ID: ${result.id}, ${scoreLabel}: ${result.score.toFixed(4)}${originalScoreInfo}] ${result.title}`);
+      console.log(`     ${result.description.substring(0, 100)}...`);
+    });
+    
+    // Display below threshold results if they exist
+    if (belowThresholdResults && belowThresholdResults.length > 0) {
+      console.log(`Next results below threshold:`);
+      belowThresholdResults.forEach((result, index) => {
+        const scoreLabel = result.reranked ? 'Relevance' : 'Score';
+        const originalScoreInfo = result.reranked && result.originalScore ? ` (orig: ${result.originalScore.toFixed(4)})` : '';
+        console.log(`  ${searchResults.length + index + 1}. [ID: ${result.id}, ${scoreLabel}: ${result.score.toFixed(4)}${originalScoreInfo}] ${result.title}`);
+        console.log(`     ${result.description.substring(0, 100)}...`);
+      });
+    }
+  }
+
   async queryMode() {
     try {
       console.log(`🔍 Interactive search mode for dataset '${this.dataset}' using model '${this.modelName}'...\n`);
@@ -505,46 +527,8 @@ class EmbeddingsEvaluator {
           const belowThresholdResults = searchResponse.belowThresholdResults;
           const searchMetrics = searchResponse.metrics;
           
-          // Display results in the same format as evaluate
-          // Since this is interactive query mode, we don't have expected results
-          console.log(`Search: "${searchTerm.trim()}"`);
-          console.log(`Expected: []`); // No expected results for interactive mode
-          console.log(`Found: [${searchResults.map(r => r.id).join(', ')}]`);
-          console.log(`Validation: ✅ Interactive search - no validation needed`);
-          
-          // Display metrics (reuse logic from runEvaluation)
-          const embeddingCost = searchMetrics.embeddingCost;
-          const rerankerCost = searchMetrics.rerankerCost;
-          const totalCost = searchMetrics.totalCost;
-          
-          if (rerankerCost > 0) {
-            const rerankerTokens = searchMetrics.rerankerTokens || 0;
-            console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Reranker Tokens: ${rerankerTokens}, Runtime: ${searchMetrics.runtime}ms, Cost: $${totalCost.toFixed(8)} (Embedding: $${embeddingCost.toFixed(8)}, Reranker: $${rerankerCost.toFixed(8)})`);
-          } else {
-            console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Runtime: ${searchMetrics.runtime}ms, Cost: $${totalCost.toFixed(8)}`);
-          }
-          
-          console.log(`Recall: N/A, Precision: N/A`); // No ground truth for interactive query
-          console.log(`Results above threshold (${searchResults.length}):`);
-          
-          // Display search results
-          searchResults.forEach((result, index) => {
-            const scoreLabel = result.reranked ? 'Relevance' : 'Score';
-            const originalScoreInfo = result.reranked && result.originalScore ? ` (orig: ${result.originalScore.toFixed(4)})` : '';
-            console.log(`  ${index + 1}. [ID: ${result.id}, ${scoreLabel}: ${result.score.toFixed(4)}${originalScoreInfo}] ${result.title}`);
-            console.log(`     ${result.description.substring(0, 100)}...`);
-          });
-          
-          // Display below threshold results if they exist
-          if (belowThresholdResults && belowThresholdResults.length > 0) {
-            console.log(`Next results below threshold:`);
-            belowThresholdResults.forEach((result, index) => {
-              const scoreLabel = result.reranked ? 'Relevance' : 'Score';
-              const originalScoreInfo = result.reranked && result.originalScore ? ` (orig: ${result.originalScore.toFixed(4)})` : '';
-              console.log(`  ${searchResults.length + index + 1}. [ID: ${result.id}, ${scoreLabel}: ${result.score.toFixed(4)}${originalScoreInfo}] ${result.title}`);
-              console.log(`     ${result.description.substring(0, 100)}...`);
-            });
-          }
+          // Display results using the shared method
+          this.displaySearchResults(searchTerm.trim(), searchResults, belowThresholdResults, searchMetrics);
           
         } catch (searchError) {
           console.error('❌ Error during search:', searchError.message);

@@ -93,10 +93,6 @@ npm run evaluate -- --dataset intranet --model google
 
 3. **Run interactive query mode:**
 ```bash
-npm run query -- --dataset default --model default
-# or  
-npm run query -- --dataset courses-de --model oa3large
-# or
 npm run query -- --dataset intranet --model voyageai
 ```
 
