@@ -503,6 +503,7 @@ class EmbeddingsEvaluator {
       
       const stats = await this.index.getIndexStats();
       console.log(`📊 Using existing index with ${stats.items} items.\n`);
+      console.log('💡 Enter search terms to query the index. Type "q" or "quit" to exit.\n');
       
       // Import readline for user input
       const readline = require('readline');
@@ -511,30 +512,52 @@ class EmbeddingsEvaluator {
         output: process.stdout
       });
       
-      // Prompt user for search term
-      rl.question('Enter your search term: ', async (searchTerm) => {
-        rl.close();
-        
-        if (!searchTerm || searchTerm.trim() === '') {
-          console.log('❌ No search term provided. Exiting.');
-          process.exit(1);
-        }
-        
-        try {
-          // Use the same search functionality as evaluate
-          const searchResponse = await this.search(searchTerm.trim(), 3);
-          const searchResults = searchResponse.results;
-          const belowThresholdResults = searchResponse.belowThresholdResults;
-          const searchMetrics = searchResponse.metrics;
-          
-          // Display results using the shared method
-          this.displaySearchResults(searchTerm.trim(), searchResults, belowThresholdResults, searchMetrics);
-          
-        } catch (searchError) {
-          console.error('❌ Error during search:', searchError.message);
-          process.exit(1);
-        }
-      });
+      // Create a recursive function to handle continuous prompting
+      const promptForSearch = async () => {
+        return new Promise((resolve) => {
+          rl.question('Enter your search term: ', async (searchTerm) => {
+            const trimmedTerm = searchTerm.trim();
+            
+            // Check for quit commands
+            if (trimmedTerm === 'q' || trimmedTerm === 'quit') {
+              console.log('👋 Goodbye!');
+              rl.close();
+              resolve();
+              return;
+            }
+            
+            // Handle empty search term - ask again
+            if (!trimmedTerm) {
+              console.log('❌ Please enter a search term, or "q" to quit.\n');
+              promptForSearch().then(resolve);
+              return;
+            }
+            
+            try {
+              // Use the same search functionality as evaluate
+              const searchResponse = await this.search(trimmedTerm, 3);
+              const searchResults = searchResponse.results;
+              const belowThresholdResults = searchResponse.belowThresholdResults;
+              const searchMetrics = searchResponse.metrics;
+              
+              // Display results using the shared method
+              this.displaySearchResults(trimmedTerm, searchResults, belowThresholdResults, searchMetrics);
+              console.log(); // Add blank line for readability
+              
+              // Continue prompting for next search
+              promptForSearch().then(resolve);
+              
+            } catch (searchError) {
+              console.error('❌ Error during search:', searchError.message);
+              console.log('Please try again or type "q" to quit.\n');
+              promptForSearch().then(resolve);
+            }
+          });
+        });
+      };
+      
+      // Start the interactive loop
+      await promptForSearch();
       
     } catch (error) {
       console.error('❌ Error running query mode:', error.message);
