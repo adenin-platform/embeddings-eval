@@ -1,5 +1,6 @@
 {
   "vendor": "voyageai",
   "model": "rerank-2.5",
-  "cost": 0.05
+  "cost": 0.05,
+  "prompt": "Find documents relevant to: {search}"
 }
