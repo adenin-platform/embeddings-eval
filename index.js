@@ -450,10 +450,12 @@ class EmbeddingsEvaluator {
     const totalCost = searchMetrics.totalCost;
     
     console.log(`Search: "${searchTerm}"`);
-    console.log(`Expected: [${expectedIds.join(', ')}]`);
-    console.log(`Found: [${foundIds.join(', ')}]`);
     
+    // Only show evaluation-related information when we have expected results
     if (expectedIds.length > 0) {
+      console.log(`Expected: [${expectedIds.join(', ')}]`);
+      console.log(`Found: [${foundIds.join(', ')}]`);
+      
       const validation = Validator.validateResults(foundIds, expectedIds);
       console.log(`Validation: ${validation.isValid ? '✅' : '❌'} ${validation.message}`);
       
@@ -461,9 +463,6 @@ class EmbeddingsEvaluator {
       const recall = Metrics.calculateRecall(foundIds, expectedIds);
       const precision = Metrics.calculatePrecision(foundIds, expectedIds);
       console.log(`Recall: ${recall.toFixed(1)}%, Precision: ${precision.toFixed(1)}%`);
-    } else {
-      console.log(`Validation: ✅ Interactive search - no validation needed`);
-      console.log(`Recall: N/A, Precision: N/A`);
     }
     
     // Display metrics
