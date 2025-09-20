@@ -306,39 +306,8 @@ class EmbeddingsEvaluator {
       // Validate results
       const validation = Validator.validateResults(foundIds, expectedIds);
       
-      console.log(`Search: "${evalItem.search}"`);
-      console.log(`Expected: [${expectedIds.join(', ')}]`);
-      console.log(`Found: [${foundIds.join(', ')}]`);
-      console.log(`Validation: ${validation.isValid ? '✅' : '❌'} ${validation.message}`);
-      // Combined metrics and cost display in one line
-      if (rerankerCost > 0) {
-        // For reranker cases, show reranker tokens
-        const rerankerTokens = searchMetrics.rerankerTokens || 0;
-        console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Reranker Tokens: ${rerankerTokens}, Runtime: ${searchMetrics.runtime}ms, Cost: $${totalCost.toFixed(8)} (Embedding: $${embeddingCost.toFixed(8)}, Reranker: $${rerankerCost.toFixed(8)})`);
-      } else {
-        console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Runtime: ${searchMetrics.runtime}ms, Cost: $${totalCost.toFixed(8)}`);
-      }
-      
-      console.log(`Recall: ${recall.toFixed(1)}%, Precision: ${precision.toFixed(1)}%`);
-      console.log(`Results above threshold (${searchResults.length}):`);
-      
-      searchResults.forEach((result, index) => {
-        const scoreLabel = result.reranked ? 'Relevance' : 'Score';
-        const originalScoreInfo = result.reranked && result.originalScore ? ` (orig: ${result.originalScore.toFixed(4)})` : '';
-        console.log(`  ${index + 1}. [ID: ${result.id}, ${scoreLabel}: ${result.score.toFixed(4)}${originalScoreInfo}] ${result.title}`);
-        console.log(`     ${result.description.substring(0, 100)}...`);
-      });
-      
-      // Display top 3 results below threshold if they exist
-      if (belowThresholdResults && belowThresholdResults.length > 0) {
-        console.log(`Next results below threshold:`);
-        belowThresholdResults.forEach((result, index) => {
-          const scoreLabel = result.reranked ? 'Relevance' : 'Score';
-          const originalScoreInfo = result.reranked && result.originalScore ? ` (orig: ${result.originalScore.toFixed(4)})` : '';
-          console.log(`  ${searchResults.length + index + 1}. [ID: ${result.id}, ${scoreLabel}: ${result.score.toFixed(4)}${originalScoreInfo}] ${result.title}`);
-          console.log(`     ${result.description.substring(0, 100)}...`);
-        });
-      }
+      // Display results using the shared method
+      this.displaySearchResults(evalItem.search, searchResults, belowThresholdResults, searchMetrics, expectedIds);
       
       console.log('\n' + '-'.repeat(80) + '\n');
       
@@ -473,6 +442,128 @@ class EmbeddingsEvaluator {
     }
   }
 
+  // Helper method to display search results consistently
+  displaySearchResults(searchTerm, searchResults, belowThresholdResults, searchMetrics, expectedIds = []) {
+    const foundIds = searchResults.map(r => r.id);
+    const embeddingCost = searchMetrics.embeddingCost;
+    const rerankerCost = searchMetrics.rerankerCost;
+    const totalCost = searchMetrics.totalCost;
+    
+    console.log(`Search: "${searchTerm}"`);
+    
+    // Only show evaluation-related information when we have expected results
+    if (expectedIds.length > 0) {
+      console.log(`Expected: [${expectedIds.join(', ')}]`);
+      console.log(`Found: [${foundIds.join(', ')}]`);
+      
+      const validation = Validator.validateResults(foundIds, expectedIds);
+      console.log(`Validation: ${validation.isValid ? '✅' : '❌'} ${validation.message}`);
+      
+      // Calculate recall and precision
+      const recall = Metrics.calculateRecall(foundIds, expectedIds);
+      const precision = Metrics.calculatePrecision(foundIds, expectedIds);
+      console.log(`Recall: ${recall.toFixed(1)}%, Precision: ${precision.toFixed(1)}%`);
+    }
+    
+    // Display metrics
+    if (rerankerCost > 0) {
+      const rerankerTokens = searchMetrics.rerankerTokens || 0;
+      console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Reranker Tokens: ${rerankerTokens}, Runtime: ${searchMetrics.runtime}ms, Cost: $${totalCost.toFixed(8)} (Embedding: $${embeddingCost.toFixed(8)}, Reranker: $${rerankerCost.toFixed(8)})`);
+    } else {
+      console.log(`Metrics: Tokens: ${searchMetrics.tokens}, Runtime: ${searchMetrics.runtime}ms, Cost: $${totalCost.toFixed(8)}`);
+    }
+    
+    console.log(`Results above threshold (${searchResults.length}):`);
+    
+    searchResults.forEach((result, index) => {
+      const scoreLabel = result.reranked ? 'Relevance' : 'Score';
+      const originalScoreInfo = result.reranked && result.originalScore ? ` (orig: ${result.originalScore.toFixed(4)})` : '';
+      console.log(`  ${index + 1}. [ID: ${result.id}, ${scoreLabel}: ${result.score.toFixed(4)}${originalScoreInfo}] ${result.title}`);
+      console.log(`     ${result.description.substring(0, 100)}...`);
+    });
+    
+    // Display below threshold results if they exist
+    if (belowThresholdResults && belowThresholdResults.length > 0) {
+      console.log(`Next results below threshold:`);
+      belowThresholdResults.forEach((result, index) => {
+        const scoreLabel = result.reranked ? 'Relevance' : 'Score';
+        const originalScoreInfo = result.reranked && result.originalScore ? ` (orig: ${result.originalScore.toFixed(4)})` : '';
+        console.log(`  ${searchResults.length + index + 1}. [ID: ${result.id}, ${scoreLabel}: ${result.score.toFixed(4)}${originalScoreInfo}] ${result.title}`);
+        console.log(`     ${result.description.substring(0, 100)}...`);
+      });
+    }
+  }
+
+  async queryMode() {
+    try {
+      console.log(`🔍 Interactive search mode for dataset '${this.dataset}' using model '${this.modelName}'...\n`);
+      
+      await this.initialize();
+      
+      const stats = await this.index.getIndexStats();
+      console.log(`📊 Using existing index with ${stats.items} items.\n`);
+      console.log('💡 Enter search terms to query the index. Type "q" or "quit" to exit.\n');
+      
+      // Import readline for user input
+      const readline = require('readline');
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+      });
+      
+      // Create a recursive function to handle continuous prompting
+      const promptForSearch = async () => {
+        return new Promise((resolve) => {
+          rl.question('Enter your search term: ', async (searchTerm) => {
+            const trimmedTerm = searchTerm.trim();
+            
+            // Check for quit commands
+            if (trimmedTerm === 'q' || trimmedTerm === 'quit') {
+              console.log('👋 Goodbye!');
+              rl.close();
+              resolve();
+              return;
+            }
+            
+            // Handle empty search term - ask again
+            if (!trimmedTerm) {
+              console.log('❌ Please enter a search term, or "q" to quit.\n');
+              promptForSearch().then(resolve);
+              return;
+            }
+            
+            try {
+              // Use the same search functionality as evaluate
+              const searchResponse = await this.search(trimmedTerm, 3);
+              const searchResults = searchResponse.results;
+              const belowThresholdResults = searchResponse.belowThresholdResults;
+              const searchMetrics = searchResponse.metrics;
+              
+              // Display results using the shared method
+              this.displaySearchResults(trimmedTerm, searchResults, belowThresholdResults, searchMetrics);
+              console.log(); // Add blank line for readability
+              
+              // Continue prompting for next search
+              promptForSearch().then(resolve);
+              
+            } catch (searchError) {
+              console.error('❌ Error during search:', searchError.message);
+              console.log('Please try again or type "q" to quit.\n');
+              promptForSearch().then(resolve);
+            }
+          });
+        });
+      };
+      
+      // Start the interactive loop
+      await promptForSearch();
+      
+    } catch (error) {
+      console.error('❌ Error running query mode:', error.message);
+      process.exit(1);
+    }
+  }
+
   async run() {
     try {
       console.log(`Starting Embeddings Evaluator for dataset '${this.dataset}' using model '${this.modelName}'...\n`);
@@ -538,7 +629,7 @@ if (require.main === module) {
       } else if (arg === '--model' && i + 1 < args.length) {
         modelName = args[i + 1];
         i++; // skip next argument as it's the model name
-      } else if (arg === 'generate' || arg === 'evaluate') {
+      } else if (arg === 'generate' || arg === 'evaluate' || arg === 'query') {
         command = arg;
       }
     }
@@ -558,10 +649,12 @@ if (require.main === module) {
       console.log('   npm start -- --dataset courses-de --model oa3large');      
       console.log('   npm run generate -- --dataset courses-de --model default');
       console.log('   npm run evaluate -- --dataset default --model oa3large');
+      console.log('   npm run query -- --dataset intranet --model voyageai');
       console.log('');
       console.log('   Or run directly:');
       console.log('   node index.js --dataset default --model default');
       console.log('   node index.js generate --dataset courses-de --model oa3large');
+      console.log('   node index.js query --dataset intranet --model voyageai');
       process.exit(1);
     }
     
@@ -576,6 +669,10 @@ if (require.main === module) {
       case 'evaluate':
         console.log(`🚀 Command: Run evaluation for search terms in dataset '${dataset}' using model '${modelName}'\n`); 
         evaluator.evaluateOnly();
+        break;
+      case 'query':
+        console.log(`🚀 Command: Interactive search query for dataset '${dataset}' using model '${modelName}'\n`);
+        evaluator.queryMode();
         break;
       default:
         console.log(`🚀 Command: Full pipeline (generate + evaluate) for dataset '${dataset}' using model '${modelName}'\n`);
